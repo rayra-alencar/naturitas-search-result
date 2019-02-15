@@ -1,0 +1,12 @@
+{
+  "pages": {
+    "search-result": {
+      "path": "/_v/naturitas-search-result"
+    }
+  },
+  "extensions": {
+    "search-result": {
+      "component": "Index"
+    }
+  }
+}

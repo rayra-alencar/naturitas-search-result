@@ -1,0 +1,23 @@
+{
+  "name": "naturitas-search-result",
+  "vendor": "webimpacto",
+  "version": "0.1.0",
+  "title": "Naturitas Search Result",
+  "description": "",
+  "mustUpdateAt": "2019-11-22",
+  "categories": [],
+  "registries": [
+    "smartcheckout"
+  ],
+  "settingsSchema": {},
+  "builders": {
+    "pages": "0.x",
+    "react": "2.x"
+  },
+  "dependencies": {
+    "vtex.store": "1.x",
+    "vtex.store-graphql": "2.x",
+    "vtex.store-components": "2.x",
+    "vtex.styleguide": "8.x"
+  }
+}
