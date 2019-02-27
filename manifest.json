@@ -12,7 +12,8 @@
   "settingsSchema": {},
   "builders": {
     "pages": "0.x",
-    "react": "2.x"
+    "react": "2.x",
+    "messages": "1.x"
   },
   "dependencies": {
     "vtex.store": "1.x",

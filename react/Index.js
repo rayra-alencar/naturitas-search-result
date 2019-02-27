@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { orderFormConsumer } from 'vtex.store/OrderFormContext'
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+
 import { ExtensionPoint, Link } from 'render'
 import ReactResizeDetector from 'react-resize-detector'
 import Truncate from 'react-truncate';
@@ -24,7 +26,29 @@ class Index extends Component {
         const { searchQuery } = this.props
         const { facets } = searchQuery
         if (!facets || !facets.CategoriesTrees[0]) {
-            return (<div>To Do, Maquetar no se encuentra productos/filtros</div>)
+            return (
+
+            <div id="page-notfound">
+                <div class="content container">
+                    <div>imagen</div>
+                    <div><p className="title"><FormattedMessage id="searchresult.title" /></p></div>
+                    <div>
+                        <p><FormattedMessage id="searchresult.subtitle" /></p> 
+                        <p><FormattedMessage id="searchresult.subtitle2" /></p>
+                    </div>
+                    <ul>
+                        <li><FormattedMessage id="searchresult.tips1" /></li>
+                        <li><FormattedMessage id="searchresult.tips2" /></li>
+                        <li><FormattedMessage id="searchresult.tips3" /></li>
+                    </ul>
+                </div>    
+
+                <div class="category-block">
+                    <ExtensionPoint style="pagenotfound" id="category-block"  />
+                </div>
+
+            </div>
+            )
         }
         const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
 
