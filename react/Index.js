@@ -46,6 +46,10 @@ class Index extends Component {
                 <div class="category-block">
                     <ExtensionPoint style="pagenotfound" id="category-block"  />
                 </div>
+                    
+                <div class="category-block">
+                    <ExtensionPoint style="tags" id="tags-block" componenttitle="top 20 mas buscados"  />
+                </div>
 
             </div>
             )
