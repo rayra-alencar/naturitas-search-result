@@ -30,7 +30,7 @@ class Index extends Component {
 
             <div id="page-notfound">
                 <div class="searchresult-block content container">
-                    {notfoundimage && (<div> <img src={notfoundimage} /> </div>)}
+                    {notfoundimage && (<div class="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
                     <div className="searchresult-title-container">
                         <p className="title"><FormattedMessage id="searchresult.title" /></p>
                     </div>
