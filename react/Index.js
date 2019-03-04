@@ -29,18 +29,22 @@ class Index extends Component {
             return (
 
             <div id="page-notfound">
-                <div class="content container">
+                <div class="searchresult-block content container">
                     {notfoundimage && (<div> <img src={notfoundimage} /> </div>)}
-                    <div><p className="title"><FormattedMessage id="searchresult.title" /></p></div>
-                    <div>
+                    <div className="searchresult-title-container">
+                        <p className="title"><FormattedMessage id="searchresult.title" /></p>
+                    </div>
+                    <div className="searchresult-subtitle-container">
                         <p><FormattedMessage id="searchresult.subtitle" /></p> 
                         <p><FormattedMessage id="searchresult.subtitle2" /></p>
                     </div>
-                    <ul>
-                        <li><FormattedMessage id="searchresult.tips1" /></li>
-                        <li><FormattedMessage id="searchresult.tips2" /></li>
-                        <li><FormattedMessage id="searchresult.tips3" /></li>
-                    </ul>
+                    <div className="searchresult-tips-container">
+                        <ul>
+                            <li><FormattedMessage id="searchresult.tips1" /></li>
+                            <li><FormattedMessage id="searchresult.tips2" /></li>
+                            <li><FormattedMessage id="searchresult.tips3" /></li>
+                        </ul>
+                    </div>
                 </div>    
 
                 <div class="category-block">
