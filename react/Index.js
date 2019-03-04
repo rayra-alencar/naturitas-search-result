@@ -23,14 +23,14 @@ class Index extends Component {
 
     render() {
 
-        const { searchQuery } = this.props
+        const { searchQuery,notfoundimage } = this.props
         const { facets } = searchQuery
         if (!facets || !facets.CategoriesTrees[0]) {
             return (
 
             <div id="page-notfound">
                 <div class="content container">
-                    <div>imagen</div>
+                    {notfoundimage && (<div> <img src={notfoundimage} /> </div>)}
                     <div><p className="title"><FormattedMessage id="searchresult.title" /></p></div>
                     <div>
                         <p><FormattedMessage id="searchresult.subtitle" /></p> 
@@ -48,7 +48,7 @@ class Index extends Component {
                 </div>
                     
                 <div class="category-block">
-                    <ExtensionPoint style="tags" id="tags-block" componenttitle="top 20 mas buscados"  />
+                    <ExtensionPoint style="tags" id="tags-block" />
                 </div>
                 <div class="related-products">
                     <ExtensionPoint id="related-products-block"   />
@@ -119,6 +119,12 @@ class Index extends Component {
     }
 }
 
+Index.uiSchema = {
+    notfoundimage: {
+        'ui:widget': 'image-uploader',
+    },
+}
+
 Index.getSchema = (props) => {
     return {
         title: 'Search Results',
@@ -128,10 +134,14 @@ Index.getSchema = (props) => {
             description: {
                 title: 'Category Description',
                 type: 'string'
+            },
+            notfoundimage: {
+                title: 'Not found image',
+                type: 'string'
             }
         },
     }
-}
+} 
 
 
 export default Index
