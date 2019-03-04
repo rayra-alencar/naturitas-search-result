@@ -50,6 +50,9 @@ class Index extends Component {
                 <div class="category-block">
                     <ExtensionPoint style="tags" id="tags-block" componenttitle="top 20 mas buscados"  />
                 </div>
+                <div class="related-products">
+                    <ExtensionPoint id="related-products-block"   />
+                </div>
 
             </div>
             )
