@@ -1,6 +1,6 @@
 {
-  "name": "naturitas-product-details",
-  "version": "0.1.0",
+  "name": "naturitas-search-result",
+  "version": "0.1.2",
   "author": "webimpacto",
   "license": "MIT",
   "dependencies": {
