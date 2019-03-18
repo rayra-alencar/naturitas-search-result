@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { orderFormConsumer } from 'vtex.store/OrderFormContext'
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+
 import { ExtensionPoint, Link } from 'render'
 import ReactResizeDetector from 'react-resize-detector'
 import Truncate from 'react-truncate';
@@ -11,11 +13,43 @@ import LocalQuery from './components/LocalQuery';
 
 const PAGINATION_TYPES = ['show-more', 'infinite-scroll']
 const WidthSwithMobileDesktop = 769;
-const DEFAULT_MAX_ITEMS_PER_PAGE = 16
+const DEFAULT_MAX_ITEMS_PER_PAGE = 24
+
+const  SORT_OPTIONS = [
+    {
+      value: 'OrderByTopSaleDESC',
+      label: 'ordenation.sales',
+    },
+    {
+      value: 'OrderByReleaseDateDESC',
+      label: 'ordenation.release.date',
+    },
+    {
+      value: 'OrderByBestDiscountDESC',
+      label: 'ordenation.discount',
+    },
+    {
+      value: 'OrderByPriceDESC',
+      label: 'ordenation.price.descending',
+    },
+    {
+      value: 'OrderByPriceASC',
+      label: 'ordenation.price.ascending',
+    },
+    {
+      value: 'OrderByNameASC',
+      label: 'ordenation.name.ascending',
+    },
+    {
+      value: 'OrderByNameDESC',
+      label: 'ordenation.name.descending',
+    },
+  ]
 
 class SearchResultQueryLoader extends Component {
     static defaultProps = {
-        lol: 20,
+        orderBy: SORT_OPTIONS[0].value,
+        rest: '',
         querySchema: {
             maxItemsPerPage: DEFAULT_MAX_ITEMS_PER_PAGE,
           },
@@ -30,7 +64,7 @@ class SearchResultQueryLoader extends Component {
     }
 
     render() {
-        const { querySchema } = this.props
+        const {querySchema} = this.props
         return (
             <LocalQuery
                 {...this.props}
@@ -66,7 +100,7 @@ SearchResultQueryLoader.getSchema = props => {
             restField: {
               title: 'Other Query Strings',
               type: 'string',
-            },
+            }
           },
         },
       }
@@ -130,6 +164,11 @@ SearchResultQueryLoader.getSchema = props => {
               },
             },
           },
+        },
+        summary: {
+          title: 'editor.search-result.summary.title',
+          type: 'object',
+          properties: ProductSummary.getSchema(props).properties,
         }
       },
     }

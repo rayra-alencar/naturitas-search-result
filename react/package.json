@@ -1,6 +1,6 @@
 {
-  "name": "naturitas-product-details",
-  "version": "0.1.0",
+  "name": "naturitas-search-result",
+  "version": "0.1.2",
   "author": "webimpacto",
   "license": "MIT",
   "dependencies": {
@@ -13,7 +13,8 @@
     "ramda":"^0.26.1",
     "react-intl": "^2.7.2",
     "react-resize-detector": "^3.2.1",
-    "react-truncate": "^2.4.0"
+    "react-truncate": "^2.4.0",
+    "react-select": "^2.4.2"
   },
   "devDependencies": {
     "@types/react": "^16.3.14",

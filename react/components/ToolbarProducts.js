@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
 class ToolbarProducts extends Component {
+    
     render(){
         return (
             <div className="toolbar toolbar-ajax d-flex">
                 <div className="toolbar-filters-item  my-auto mr-auto">
                     <a className="amshopby-attr" href="https://www.naturitas.es/suplementos/si" data-config="[]">
-                        Envío gratis
+                        <FormattedMessage id="toolbar.enviogratis" />
                                                             <span><img src="https://cdn.naturitas.es/skin/frontend/rwd/naturitas/images/Shape.svg" alt="" /></span>
                     </a>
                 </div>
@@ -14,7 +16,7 @@ class ToolbarProducts extends Component {
                 <div className="aside-filter d-flex my-auto">
                     <div className="pager my-auto mr-3">
                         <div className="count-container">
-                            19806 productos
+                            {this.props.recordsFiltered} <FormattedMessage id="toolbar.products" />
                                                                 </div>
                     </div>
         

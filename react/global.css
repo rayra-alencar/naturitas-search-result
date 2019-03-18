@@ -57,21 +57,89 @@
     line-height: 26px;
     margin-bottom: 15px;
 }
-#category-block .filter_block ul li a{
+#category-block .filter_block ul li a, #category-block .filter_block ul li span{
     color: #4A4A4A;
     font-size: 16px;	font-weight: 500;	line-height: 31px;
 }
 
-#category-block .filter_block ul li a:hover{
+#category-block .filter_block ul li a:hover, #category-block .filter_block ul li span:hover{
     color: #4A4A4A;
-    opacity: 0.6; text-decoration: none
+    opacity: 0.6; text-decoration: none;
+    cursor: pointer;
+}
+#category-block .filterCheck{
+    padding-left: 26px;
+    position: relative;
+    display: block;
 }
 
-#category-block .filter_block ul li a .filterQuantity{
+#category-block .filterCheck:before{
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 18px;
+    width: 18px;
+    border: 1px solid #D3D3D3;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+}
+
+#category-block .filterCheck.selected:before{
+    background-color: #5CB8A3;
+}
+#category-block .filterCheck.selected:after{
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    color: #fff;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    content: "\e90f";
+}
+
+#category-block .filter_block ul li a .filterQuantity, #category-block .filter_block ul li span .filterQuantity{
     color: #C0C0C0;
     font-family: "Quicksand", sans-serif;
     font-size: 14px; 
     margin-left: 4px;
+}
+
+#category-block .filter_block .price-filter .row-wrap {
+    width: 75px;
+}
+
+#category-block .filter_block .price-filter .row-wrap .css-15k3avv {
+    margin-top: 0px;
+}
+
+#category-block .filter_block .price-filter .row-wrap:first-child {
+    margin-right: 10px;
+}
+
+#category-block .filter_block .price-filter .row-wrap svg{
+color: black;
+font-size: 9px;
+width: 13px;    
+}
+#category-block .filter_block .price-filter .row-wrap .css-d8oujb{
+    display: none;
+}
+
+#category-block .filter_block .price-filter .row-wrap .css-xp4uvy{
+    font-size: 14px;
+    color: #4A4A4A;
+    font-weight: 500;
 }
 
 #category-block ol, #category-block ul{
@@ -79,6 +147,8 @@
     margin: 0; margin-bottom: 0;
     padding: 0;
 }
+
+
 
 /** TOOLBAR ***/
 #category-block .toolbar{
@@ -108,4 +178,121 @@ color: #808080;	font-size: 16px;	font-weight: 500;	line-height: 23px;
     display: inline-block;
     background-size: 94%;
     background-image: url(https://cdn.naturitas.es/skin/frontend/rwd/naturitas/images/blue.svg);
+}
+
+/* View More */
+#category-block .tool-wrap {
+width: 112px;
+background-color: #BEBEBE;
+height: 100%;
+margin: 0 auto;
+margin-bottom: 10px;
+border-radius: 2px;
+}
+#category-block .tool-wrap .tool-line{
+height: 4px;
+border-radius: 2.5px;
+background-color: #CCDC45;
+}
+
+#category-block .toolbar-ajax{
+text-align: center;
+margin-top: 15px;
+}
+
+#category-block .toolbar-ajax .i-next{
+width: auto;
+color: #616161;
+font-family: "brandon-grotesque", Verdana, Arial, sans-serif;
+font-size: 16px;
+font-weight: bold;
+letter-spacing: 0.26px;
+line-height: 23px;
+padding: 14px 35px;
+margin: 10px 0;
+height: auto;
+border: 2px solid #E0E0E0;
+border-radius: 3px;
+text-align: center;
+text-transform: uppercase;
+vertical-align: middle;
+white-space: nowrap;
+display: inline;
+cursor: pointer;
+}
+
+
+
+/* page-notfound */
+#page-notfound {
+    padding: 30px 0px;
+}
+
+#page-notfound .searchresult-title-container .title{
+    text-align: center;
+}
+
+#page-notfound .searchresult-title-container .title span{
+    color: #4A4A4A;
+    font-family: Quicksand;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 28px;
+    text-align: center;
+}
+
+#page-notfound .searchresult-image-container{
+    margin: auto;
+    text-align: center;
+    padding: 10px 0px 20px;
+}
+
+#page-notfound .searchresult-subtitle-container{
+    color: #4A4A4A;
+    font-family: "brandon-grotesque";
+    font-size: 16px;
+    line-height: 23px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#page-notfound .searchresult-subtitle-container p{
+    margin-bottom: 0.5rem;
+}
+
+#page-notfound .searchresult-tips-container{
+    background-color: #FBFAF9;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#page-notfound .searchresult-tips-container ul{
+    color: #4A4A4A;
+    font-family: "brandon-grotesque";
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 26px;
+    text-align: center;
+    padding-left: 0;
+    list-style: inside;
+    max-width: 230px;
+    margin: auto;
+}
+
+#page-notfound .searchresult-block{
+    margin-bottom: 2rem;
+}
+
+@media(min-width: 769px){
+
+    #page-notfound .searchresult-tips-container{
+        max-width: 400px;
+        margin: auto;
+    }
+
+    #page-notfound .searchresult-tips-container ul{
+        max-width: none;
+        margin: auto;
+    }
+
 }

@@ -1,0 +1,24 @@
+{
+    "searchresult.title": "Lo sentimos, no se ha encontrado lo que buscabas…",
+    "searchresult.subtitle":"¡No te preocupes!",
+    "searchresult.subtitle2":"Aquí tienes algunos consejos para ayudarte a encontrar lo que estás buscando:",
+    "searchresult.tips1":"Verifica tu ortografía y busca de nuevo",
+    "searchresult.tips2":"Prueba otro término de búsqueda",
+    "searchresult.tips3":"Explora nuestras categorías",
+
+    "toolbar.enviogratis":"Envío Gratis",
+    "toolbar.products":"productos",
+
+    "toolbar.filter.category":"Categorías",
+    "toolbar.filter.brands":"Marcas",
+    "toolbar.filter.flags":"Sellos",
+    "toolbar.filter.content_format": "Formato",
+    "toolbar.filter.price": "Precio",
+
+    "toolbar.showmore": "Cargar más",
+    "toolbar.showmore.text": "Has visto {view} productos de {total}"   
+
+    
+
+    
+}

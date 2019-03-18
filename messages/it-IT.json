@@ -1,0 +1,21 @@
+{
+    "searchresult.title": "Siamo spiacenti, non hai trovato quello che stavi cercando…",
+    "searchresult.subtitle":"¡No te preocupes!",
+    "searchresult.subtitle2":"Aquí tienes algunos consejos para ayudarte a encontrar lo que estás buscando:",
+    "searchresult.tips1":"Verifica tu ortografía y busca de nuevo",
+    "searchresult.tips2":"Prueba otro término de búsqueda",
+    "searchresult.tips3":"Explora nuestras categorías",
+
+    "toolbar.enviogratis":"Spedizione gratuita",
+    "toolbar.products":"produrre",
+
+    "toolbar.filter.category":"Categorías",
+    "toolbar.filter.brands":"Marca",
+    "toolbar.filter.flags":"Etichetta",
+    "toolbar.filter.content_format": "Formato",
+    "toolbar.filter.price": "Prezzo",
+
+    "toolbar.showmore": "Vedi di più",
+    "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}"   
+    
+}
