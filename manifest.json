@@ -1,7 +1,7 @@
 {
   "name": "naturitas-search-result",
   "vendor": "webimpacto",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "title": "Naturitas Search Result",
   "description": "",
   "mustUpdateAt": "2019-11-22",
@@ -12,7 +12,8 @@
   "settingsSchema": {},
   "builders": {
     "pages": "0.x",
-    "react": "2.x"
+    "react": "2.x",
+    "messages": "1.x"
   },
   "dependencies": {
     "vtex.store": "1.x",

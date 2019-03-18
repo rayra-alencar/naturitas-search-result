@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { orderFormConsumer } from 'vtex.store/OrderFormContext'
+import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+
 import { ExtensionPoint, Link } from 'render'
 import ReactResizeDetector from 'react-resize-detector'
 import Truncate from 'react-truncate';
@@ -21,10 +23,43 @@ class Index extends Component {
 
     render() {
 
-        const { searchQuery } = this.props
+        const { searchQuery,notfoundimage } = this.props
         const { facets } = searchQuery
         if (!facets || !facets.CategoriesTrees[0]) {
-            return (<div>To Do, Maquetar no se encuentra productos/filtros</div>)
+            return (
+
+            <div id="page-notfound">
+                <div class="searchresult-block content container">
+                    {notfoundimage && (<div class="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
+                    <div className="searchresult-title-container">
+                        <p className="title"><FormattedMessage id="searchresult.title" /></p>
+                    </div>
+                    <div className="searchresult-subtitle-container">
+                        <p><FormattedMessage id="searchresult.subtitle" /></p> 
+                        <p><FormattedMessage id="searchresult.subtitle2" /></p>
+                    </div>
+                    <div className="searchresult-tips-container">
+                        <ul>
+                            <li><FormattedMessage id="searchresult.tips1" /></li>
+                            <li><FormattedMessage id="searchresult.tips2" /></li>
+                            <li><FormattedMessage id="searchresult.tips3" /></li>
+                        </ul>
+                    </div>
+                </div>    
+
+                <div class="category-block">
+                    <ExtensionPoint style="pagenotfound" id="category-block"  />
+                </div>
+                    
+                <div class="category-block">
+                    <ExtensionPoint style="tags" id="tags-block" />
+                </div>
+                <div class="related-products">
+                    <ExtensionPoint id="related-products-block"   />
+                </div>
+
+            </div>
+            )
         }
         const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
 
@@ -88,6 +123,12 @@ class Index extends Component {
     }
 }
 
+Index.uiSchema = {
+    notfoundimage: {
+        'ui:widget': 'image-uploader',
+    },
+}
+
 Index.getSchema = (props) => {
     return {
         title: 'Search Results',
@@ -97,10 +138,14 @@ Index.getSchema = (props) => {
             description: {
                 title: 'Category Description',
                 type: 'string'
+            },
+            notfoundimage: {
+                title: 'Not found image',
+                type: 'string'
             }
         },
     }
-}
+} 
 
 
 export default Index
