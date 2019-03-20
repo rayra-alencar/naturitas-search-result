@@ -168,7 +168,7 @@ SearchResultQueryLoader.getSchema = props => {
         summary: {
           title: 'editor.search-result.summary.title',
           type: 'object',
-          properties: ProductSummary.getSchema(props).properties,
+          properties: typeof ProductSummary != 'undefined' && typeof ProductSummary.getSchema(props) != 'undefined' && typeof ProductSummary.getSchema(props).properties != 'undefined' ? ProductSummary.getSchema(props).properties : false,
         }
       },
     }

@@ -1,21 +1,21 @@
 {
-    "searchresult.title": "Siamo spiacenti, non hai trovato quello che stavi cercando…",
-    "searchresult.subtitle":"¡No te preocupes!",
-    "searchresult.subtitle2":"Aquí tienes algunos consejos para ayudarte a encontrar lo que estás buscando:",
-    "searchresult.tips1":"Verifica tu ortografía y busca de nuevo",
-    "searchresult.tips2":"Prueba otro término de búsqueda",
-    "searchresult.tips3":"Explora nuestras categorías",
+    "searchresult.title": "Ci dispiace, non abbiamo trovato il prodotto che stai cercando...",
+    "searchresult.subtitle":"Non ti preoccupare!",
+    "searchresult.subtitle2":"Di seguito alcuni consigli per aiutarti a trovare quello di cui hai bisogno:",
+    "searchresult.tips1":"Verifica la tua ortografia e cerca di nuovo",
+    "searchresult.tips2":"Prova con un altro termine di ricerca",
+    "searchresult.tips3":"Esplora le nostre categorie",
+    "searchresult.freeshipping":"",
+    "searchresult.products":"",
+    "searchresult.filterblock.flags":"",
+    "searchresult.filterblock.symptoms":"",
+    "searchresult.filterblock.precautions":"",
+    "searchresult.filterblock.storage_conditions":"",
+    "searchresult.filterblock.intake_modes":"",
+    "searchresult.filterblock.main_components":"",
+    "searchresult.filterblock.component_table_lines":"",
+    "searchresult.filterblock.content_format":""
 
-    "toolbar.enviogratis":"Spedizione gratuita",
-    "toolbar.products":"produrre",
 
-    "toolbar.filter.category":"Categorías",
-    "toolbar.filter.brands":"Marca",
-    "toolbar.filter.flags":"Etichetta",
-    "toolbar.filter.content_format": "Formato",
-    "toolbar.filter.price": "Prezzo",
-
-    "toolbar.showmore": "Vedi di più",
-    "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}"   
     
 }
