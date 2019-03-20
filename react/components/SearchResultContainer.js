@@ -93,4 +93,22 @@ class SearchResultContainer extends Component {
     }
 }
 
+SearchResultContainer.getSchema = (props) => {
+  return {
+      title: 'Search Results',
+      description: 'Search Results',
+      type: 'object',
+      properties: {
+          description: {
+              title: 'Category Description',
+              type: 'string'
+          },
+          notfoundimage: {
+              title: 'Not found image',
+              type: 'string'
+          }
+      },
+  }
+} 
+
 export default SearchResultContainer

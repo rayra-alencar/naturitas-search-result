@@ -81,7 +81,7 @@ class ResultContainer extends Component {
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
                                 <div className="container">
                                     <h1>{searchQuery.titleTag}</h1>
-
+                                    
                                     <p className="cat-desc">
                                         <Truncate lines={this.state.linesDescription} ellipsis={ellipsis}>
                                             {this.props.description}

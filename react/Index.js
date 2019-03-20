@@ -76,103 +76,23 @@ class SearchResultQueryLoader extends Component {
     }
 }
 
-SearchResultQueryLoader.getSchema = props => {
-    const querySchema = !props.searchQuery
-      ? {
-        querySchema: {
-          title: 'editor.search-result.query',
-          description: 'editor.search-result.query.description',
-          type: 'object',
-          properties: {
-            maxItemsPerPage: {
-              title: 'editor.search-result.query.maxItemsPerPage',
-              type: 'number',
-              default: DEFAULT_MAX_ITEMS_PER_PAGE,
-            },
-            queryField: {
-              title: 'Query',
-              type: 'string',
-            },
-            mapField: {
-              title: 'Map',
-              type: 'string',
-            },
-            restField: {
-              title: 'Other Query Strings',
-              type: 'string',
-            }
-          },
-        },
-      }
-      : {}
-  
-    return {
-      title: 'editor.search-result.title',
-      description: 'editor.search-result.description',
+SearchResultQueryLoader.getSchema = (props) => {
+  return {
+      title: 'Search Results',
+      description: 'Search Results',
       type: 'object',
       properties: {
-        ...querySchema,
-        hiddenFacets: {
-          title: 'editor.search-result.hiddenFacets',
-          type: 'object',
-          isLayout: true,
-          properties: {
-            brands: {
-              title: 'editor.search-result.hiddenFacets.brands',
-              type: 'boolean',
-              isLayout: true,
-            },
-            categories: {
-              title: 'editor.search-result.hiddenFacets.categories',
-              type: 'boolean',
-              isLayout: true,
-            },
-            priceRange: {
-              title: 'editor.search-result.hiddenFacets.priceRange',
-              type: 'boolean',
-              isLayout: true,
-            },
-            specificationFilters: {
-              title: 'editor.search-result.hiddenFacets.specificationFilters',
-              type: 'object',
-              isLayout: true,
-              properties: {
-                hideAll: {
-                  title:
-                    'editor.search-result.hiddenFacets.specificationFilters.hideAll',
-                  type: 'boolean',
-                  isLayout: true,
-                },
-                hiddenFilters: {
-                  type: 'array',
-                  isLayout: true,
-                  items: {
-                    title:
-                      'editor.search-result.hiddenFacets.specificationFilters.hiddenFilter',
-                    type: 'object',
-                    isLayout: true,
-                    properties: {
-                      name: {
-                        title:
-                          'editor.search-result.hiddenFacets.specificationFilters.hiddenFilter.name',
-                        type: 'string',
-                        isLayout: true,
-                      },
-                    },
-                  },
-                },
-              },
-            },
+          description: {
+              title: 'Category Description',
+              type: 'string'
           },
-        },
-        summary: {
-          title: 'editor.search-result.summary.title',
-          type: 'object',
-          properties: ProductSummary.getSchema(props).properties,
-        }
+          notfoundimage: {
+              title: 'Not found image',
+              type: 'string'
+          }
       },
-    }
-}
+  }
+} 
 
 
 export default SearchResultQueryLoader
