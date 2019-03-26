@@ -14,7 +14,22 @@
     "searchresult.filterblock.intake_modes":"",
     "searchresult.filterblock.main_components":"",
     "searchresult.filterblock.component_table_lines":"",
-    "searchresult.filterblock.content_format":""
+    "searchresult.filterblock.content_format":"",
+
+    "toolbar.enviogratis":"Spedizione gratuita",
+    "toolbar.products":"produrre",
+
+    "toolbar.filter.category":"Categorías",
+    "toolbar.filter.brands":"Marca",
+    "toolbar.filter.flags":"Etichetta",
+    "toolbar.filter.content_format": "Formato",
+    "toolbar.filter.price": "Prezzo",
+
+    "toolbar.showmore": "Vedi di più",
+    "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}",
+
+    "toolbar.filter.showmore": "+ Vedere di più",
+    "toolbar.filter.showless": "+ Vedere di meno"
 
 
     

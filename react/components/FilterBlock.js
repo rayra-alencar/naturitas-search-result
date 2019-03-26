@@ -3,6 +3,7 @@ import { ExtensionPoint, Link } from 'render'
 import Select from 'react-select';
 
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import FilterGroup from './FilterGroup';
 const optionsMinPrice = [
     { value: '0', label: '0€' },
     { value: '10', label: '10€' },
@@ -27,7 +28,7 @@ class FilterBlock extends Component {
         this.state = {
             minPrice: optionsMinPrice[0],
             maxPrice: optionsMaxPrice[optionsMaxPrice.length-1],
-            map: this.props.searchQuery.variables.map,
+            map: [],
             rest : [],
             selectedFilters: []
         }
@@ -51,14 +52,31 @@ class FilterBlock extends Component {
     }
 
     handleChangeFilter = (selectedOption) => {
-        console.log(selectedOption);
+        
 
-        const map = this.getParameterByName('map', selectedOption.Link)
+        let queryMap = this.getParameterByName('map', selectedOption.Link)
         let rest = [...this.state.rest]
-        rest.push(selectedOption.Name)
+        let map = [...this.state.map]
+
+        let indexOfRest = rest.indexOf(selectedOption.Name) 
+        
+        let mapClicked = queryMap.split(',').pop();
+        
+        console.log(indexOfRest)
+        if(indexOfRest==-1 ){
+            rest.push(selectedOption.Name)
+            map.push(mapClicked)
+            
+        }
+        else{
+            rest.splice(indexOfRest,1)
+            map.splice(indexOfRest,1)
+        }
+
+        
         this.setState({ rest, map });
-        console.log({map, rest: rest.join(',')})
-        this.props.updateQuerySearch(map, rest.join(','))
+        console.log({map: [...this.props.map, ...this.state.map], rest: rest.join(',')})
+        this.props.updateQuerySearch([...this.props.map, ...this.state.map], rest.join(','))
     }
 
     render() {
@@ -70,6 +88,13 @@ class FilterBlock extends Component {
         let flags = []
         let format = []
         let brands = []
+        let main_components = []
+        let content_format = []
+        let container = []
+        let size = []
+        let color = []
+        let essences = []
+        let flavours = []
 
         if (facets) {
             if (params.subcategory) {
@@ -82,6 +107,19 @@ class FilterBlock extends Component {
                 catChildren = facets.CategoriesTrees[0].Children
             }
 
+            /*
+                Os paso todos los campos que han de ser filtrables en VTEX.
+                rich_structured_content[logical_brand]
+                flavours
+                essences
+                color
+                size
+                structured_presentation[container]
+                structured_presentation[content_format]
+                rich_structured_content[flags]
+                rich_structured_content[main_components]
+            */
+
             flags = facets.SpecificationFilters.filter((item) => {
                 return item.name == 'flags'
             })
@@ -89,6 +127,36 @@ class FilterBlock extends Component {
             format = facets.SpecificationFilters.filter((item) => {
                 return item.name == 'content_format'
             })
+
+            flavours = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'flavours'
+            })
+
+            essences = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'essences'
+            })
+
+            color = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'color'
+            })
+
+            size = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'size'
+            })
+
+            container = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'container'
+            })
+
+            content_format = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'content_format'
+            })
+
+            main_components = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'main_components'
+            })
+
+            
 
             brands = facets.Brands
         }
@@ -137,23 +205,9 @@ class FilterBlock extends Component {
 
 
                 </div>
-                <div className="filter_block">
-                    <div className="title"> <FormattedMessage id="toolbar.filter.flags" /> </div>
 
-                    {flags.length > 0 &&
-                        <ul>
-                            {flags[0].facets.map(item =>
-                                (
-                                    <li>
-                                        <span className={"filterCheck "+(this.state.rest.some((rest) => {return (rest==item.Name)} ) ? 'selected' : '')} onClick={(e) => this.handleChangeFilter(item)}>
-                                            {item.Name} <span className="filterQuantity">({item.Quantity})</span>
-                                        </span>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-                    }
-                </div>
+                <FilterGroup filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                
 
                 <div className="filter_block">
                     <div className="title"> <FormattedMessage id="toolbar.filter.price" /> </div>
@@ -184,24 +238,16 @@ class FilterBlock extends Component {
                     </ol>
                 </div>
 
-                <div className="filter_block">
-                    <div className="title"> <FormattedMessage id="toolbar.filter.content_format" /> </div>
+                <FilterGroup filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                <FilterGroup filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                <FilterGroup filterGroup={main_components} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                <FilterGroup filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                <FilterGroup filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                <FilterGroup filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                <FilterGroup filterGroup={flavours} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
+                
 
-                    {format.length > 0 &&
-                        <ul>
-                            {format[0].facets.map(item =>
-                                (
-                                    <li>
-                                        <span className={"filterCheck "+(this.state.rest.some((rest) => { return (rest==item.Name)} ) ? 'selected' : '')}>
-                                            {item.Name.charAt(0).toUpperCase() + item.Name.slice(1)}
-                                            <span className="filterQuantity">({item.Quantity})</span>
-                                        </span>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-                    }
-                </div>
+                
             </div>
         )
     }

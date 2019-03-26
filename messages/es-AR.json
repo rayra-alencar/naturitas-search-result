@@ -16,7 +16,10 @@
     "toolbar.filter.price": "Precio",
 
     "toolbar.showmore": "Cargar más",
-    "toolbar.showmore.text": "Has visto {view} productos de {total}"   
+    "toolbar.showmore.text": "Has visto {view} productos de {total}",
+
+    "toolbar.filter.showmore": "+ Ver más",
+    "toolbar.filter.showless": "+ Ver menos"
 
     
 

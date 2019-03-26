@@ -26,7 +26,7 @@ class ResultContainer extends Component {
 
     render() {
 
-        const { searchQuery, notfoundimage, params } = this.props
+        const { searchQuery, notfoundimage, params, map } = this.props
         const { facets } = searchQuery
 
 
@@ -99,7 +99,7 @@ class ResultContainer extends Component {
                                 }
 
                                 <div id="category-main-container" className="container mt-3 d-flex flex-wrap">
-                                    <FilterBlock updateQuerySearch={this.props.updateQuerySearch}  searchQuery={searchQuery} facets={facets} params={params} />
+                                    <FilterBlock updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
 
                                     <div id="products-block">
                                         {!mobileMode &&
