@@ -134,12 +134,6 @@ class ResultContainer extends Component {
     }
 }
 
-ResultContainer.uiSchema = {
-    notfoundimage: {
-        'ui:widget': 'image-uploader',
-    },
-}
-
 ResultContainer.getSchema = (props) => {
     return {
         title: 'Search Results',
@@ -152,7 +146,11 @@ ResultContainer.getSchema = (props) => {
             },
             notfoundimage: {
                 title: 'Not found image',
-                type: 'string'
+                default: '',
+                type: 'string',
+                widget: {
+                    'ui:widget': 'image-uploader',
+                },
             }
         },
     }

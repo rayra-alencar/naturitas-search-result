@@ -88,7 +88,10 @@ SearchResultQueryLoader.getSchema = (props) => {
           },
           notfoundimage: {
               title: 'Not found image',
-              type: 'string'
+              type: 'string',
+              widget: {
+                'ui:widget': 'image-uploader',
+              }
           }
       },
   }
