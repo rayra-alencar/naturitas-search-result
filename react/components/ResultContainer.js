@@ -35,7 +35,7 @@ class ResultContainer extends Component {
 
             <div id="page-notfound">
                 <div class="searchresult-block content container">
-                    {notfoundimage && (<div class="searchresult-image-container"> <img src="https://naturitasit.vteximg.com.br/arquivos/ops.png" /> </div>)}
+                    <div class="searchresult-image-container"> <img src="https://naturitasit.vteximg.com.br/arquivos/ops.png" /> </div>
                     <div className="searchresult-title-container">
                         <p className="title"><FormattedMessage id="searchresult.title" /></p>
                     </div>
