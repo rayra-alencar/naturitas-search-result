@@ -37,7 +37,7 @@ class ResultContainer extends Component {
                 <div class="searchresult-block content container">
                     {notfoundimage && (<div class="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
                     <div className="searchresult-title-container">
-                        {title != 'undefined' && <p className="title">{title}}</p>}}
+                        {title != 'undefined' && <p className="title">{title}</p>}
                     </div>
                     <div className="searchresult-subtitle-container">
                         <p dangerouslySetInnerHTML={{ __html: description }} />
