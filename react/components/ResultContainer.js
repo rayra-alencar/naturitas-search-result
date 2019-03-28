@@ -26,7 +26,7 @@ class ResultContainer extends Component {
 
     render() {
 
-        const { searchQuery, notfoundimage, params } = this.props
+        const { searchQuery, notfoundimage, li, title, description, params } = this.props
         const { facets } = searchQuery
 
 
@@ -37,19 +37,27 @@ class ResultContainer extends Component {
                 <div class="searchresult-block content container">
                     {notfoundimage && (<div class="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
                     <div className="searchresult-title-container">
-                        <p className="title"><FormattedMessage id="searchresult.title" /></p>
+                        {title != 'undefined' && <p className="title">{title}}</p>}}
                     </div>
                     <div className="searchresult-subtitle-container">
-                        <p><FormattedMessage id="searchresult.subtitle" /></p> 
-                        <p><FormattedMessage id="searchresult.subtitle2" /></p>
+                        <p dangerouslySetInnerHTML={{ __html: description }} />
                     </div>
-                    <div className="searchresult-tips-container">
-                        <ul>
-                            <li><FormattedMessage id="searchresult.tips1" /></li>
-                            <li><FormattedMessage id="searchresult.tips2" /></li>
-                            <li><FormattedMessage id="searchresult.tips3" /></li>
-                        </ul>
-                    </div>
+                    {li && li.items && li.items.length && (
+                            <div className="searchresult-tips-container">
+                                <ul>
+                                    {li.items.map(item => {
+                                        if (item.title) {
+                                            return (
+                                                <li>{item.title}</li>
+                                            )
+                                        }
+                                        return false
+                                    }
+                                    )}
+                                </ul>
+                            </div>
+                    )}
+                   
                 </div>    
 
                 <div class="category-block">
@@ -129,8 +137,6 @@ class ResultContainer extends Component {
                 }
             </ReactResizeDetector>
         )
-
-
     }
 }
 
@@ -146,15 +152,34 @@ ResultContainer.getSchema = (props) => {
             },
             notfoundimage: {
                 title: 'Not found image',
-                default: '',
                 type: 'string',
-                widget: {
-                    'ui:widget': 'image-uploader',
-                },
-            }
+                'ui:widget': 'image-uploader',
+            },
+            title: {
+                title: 'Title',
+                type: 'string',
+            },
+            description: {
+                title: 'Not found image',
+                type: 'string',
+                'ui:widget': 'textarea',
+            },
+            li: {
+                title: 'li - Element',
+                type: 'array',
+                items: {
+                    title: 'List element',
+                    type: 'object',
+                    properties: {
+                        title: {
+                            title: 'title',
+                            type: 'string'
+                        },
+                    }
+                }
+            },
         },
     }
 } 
-
 
 export default ResultContainer
