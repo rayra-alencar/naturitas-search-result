@@ -162,6 +162,7 @@ class FilterBlock extends Component {
         }
 
         const { minPrice, maxPrice } = this.state;
+        console.log(brands);
 
         return (
             <div id="sideBar">
@@ -186,26 +187,8 @@ class FilterBlock extends Component {
                     </div>
                 }
 
-                <div className="filter_block">
-                    <div className="title"><FormattedMessage id="toolbar.filter.brands" /></div>
-
-                    {brands.length > 0 &&
-                        <ul>
-                            {brands.map(item =>
-                                (
-                                    <li>
-                                        <Link className="filterCheck" to={item.Link.toLowerCase()}>
-                                            {item.Name} <span className="filterQuantity">({item.Quantity})</span>
-                                        </Link>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-                    }
-
-
-                </div>
-
+                
+                <FilterGroup filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
                 <FilterGroup filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
                 
 

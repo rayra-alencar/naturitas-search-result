@@ -17,21 +17,48 @@ class FilterGroup extends Component {
         }
     }
 
+    
+
 
     render() {
-        const { filterGroup, itemsNotExpanded } = this.props
+        let { filterGroup, itemsNotExpanded } = this.props
+
+        
+        
 
         if(filterGroup.length <= 0) return '';
+        
+        let filterItems = []
+        let filterName = ''
+        let nbFilter = 0;
+        
+        
 
-        let filterItems =  filterGroup[0].facets;
-        if(!this.state.expanded){
-            filterItems =  filterGroup[0].facets.slice(0,itemsNotExpanded)
+        if(this.props.type == 'brand'){
+            filterItems = filterGroup
+            nbFilter = filterGroup.length;
+            filterName = 'brands'
+            console.log(this.props.type)
         }
+        else{
+            filterItems =  filterGroup[0].facets;
+            nbFilter = filterGroup[0].facets.length; 
+            filterName = filterGroup[0].name
+        }
+
+        if(!this.state.expanded){
+            filterItems =  filterItems.slice(0,itemsNotExpanded)
+        }
+
+        console.log(filterItems.length>itemsNotExpanded )
+        console.log(filterItems.length,itemsNotExpanded )
+
+       
         
         return (
             <Fragment>
                     <div className="filter_block">
-                        <div className="title"> <FormattedMessage id={"toolbar.filter." + filterGroup[0].name} /> </div>
+                        <div className="title"> <FormattedMessage id={"toolbar.filter." + filterName} /> </div>
                         <ul>
                             {filterItems.map(item =>
                                 (
@@ -46,7 +73,7 @@ class FilterGroup extends Component {
 
                         </ul>
                         
-                        {(filterGroup[0].facets.length>itemsNotExpanded) &&
+                        {(nbFilter>itemsNotExpanded) &&
                         <ul class="cont-showmore d-block">
                             <li class="amshopby-clearer">
                                 <a id="amshopby-category-more" class="amshopby-more" href="#" onClick={(e) => {e.preventDefault(); this.setState({expanded: !this.state.expanded})}} >
