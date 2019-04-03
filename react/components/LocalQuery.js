@@ -51,6 +51,8 @@ class LocalQuery extends Component {
   }
 
   updateQuerySearch = (map, rest) => {
+    console.log("updateQuerySarch");
+    console.log(map,rest)
     this.setState({map,rest})
   }
 

@@ -29,7 +29,13 @@
     "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}",
 
     "toolbar.filter.showmore": "+ Vedere di più",
-    "toolbar.filter.showless": "+ Vedere di meno"
+    "toolbar.filter.showless": "+ Vedere di meno",
+    "toolbar.orderBy": "Ordina per",
+
+    "toolbar.OrderByTopSaleDESC": "Più rilevanti",
+    "toolbar.OrderByPriceASC": "Prezzo: dal più basso al più alto",
+    "toolbar.OrderByPriceDESC": "Prezzo: dal più alto al più basso",
+    "toolbar.OrderByReleaseDateDESC": "Più nuovo"
 
 
     

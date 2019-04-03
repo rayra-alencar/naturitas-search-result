@@ -23,6 +23,10 @@ const optionsMaxPrice = [
 
 
 class FilterBlock extends Component {
+    static defaultProps = {
+        categoriesNotExpanded: 5
+      }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +34,8 @@ class FilterBlock extends Component {
             maxPrice: optionsMaxPrice[optionsMaxPrice.length-1],
             map: [],
             rest : [],
-            selectedFilters: []
+            selectedFilters: [],
+            expanded: false
         }
     }
     handleChangeMinPrice = (selectedOption) => {
@@ -42,7 +47,7 @@ class FilterBlock extends Component {
 
     getParameterByName(name, url) {
         if (!url) url = window.location.href;
-        console.log(url)
+        
         name = name.replace(/[\[\]]/g, '\\$&');
         var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
             results = regex.exec(url);
@@ -51,18 +56,26 @@ class FilterBlock extends Component {
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
-    handleChangeFilter = (selectedOption) => {
-        
-
-        let queryMap = this.getParameterByName('map', selectedOption.Link)
+    handleChangeFilter = (selectedOption, type) => {
+        let mapClicked = ''
         let rest = [...this.state.rest]
         let map = [...this.state.map]
 
+        if(type=="brand"){
+            mapClicked = 'b'
+        }
+        else{
+            let queryMap = this.getParameterByName('map', selectedOption.Link)
+            
+            map = [...this.state.map]
+            mapClicked = queryMap.split(',').pop();
+        }
+
+        console.log(selectedOption.Name)
+
         let indexOfRest = rest.indexOf(selectedOption.Name) 
         
-        let mapClicked = queryMap.split(',').pop();
         
-        console.log(indexOfRest)
         if(indexOfRest==-1 ){
             rest.push(selectedOption.Name)
             map.push(mapClicked)
@@ -75,12 +88,12 @@ class FilterBlock extends Component {
 
         
         this.setState({ rest, map });
-        console.log({map: [...this.props.map, ...this.state.map], rest: rest.join(',')})
-        this.props.updateQuerySearch([...this.props.map, ...this.state.map], rest.join(','))
+        
+        this.props.updateQuerySearch([...this.props.map, ...map].join(','), rest.join(','))
     }
 
     render() {
-        const { facets, params } = this.props
+        const { facets, params, categoriesNotExpanded } = this.props
 
         
 
@@ -95,16 +108,18 @@ class FilterBlock extends Component {
         let color = []
         let essences = []
         let flavours = []
+        
 
         if (facets) {
+            let categoryTree =  facets.CategoriesTrees.filter(item => item.Id != 1 )
             if (params.subcategory) {
-                catChildren = facets.CategoriesTrees[0].Children[0].Children
+                catChildren = categoryTree[0].Children[0].Children
             }
             else if (params.category) {
-                catChildren = facets.CategoriesTrees[0].Children[0].Children
+                catChildren = categoryTree[0].Children[0].Children
             }
             else {
-                catChildren = facets.CategoriesTrees[0].Children
+                catChildren = categoryTree[0].Children
             }
 
             /*
@@ -162,7 +177,12 @@ class FilterBlock extends Component {
         }
 
         const { minPrice, maxPrice } = this.state;
-        console.log(brands);
+
+        let categoryItems = catChildren;
+        if(!this.state.expanded){
+            categoryItems =  catChildren.slice(0,categoriesNotExpanded)
+        }
+        
 
         return (
             <div id="sideBar">
@@ -173,7 +193,7 @@ class FilterBlock extends Component {
 
 
                         <ul>
-                            {catChildren.map(item =>
+                            {categoryItems.map(item =>
                                 (
                                     <li>
                                         <Link to={item.Link.toLowerCase()}>
@@ -184,10 +204,23 @@ class FilterBlock extends Component {
                             )}
                         </ul>
 
+                        {(catChildren.length>categoriesNotExpanded) &&
+                        <ul class="cont-showmore d-block">
+                            <li class="amshopby-clearer">
+                                <a id="amshopby-category-more" class="amshopby-more" href="#" onClick={(e) => {e.preventDefault(); this.setState({expanded: !this.state.expanded})}} >
+                                    {(!this.state.expanded) 
+                                        ? <FormattedMessage id={"toolbar.filter.showmore"}/>
+                                        : <FormattedMessage id={"toolbar.filter.showless"}/>
+                                    }
+                                    
+                                </a>
+                            </li>
+                        </ul>
+                        }
+
                     </div>
                 }
 
-                
                 <FilterGroup filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
                 <FilterGroup filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
                 

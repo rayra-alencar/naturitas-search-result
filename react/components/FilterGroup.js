@@ -38,7 +38,6 @@ class FilterGroup extends Component {
             filterItems = filterGroup
             nbFilter = filterGroup.length;
             filterName = 'brands'
-            console.log(this.props.type)
         }
         else{
             filterItems =  filterGroup[0].facets;
@@ -50,9 +49,6 @@ class FilterGroup extends Component {
             filterItems =  filterItems.slice(0,itemsNotExpanded)
         }
 
-        console.log(filterItems.length>itemsNotExpanded )
-        console.log(filterItems.length,itemsNotExpanded )
-
        
         
         return (
@@ -63,7 +59,7 @@ class FilterGroup extends Component {
                             {filterItems.map(item =>
                                 (
                                     <li>
-                                        <span className={"filterCheck " + (this.props.rest.some((rest) => { return (rest == item.Name) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item)}>
+                                        <span className={"filterCheck " + (this.props.rest.some((rest) => { return (rest == item.Name) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item,this.props.type)}>
                                             {item.Name.charAt(0).toUpperCase() + item.Name.slice(1)} <span className="filterQuantity">({item.Quantity})</span>
                                         </span>
                                     </li>

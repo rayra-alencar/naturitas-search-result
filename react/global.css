@@ -198,6 +198,9 @@ color: #808080;	font-size: 16px;	font-weight: 500;	line-height: 23px;
     background-image: url(https://cdn.naturitas.es/skin/frontend/rwd/naturitas/images/blue.svg);
 }
 
+#category-block .toolbar .sort-by label span{
+    padding-left: 3px;
+}
 
 
 /* View More */
@@ -217,7 +220,6 @@ background-color: #CCDC45;
 
 #category-block .toolbar-ajax{
 text-align: center;
-margin-top: 15px;
 }
 
 #category-block .toolbar-ajax .i-next{
@@ -241,6 +243,16 @@ display: inline;
 cursor: pointer;
 }
 
+#category-block .customSelect{
+    width: 200px;
+}
+
+
+#category-block .customSelect .css-vj8t7z, #category-block .customSelect .css-2o5izw{
+    background-color: transparent;
+    border: 0;
+}
+
 
 
 /* page-notfound */
@@ -249,7 +261,7 @@ cursor: pointer;
 }
 
 #page-notfound .searchresult-title-container .title{
-    text-align: center;
+    text-align: center; 
 }
 
 #page-notfound .searchresult-title-container .title span{
