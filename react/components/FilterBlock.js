@@ -71,7 +71,6 @@ class FilterBlock extends Component {
             mapClicked = queryMap.split(',').pop();
         }
 
-        console.log(selectedOption.Name)
 
         let indexOfRest = rest.indexOf(selectedOption.Name) 
         

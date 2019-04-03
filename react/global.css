@@ -222,6 +222,10 @@ background-color: #CCDC45;
 text-align: center;
 }
 
+#category-block .toolbar-bottom{
+    margin: 30px 0;
+}
+
 #category-block .toolbar-ajax .i-next{
 width: auto;
 color: #616161;

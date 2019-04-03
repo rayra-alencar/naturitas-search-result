@@ -68,7 +68,6 @@ class ResultContainer extends Component {
         }
         const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
 
-        //console.log(catChildren)
 
         return (
             <ReactResizeDetector handleWidth>
