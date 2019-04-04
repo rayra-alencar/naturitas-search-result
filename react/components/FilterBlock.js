@@ -25,17 +25,19 @@ const optionsMaxPrice = [
 class FilterBlock extends Component {
     static defaultProps = {
         categoriesNotExpanded: 5
-      }
+    }
 
     constructor(props) {
         super(props);
         this.state = {
             minPrice: optionsMinPrice[0],
-            maxPrice: optionsMaxPrice[optionsMaxPrice.length-1],
+            maxPrice: optionsMaxPrice[optionsMaxPrice.length - 1],
             map: [],
-            rest : [],
+            rest: [],
             selectedFilters: [],
-            expanded: false
+            expanded: false,
+            mobileFiltersActive: false,
+            mobileFilterGroupActive: false
         }
     }
     handleChangeMinPrice = (selectedOption) => {
@@ -47,7 +49,7 @@ class FilterBlock extends Component {
 
     getParameterByName(name, url) {
         if (!url) url = window.location.href;
-        
+
         name = name.replace(/[\[\]]/g, '\\$&');
         var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
             results = regex.exec(url);
@@ -61,40 +63,57 @@ class FilterBlock extends Component {
         let rest = [...this.state.rest]
         let map = [...this.state.map]
 
-        if(type=="brand"){
+        if (type == "brand") {
             mapClicked = 'b'
         }
-        else{
+        else {
             let queryMap = this.getParameterByName('map', selectedOption.Link)
-            
+
             map = [...this.state.map]
             mapClicked = queryMap.split(',').pop();
+
+
+            console.log("mapCClicker",mapClicked)
+            console.log("map",map)
         }
 
 
-        let indexOfRest = rest.indexOf(selectedOption.Name) 
-        
-        
-        if(indexOfRest==-1 ){
+        let indexOfRest = rest.indexOf(selectedOption.Name)
+
+
+        if (indexOfRest == -1) {
             rest.push(selectedOption.Name)
             map.push(mapClicked)
-            
+
         }
-        else{
-            rest.splice(indexOfRest,1)
-            map.splice(indexOfRest,1)
+        else {
+            rest.splice(indexOfRest, 1)
+            map.splice(indexOfRest, 1)
         }
+
+        console.log("map",map)
+        console.log("props map",this.props.map.split(','))
 
         
         this.setState({ rest, map });
-        
-        this.props.updateQuerySearch([...this.props.map, ...map].join(','), rest.join(','))
+        this.props.updateQuerySearch([...(this.props.map).split(','), ...map].join(','), rest.join(','))
+        this.handleExpandFiltersMobile()
+    }
+
+    handleExpandFiltersMobile = (checkIfIsActive) => {
+        if(this.props.mobileMode && (!checkIfIsActive || !this.state.mobileFiltersActive))
+            this.setState({mobileFiltersActive: !this.state.mobileFiltersActive})
+    }
+
+    setDisplayGroup = (active) => {
+        if(this.props.mobileMode)
+            this.setState({mobileFilterGroupActive: active});
     }
 
     render() {
-        const { facets, params, categoriesNotExpanded } = this.props
+        const { facets, params, categoriesNotExpanded, mobileMode } = this.props
 
-        
+
 
         let catChildren = []
         let flags = []
@@ -107,10 +126,10 @@ class FilterBlock extends Component {
         let color = []
         let essences = []
         let flavours = []
-        
+
 
         if (facets) {
-            let categoryTree =  facets.CategoriesTrees.filter(item => item.Id != 1 )
+            let categoryTree = facets.CategoriesTrees.filter(item => item.Id != 1)
             if (params.subcategory) {
                 catChildren = categoryTree[0].Children[0].Children
             }
@@ -137,7 +156,7 @@ class FilterBlock extends Component {
             flags = facets.SpecificationFilters.filter((item) => {
                 return item.name == 'flags'
             })
-    
+
             format = facets.SpecificationFilters.filter((item) => {
                 return item.name == 'content_format'
             })
@@ -170,99 +189,92 @@ class FilterBlock extends Component {
                 return item.name == 'main_components'
             })
 
-            
+
 
             brands = facets.Brands
         }
 
-        const { minPrice, maxPrice } = this.state;
+        const { minPrice, maxPrice, mobileFilterGroupActive } = this.state;
 
         let categoryItems = catChildren;
-        if(!this.state.expanded){
-            categoryItems =  catChildren.slice(0,categoriesNotExpanded)
+        if (!this.state.expanded) {
+            categoryItems = catChildren.slice(0, categoriesNotExpanded)
         }
-        
+
+
+
 
         return (
-            <div id="sideBar">
-
-                {catChildren.length > 0 &&
-                    <div className="filter_block mb-3">
-                        <div className="title"><FormattedMessage id="toolbar.filter.category" /> </div>
-
-
-                        <ul>
-                            {categoryItems.map(item =>
-                                (
-                                    <li>
-                                        <Link to={item.Link.toLowerCase()}>
-                                            {item.Name} <span className="filterQuantity">({item.Quantity})</span>
-                                        </Link>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-
-                        {(catChildren.length>categoriesNotExpanded) &&
-                        <ul class="cont-showmore d-block">
-                            <li class="amshopby-clearer">
-                                <a id="amshopby-category-more" class="amshopby-more" href="#" onClick={(e) => {e.preventDefault(); this.setState({expanded: !this.state.expanded})}} >
-                                    {(!this.state.expanded) 
-                                        ? <FormattedMessage id={"toolbar.filter.showmore"}/>
-                                        : <FormattedMessage id={"toolbar.filter.showless"}/>
-                                    }
-                                    
-                                </a>
-                            </li>
-                        </ul>
+            <div id="sideBar" className={this.state.mobileFiltersActive ? 'active' : ''}>
+                <div class="block-subtitle block-subtitle--filter d-flex d-md-none" onClick={(e) => this.handleExpandFiltersMobile(true)}>
+                    
+                    <div className="back-icon toggleShow my-auto ml-3" onClick={e => this.setDisplayGroup(false)}>
+                        {this.state.mobileFiltersActive && mobileFilterGroupActive && 
+                            <i className="icon-lateral_arrow"></i>
                         }
-
                     </div>
-                }
+                    
+                    <div className="m-auto" onClick={(e) => this.handleExpandFiltersMobile()} >
+                        <i class="icon-filter"></i>
+                            <FormattedMessage id="toolbar.filters" />                    
+                    </div>
 
-                <FilterGroup filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                <FilterGroup filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                
+                    <div className="my-auto mr-3" onClick={(e) => this.handleExpandFiltersMobile()}>
+                        {this.state.mobileFiltersActive &&
+                            <i className="icon-close"></i>    
+                        }
+                    </div>
+                    
+                    
 
-                <div className="filter_block">
-                    <div className="title"> <FormattedMessage id="toolbar.filter.price" /> </div>
-
-                    <ol className="single-choice price-filter">
-                        <li className={"d-flex"}>
-                            <div class="row-wrap">
-                                <label>Mínimo</label>
-                                <Select
-                                    value={minPrice}
-                                    onChange={this.handleChangeMinPrice}
-                                    options={optionsMinPrice}
-                                />
-                            </div>
-                            <div class="row-wrap">
-                                <label>Máximo</label>
-                                <Select
-                                    value={maxPrice}
-                                    onChange={this.handleChangeMaxPrice}
-                                    options={optionsMaxPrice}
-                                />
-                            </div>
-
-                        </li>
-
-
-
-                    </ol>
                 </div>
 
-                <FilterGroup filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                <FilterGroup filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                <FilterGroup filterGroup={main_components} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                <FilterGroup filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                <FilterGroup filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                <FilterGroup filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                <FilterGroup filterGroup={flavours} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter}/>
-                
+                <div id="filter-container" className={mobileFilterGroupActive ? 'active' : ''}>
 
-                
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+
+
+                    <div className="filter_block">
+                        <div className="title"> <FormattedMessage id="toolbar.filter.price" /> </div>
+
+                        <ol className="single-choice price-filter">
+                            <li className={"d-flex"}>
+                                <div class="row-wrap">
+                                    <label>Mínimo</label>
+                                    <Select
+                                        value={minPrice}
+                                        onChange={this.handleChangeMinPrice}
+                                        options={optionsMinPrice}
+                                    />
+                                </div>
+                                <div class="row-wrap">
+                                    <label>Máximo</label>
+                                    <Select
+                                        value={maxPrice}
+                                        onChange={this.handleChangeMaxPrice}
+                                        options={optionsMaxPrice}
+                                    />
+                                </div>
+
+                            </li>
+
+
+
+                        </ol>
+                    </div>
+
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={main_components} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flavours} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+
+
+                </div>
             </div>
         )
     }

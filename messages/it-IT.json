@@ -7,15 +7,7 @@
     "searchresult.tips3":"Esplora le nostre categorie",
     "searchresult.freeshipping":"",
     "searchresult.products":"",
-    "searchresult.filterblock.flags":"",
-    "searchresult.filterblock.symptoms":"",
-    "searchresult.filterblock.precautions":"",
-    "searchresult.filterblock.storage_conditions":"",
-    "searchresult.filterblock.intake_modes":"",
-    "searchresult.filterblock.main_components":"",
-    "searchresult.filterblock.component_table_lines":"",
-    "searchresult.filterblock.content_format":"",
-
+    
     "toolbar.enviogratis":"Spedizione gratuita",
     "toolbar.products":"produrre",
 
@@ -24,6 +16,8 @@
     "toolbar.filter.flags":"Etichetta",
     "toolbar.filter.content_format": "Formato",
     "toolbar.filter.price": "Prezzo",
+    "toolbar.filter.container":"Tipo di contenitore",
+    "toolbar.filter.main_components":"Componente Principale",
 
     "toolbar.showmore": "Vedi di più",
     "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}",
@@ -35,7 +29,9 @@
     "toolbar.OrderByTopSaleDESC": "Più rilevanti",
     "toolbar.OrderByPriceASC": "Prezzo: dal più basso al più alto",
     "toolbar.OrderByPriceDESC": "Prezzo: dal più alto al più basso",
-    "toolbar.OrderByReleaseDateDESC": "Più nuovo"
+    "toolbar.OrderByReleaseDateDESC": "Più nuovo",
+
+    "toolbar.filters":"Filtri"
 
 
     

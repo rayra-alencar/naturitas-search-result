@@ -22,7 +22,7 @@ class ResultContainer extends Component {
         }
     }
 
-    
+
 
     render() {
 
@@ -33,37 +33,37 @@ class ResultContainer extends Component {
         if ((!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
             return (
 
-            <div id="page-notfound">
-                <div class="searchresult-block content container">
-                    {notfoundimage && (<div class="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
-                    <div className="searchresult-title-container">
-                        <p className="title"><FormattedMessage id="searchresult.title" /></p>
+                <div id="page-notfound">
+                    <div class="searchresult-block content container">
+                        {notfoundimage && (<div class="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
+                        <div className="searchresult-title-container">
+                            <p className="title"><FormattedMessage id="searchresult.title" /></p>
+                        </div>
+                        <div className="searchresult-subtitle-container">
+                            <p><FormattedMessage id="searchresult.subtitle" /></p>
+                            <p><FormattedMessage id="searchresult.subtitle2" /></p>
+                        </div>
+                        <div className="searchresult-tips-container">
+                            <ul>
+                                <li><FormattedMessage id="searchresult.tips1" /></li>
+                                <li><FormattedMessage id="searchresult.tips2" /></li>
+                                <li><FormattedMessage id="searchresult.tips3" /></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div className="searchresult-subtitle-container">
-                        <p><FormattedMessage id="searchresult.subtitle" /></p> 
-                        <p><FormattedMessage id="searchresult.subtitle2" /></p>
-                    </div>
-                    <div className="searchresult-tips-container">
-                        <ul>
-                            <li><FormattedMessage id="searchresult.tips1" /></li>
-                            <li><FormattedMessage id="searchresult.tips2" /></li>
-                            <li><FormattedMessage id="searchresult.tips3" /></li>
-                        </ul>
-                    </div>
-                </div>    
 
-                <div class="category-block">
-                    <ExtensionPoint style="pagenotfound" id="category-block"  />
-                </div>
-                    
-                <div class="category-block">
-                    <ExtensionPoint style="tags" id="tags-block" />
-                </div>
-                <div class="related-products">
-                    <ExtensionPoint id="related-products-block"   />
-                </div>
+                    <div class="category-block">
+                        <ExtensionPoint style="pagenotfound" id="category-block" />
+                    </div>
 
-            </div>
+                    <div class="category-block">
+                        <ExtensionPoint style="tags" id="tags-block" />
+                    </div>
+                    <div class="related-products">
+                        <ExtensionPoint id="related-products-block" />
+                    </div>
+
+                </div>
             )
         }
         const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
@@ -80,7 +80,7 @@ class ResultContainer extends Component {
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
                                 <div className="container">
                                     <h1>{searchQuery.titleTag}</h1>
-                                    
+
                                     <p className="cat-desc">
                                         <Truncate lines={this.state.linesDescription} ellipsis={ellipsis}>
                                             {this.props.description}
@@ -97,30 +97,42 @@ class ResultContainer extends Component {
                                     </div>
                                 }
 
-                                <div id="category-main-container" className="container mt-3 d-flex flex-wrap">
-                                    <FilterBlock updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
+                                {mobileMode &&
+                                    <div className="d-flex">
+                                        <FilterBlock mobileMode={mobileMode} updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
+                                        <ToolbarProducts recordsFiltered={searchQuery.recordsFiltered} />
+                                    </div>
+                                }
 
+                                <div id="category-main-container" className="container mt-3 d-flex flex-wrap">
+                                    {!mobileMode &&
+                                        <FilterBlock mobileMode={mobileMode} updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
+                                    }    
+                                    
                                     <div id="products-block">
                                         {!mobileMode &&
-                                            <ExtensionPoint id="subcategories" />
+                                            <Fragment>
+                                                <ExtensionPoint id="subcategories" />
+                                                <ToolbarProducts recordsFiltered={searchQuery.recordsFiltered} />
+                                            </Fragment>
                                         }
 
-                                        <ToolbarProducts recordsFiltered={searchQuery.recordsFiltered}/>
+
 
                                         <ExtensionPoint
                                             id="productList"
                                             products={this.props.products}
                                         />
 
-                                        <ViewMore {...this.props}/>
+                                        <ViewMore {...this.props} />
                                     </div>
 
                                 </div>
 
-                                
+
                             </div >
 
-                            
+
 
                         )
                     }
@@ -153,7 +165,7 @@ ResultContainer.getSchema = (props) => {
             }
         },
     }
-} 
+}
 
 
 export default ResultContainer

@@ -33,14 +33,112 @@
     padding-left: 15px;
 }
 
-#category-block.mobileMode #sideBar{
-    width: 100%;
+
+
+
+/* FILTROS MOBILE */
+#category-block.mobileMode #sideBar:not(.active){
+    width: 50%;
 }
+
+#category-block.mobileMode #sideBar.active{
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #FBFAF9;
+    z-index: 999;
+}
+
+#category-block.mobileMode #sideBar:not(.active) #filter-container{
+    display: none;
+}
+
+#category-block .block-subtitle{
+    position: relative;
+    display: block;
+    width: 100%;
+    border-top: 1px solid #EBE7E4;
+    border-bottom: 1px solid #EBE7E4;
+    padding: 12px 0;
+    background-color: #F4F3F1;
+    margin: 0;
+    text-align: center;
+    height: 48px;
+}
+
+#category-block.mobileMode .filter_block{
+    padding: 12px 18px;
+}
+
+#category-block.mobileMode .filter_block .title{
+    margin: 0;
+}
+
+#category-block.mobileMode #filter-container.active .filter_block:not(.active){
+    display:none;
+}
+
+
+.back-icon{
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    width: 20px;
+}
+
+.icon-close{
+    font-size: 25px;
+}
+
+#category-block.mobileMode .toolbar{
+    background-color: #F4F3F1;
+    margin: 0;
+    text-align: center;
+    height: 48px;
+}
+#category-block.mobileMode .filter_block ul, #category-block.mobileMode .filter_block ol{
+    height: calc(100vh - 74px);
+    overflow: auto;
+}
+
+
+#category-block.mobileMode .filter_block:not(.active) ol, #category-block.mobileMode .filter_block:not(.active) ul {
+    display: none;
+}
+
+#category-block.mobileMode .toolbar{
+    width: 50%;
+}
+
+#category-block.mobileMode .toolbar .toolbar-filters-item, #category-block.mobileMode .toolbar .pager, 
+#category-block.mobileMode .toolbar label{
+    display: none;
+}
+
+#category-block.mobileMode .filter_block .title{
+    display: flex;
+}
+
+#category-block:not(.mobileMode) .filter_block .title .icon-angle-down{
+    display: none;
+}
+
+#category-block.mobileMode .filter_block .title .icon-angle-down{
+    margin-left: auto;
+    -webkit-transform: rotate(-90deg) !important;
+    -ms-transform: rotate(-90deg) !important;
+    transform: rotate(-90deg) !important;
+ }
+
+/* END FILTROS MOBILE */ 
 
 #category-block.mobileMode #products-block{
     width: 100%;
     padding-left: 0px;
 }
+
+
 
 #category-block .filter_block{
     border: 1px solid #EBE7E4;	
@@ -62,7 +160,7 @@
     font-size: 16px;	font-weight: 500;	line-height: 31px;
 }
 
-#category-block .filter_block ul li a:hover, #category-block .filter_block ul li span:hover{
+#category-block:not(.mobileMode) .filter_block ul li a:hover, #category-block:not(.mobileMode) .filter_block ul li span:hover{
     color: #4A4A4A;
     opacity: 0.6; text-decoration: none;
     cursor: pointer;
