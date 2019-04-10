@@ -70,7 +70,7 @@ class FilterGroup extends Component {
                     {!this.state.activeMobile &&
                         <div className="title" onClick={(e) => this.handleChangeDisplayGroup()}>
                             <FormattedMessage id={"toolbar.filter." + filterName} />
-                            <i class="icon-angle-down"></i>
+                            <i className="icon-angle-down"></i>
                         </div>
                     }
 
@@ -79,7 +79,7 @@ class FilterGroup extends Component {
                             (
                                 <li key={key}>
                                     {(type == 'spec' ||  type == 'brand') &&
-                                        <span className={"filterCheck " + (this.props.rest.some((rest) => { return (rest == item.Name) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item, this.props.type)}>
+                                        <span className={"filterCheck " + (this.props.rest.some((rest) => { return (rest == encodeURIComponent(item.Name)) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item, this.props.type)}>
                                             {item.Name.charAt(0).toUpperCase() + item.Name.slice(1)} <span className="filterQuantity">({item.Quantity})</span>
                                         </span>
                                     }
@@ -99,9 +99,9 @@ class FilterGroup extends Component {
                     </ul>
 
                     {(nbFilter > itemsNotExpanded) && !mobileMode &&
-                        <ul class="cont-showmore d-block">
-                            <li class="amshopby-clearer">
-                                <a id="amshopby-category-more" class="amshopby-more" href="#" onClick={(e) => { e.preventDefault(); this.setState({ expanded: !this.state.expanded }) }} >
+                        <ul className="cont-showmore d-block">
+                            <li className="amshopby-clearer">
+                                <a id="amshopby-category-more" className="amshopby-more" href="#" onClick={(e) => { e.preventDefault(); this.setState({ expanded: !this.state.expanded }) }} >
                                     {(!this.state.expanded)
                                         ? <FormattedMessage id={"toolbar.filter.showmore"} />
                                         : <FormattedMessage id={"toolbar.filter.showless"} />

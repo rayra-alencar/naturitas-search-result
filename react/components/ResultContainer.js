@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, PureComponent, Fragment } from 'react';
 import { orderFormConsumer } from 'vtex.store/OrderFormContext'
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
@@ -16,16 +16,34 @@ const WidthSwithMobileDesktop = 769;
 class ResultContainer extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            linesDescription: 2
+            linesDescription: 2,
+            titleTag: props.searchQuery.titleTag
         }
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.searchQuery.titleTag && nextProps.searchQuery.titleTag!==prevState.titleTag){
+          return { titleTag: nextProps.searchQuery.titleTag};
+       }
+       else return null;
+     }
+
+    shouldComponentUpdate(nextProps){
+        if(nextProps.loading != this.props.loading){
+            return true;
+        }
+       /* TODO -> OPTIMIZAR CONDICION, NO VALE SI EL NUMERO DE PRODUCTOS ES IGUAL
+            if(nextProps.products.length == this.props.products.length){
+            return false;
+        }*/
+
+        return true;
     }
 
 
 
     render() {
-
         const { searchQuery, notfoundimage, params, map } = this.props
         const { facets } = searchQuery
 
@@ -34,8 +52,8 @@ class ResultContainer extends Component {
             return (
 
                 <div id="page-notfound">
-                    <div class="searchresult-block content container">
-                        {notfoundimage && (<div class="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
+                    <div className="searchresult-block content container">
+                        {notfoundimage && (<div className="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
                         <div className="searchresult-title-container">
                             <p className="title"><FormattedMessage id="searchresult.title" /></p>
                         </div>
@@ -52,14 +70,14 @@ class ResultContainer extends Component {
                         </div>
                     </div>
 
-                    <div class="category-block">
+                    <div className="category-block">
                         <ExtensionPoint style="pagenotfound" id="category-block" />
                     </div>
 
-                    <div class="category-block">
+                    <div className="category-block">
                         <ExtensionPoint style="tags" id="tags-block" />
                     </div>
-                    <div class="related-products">
+                    <div className="related-products">
                         <ExtensionPoint id="related-products-block" />
                     </div>
 
@@ -79,7 +97,7 @@ class ResultContainer extends Component {
                             <div id="category-block" className={mobileMode ? 'mobileMode' : ''}>
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
                                 <div className="container">
-                                    <h1>{searchQuery.titleTag}</h1>
+                                    <h1>{this.state.titleTag    }</h1>
 
                                     <p className="cat-desc">
                                         <Truncate lines={this.state.linesDescription} ellipsis={ellipsis}>
@@ -122,6 +140,7 @@ class ResultContainer extends Component {
                                         <ExtensionPoint
                                             id="productList"
                                             products={this.props.products}
+                                            loading={this.props.loading}
                                         />
 
                                         <ViewMore {...this.props} />

@@ -71,18 +71,14 @@ class FilterBlock extends Component {
 
             map = [...this.state.map]
             mapClicked = queryMap.split(',').pop();
-
-
-            console.log("mapCClicker",mapClicked)
-            console.log("map",map)
         }
 
 
-        let indexOfRest = rest.indexOf(selectedOption.Name)
+        let indexOfRest = rest.indexOf(encodeURIComponent(selectedOption.Name))
 
 
         if (indexOfRest == -1) {
-            rest.push(selectedOption.Name)
+            rest.push(encodeURIComponent(selectedOption.Name))
             map.push(mapClicked)
 
         }
@@ -91,8 +87,7 @@ class FilterBlock extends Component {
             map.splice(indexOfRest, 1)
         }
 
-        console.log("map",map)
-        console.log("props map",this.props.map.split(','))
+        
 
         
         this.setState({ rest, map });
@@ -206,7 +201,7 @@ class FilterBlock extends Component {
 
         return (
             <div id="sideBar" className={this.state.mobileFiltersActive ? 'active' : ''}>
-                <div class="block-subtitle block-subtitle--filter d-flex d-md-none" onClick={(e) => this.handleExpandFiltersMobile(true)}>
+                <div className="block-subtitle block-subtitle--filter d-flex d-md-none" onClick={(e) => this.handleExpandFiltersMobile(true)}>
                     
                     <div className="back-icon toggleShow my-auto ml-3" onClick={e => this.setDisplayGroup(false)}>
                         {this.state.mobileFiltersActive && mobileFilterGroupActive && 
@@ -215,7 +210,7 @@ class FilterBlock extends Component {
                     </div>
                     
                     <div className="m-auto" onClick={(e) => this.handleExpandFiltersMobile()} >
-                        <i class="icon-filter"></i>
+                        <i className="icon-filter"></i>
                             <FormattedMessage id="toolbar.filters" />                    
                     </div>
 
@@ -241,7 +236,7 @@ class FilterBlock extends Component {
 
                         <ol className="single-choice price-filter">
                             <li className={"d-flex"}>
-                                <div class="row-wrap">
+                                <div className="row-wrap">
                                     <label>Mínimo</label>
                                     <Select
                                         value={minPrice}
@@ -249,7 +244,7 @@ class FilterBlock extends Component {
                                         options={optionsMinPrice}
                                     />
                                 </div>
-                                <div class="row-wrap">
+                                <div className="row-wrap">
                                     <label>Máximo</label>
                                     <Select
                                         value={maxPrice}

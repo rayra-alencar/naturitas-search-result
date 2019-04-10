@@ -27,7 +27,7 @@ class ToolbarProducts extends Component {
         return (
             <div className="toolbar toolbar-ajax d-flex">
                 <div className="toolbar-filters-item  my-auto mr-auto px-3">
-                    <span class="filterCheck">
+                    <span className="filterCheck">
                         <FormattedMessage id="toolbar.enviogratis" />
                         <span className="pl-2"><img src="https://cdn.naturitas.es/skin/frontend/rwd/naturitas/images/Shape.svg" alt="" /></span>
                     </span>

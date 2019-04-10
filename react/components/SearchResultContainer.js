@@ -19,6 +19,7 @@ class SearchResultContainer extends Component {
         if (this._fetchMoreLocked) {
           return
         }
+
     
         this._fetchMoreLocked = true
     
