@@ -6,6 +6,7 @@ import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import FilterGroup from './FilterGroup';
 const optionsMinPrice = [
     { value: '0', label: '0€' },
+    { value: '5', label: '5€' },
     { value: '10', label: '10€' },
     { value: '20', label: '20€' },
     { value: '30', label: '30€' },
@@ -14,6 +15,7 @@ const optionsMinPrice = [
 ];
 const optionsMaxPrice = [
     { value: '0', label: '0€' },
+    { value: '5', label: '5€' },
     { value: '10', label: '10€' },
     { value: '20', label: '20€' },
     { value: '30', label: '30€' },
@@ -42,9 +44,12 @@ class FilterBlock extends Component {
     }
     handleChangeMinPrice = (selectedOption) => {
         this.setState({ minPrice: selectedOption });
+        this.props.updatePrice(selectedOption.value, this.state.maxPrice.value);
     }
     handleChangeMaxPrice = (selectedOption) => {
         this.setState({ maxPrice: selectedOption });
+        
+        this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
     }
 
     getParameterByName(name, url) {
@@ -123,7 +128,7 @@ class FilterBlock extends Component {
         let flavours = []
 
 
-        if (facets) {
+        if (facets && facets.CategoriesTrees[0]) {
             let categoryTree = facets.CategoriesTrees.filter(item => item.Id != 1)
             if (params.subcategory) {
                 catChildren = categoryTree[0].Children[0].Children
@@ -226,12 +231,12 @@ class FilterBlock extends Component {
 
                 <div id="filter-container" className={mobileFilterGroupActive ? 'active' : ''}>
 
-                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
 
 
-                    <div className="filter_block">
+                    <div className="filter_block mb-1">
                         <div className="title"> <FormattedMessage id="toolbar.filter.price" /> </div>
 
                         <ol className="single-choice price-filter">
@@ -262,7 +267,7 @@ class FilterBlock extends Component {
 
                     <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
                     <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={main_components} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    {/*<FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={main_components} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />*/}
                     <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
                     <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
                     <FilterGroup mobileMode={mobileMode} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />

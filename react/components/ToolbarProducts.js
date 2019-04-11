@@ -14,12 +14,27 @@ class ToolbarProducts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            orderBy: orderOptions[0]
+            orderBy: orderOptions[0],
+            envioGratis: false
         }
+    }
+
+    handleEnvioGratis = () => {
+        this.setState({ envioGratis: !this.state.envioGratis }, () => {
+            if(this.state.envioGratis){
+                this.props.updatePrice(59, 99999);
+            }
+            else{
+                this.props.updatePrice(0, 99999);
+            }
+        });
+       
+        
     }
 
     handleOrderBy = (selectedOption) => {
         this.setState({ orderBy: selectedOption });
+        this.props.updateOrderBy(selectedOption.value)
     }
 
     render() {
@@ -27,7 +42,7 @@ class ToolbarProducts extends Component {
         return (
             <div className="toolbar toolbar-ajax d-flex">
                 <div className="toolbar-filters-item  my-auto mr-auto px-3">
-                    <span className="filterCheck">
+                    <span className={"filterCheck "+ ((this.state.envioGratis) ? ' selected ' : '') } onClick={(e) => this.handleEnvioGratis(e)} >
                         <FormattedMessage id="toolbar.enviogratis" />
                         <span className="pl-2"><img src="https://cdn.naturitas.es/skin/frontend/rwd/naturitas/images/Shape.svg" alt="" /></span>
                     </span>

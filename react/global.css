@@ -91,6 +91,12 @@
     font-size: 25px;
 }
 
+.block-subtitle .icon-filter:before{
+    color: #d2cbb8;
+    font-size: 18px;
+    margin-right: 4px;
+}
+
 #category-block.mobileMode .toolbar{
     background-color: #F4F3F1;
     margin: 0;
@@ -99,7 +105,10 @@
 }
 #category-block.mobileMode .filter_block ul, #category-block.mobileMode .filter_block ol{
     height: calc(100vh - 74px);
-    overflow: auto;
+}
+
+#category-block:not(.mobileMode) .filter_block ul, #category-block:not(.mobileMode) .filter_block ol{
+    max-height: 521px;
 }
 
 
@@ -116,12 +125,12 @@
     display: none;
 }
 
-#category-block.mobileMode .filter_block .title{
-    display: flex;
-}
 
 #category-block:not(.mobileMode) .filter_block .title .icon-angle-down{
-    display: none;
+    margin-top: auto; 
+    margin-bottom: auto;
+    margin-left: auto;
+    font-size: 26px;
 }
 
 #category-block.mobileMode .filter_block .title .icon-angle-down{
@@ -129,9 +138,25 @@
     -webkit-transform: rotate(-90deg) !important;
     -ms-transform: rotate(-90deg) !important;
     transform: rotate(-90deg) !important;
+    font-size: 26px;
  }
 
+ #category-block:not(.mobileMode) .title.activeDesktop .icon-angle-down{
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
 /* END FILTROS MOBILE */ 
+
+#category-block .note-msg{
+    color: #4A4A4A;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    padding: 20px 10px;
+    margin-top: 5px;    
+}
 
 #category-block.mobileMode #products-block{
     width: 100%;
@@ -142,9 +167,12 @@
 
 #category-block .filter_block{
     border: 1px solid #EBE7E4;	
-    border-radius: 6px;	
     background-color: #FBFAF9;
     padding: 18px;
+}
+
+#category-block:not(.mobileMode) .filter_block{
+    border-radius: 6px;	
 }
 
 #category-block .filter_block .title{
@@ -153,7 +181,7 @@
     font-size: 18px;	
     font-weight: bold;	
     line-height: 26px;
-    margin-bottom: 15px;
+    display: flex;
 }
 #category-block .filter_block ul li a, #category-block .filter_block ul li span{
     color: #4A4A4A;
@@ -244,10 +272,12 @@ width: 13px;
     list-style: none;
     margin: 0; margin-bottom: 0;
     padding: 0;
+    overflow: auto;
+    margin-top: 15px;
 }
 
 #category-block ol li, #category-block ul li{
-    padding: 5px 0;
+    padding: 1.5px 0;
 }
 
 #category-block .filter_block ul.cont-showmore li a span{

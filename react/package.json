@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "react": "^16.3.2",
-    "react-apollo": "^2.1.4",
+    "react-apollo": "^2.3.2",
     "apollo-client": "^2.3.2",
     "apollo-client-preset": "^1.0.8",
     "query-string": "5",

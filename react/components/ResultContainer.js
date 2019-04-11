@@ -48,7 +48,7 @@ class ResultContainer extends Component {
         const { facets } = searchQuery
 
 
-        if ((!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
+        if (!this.props.userInteractiveWithFilters && (!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
             return (
 
                 <div id="page-notfound">
@@ -117,31 +117,34 @@ class ResultContainer extends Component {
 
                                 {mobileMode &&
                                     <div className="d-flex">
-                                        <FilterBlock mobileMode={mobileMode} updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
-                                        <ToolbarProducts recordsFiltered={searchQuery.recordsFiltered} />
+                                        <FilterBlock mobileMode={mobileMode}  updatePrice={this.props.updatePrice} updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
+                                        <ToolbarProducts updateOrderBy={this.props.updateOrderBy} updatePrice={this.props.updatePrice} recordsFiltered={searchQuery.recordsFiltered} />
                                     </div>
                                 }
 
-                                <div id="category-main-container" className="container mt-3 d-flex flex-wrap">
+                                <div id="category-main-container" className="container mt-md-3 d-flex flex-wrap">
                                     {!mobileMode &&
-                                        <FilterBlock mobileMode={mobileMode} updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
+                                        <FilterBlock mobileMode={mobileMode}  updatePrice={this.props.updatePrice} updateQuerySearch={this.props.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} />
                                     }    
                                     
                                     <div id="products-block">
                                         {!mobileMode &&
                                             <Fragment>
                                                 <ExtensionPoint id="subcategories" />
-                                                <ToolbarProducts recordsFiltered={searchQuery.recordsFiltered} />
+                                                <ToolbarProducts updateOrderBy={this.props.updateOrderBy} updatePrice={this.props.updatePrice} recordsFiltered={searchQuery.recordsFiltered} />
                                             </Fragment>
                                         }
 
 
-
-                                        <ExtensionPoint
+                                        {this.props.userInteractiveWithFilters && this.props.products.length<=0
+                                         ? <div className="note-msg"><FormattedMessage id="searchresult.noproducts" /></div>
+                                         : 
+                                         <ExtensionPoint
                                             id="productList"
                                             products={this.props.products}
                                             loading={this.props.loading}
-                                        />
+                                        />}
+                                        
 
                                         <ViewMore {...this.props} />
                                     </div>

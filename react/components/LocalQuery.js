@@ -37,6 +37,8 @@ const  SORT_OPTIONS = [
 
 const DEFAULT_PAGE = 1
 
+
+
 class LocalQuery extends Component {
   static defaultProps = {
     orderByField: SORT_OPTIONS[0].value,
@@ -46,13 +48,25 @@ class LocalQuery extends Component {
     super(props)
     this.state = {
       map: props.map,
-      rest: props.rest
+      rest: props.rest,
+      minPrice: 0,
+      maxPrice: 9999,
+      userInteractiveWithFilters: false,
+      orderByField: SORT_OPTIONS[0].value
     }
+  }
+
+  updateOrderBy = (orderByField) => {
+    this.setState({orderByField})
+  }
+
+  updatePrice = (minPrice, maxPrice) => {
+    this.setState({minPrice,maxPrice, userInteractiveWithFilters:true})
   }
 
   updateQuerySearch = (map, rest) => {
     
-    this.setState({map,rest})
+    this.setState({map,rest, userInteractiveWithFilters:true})
   }
 
   render() {
@@ -72,7 +86,7 @@ class LocalQuery extends Component {
       runtime: { page: runtimePage },
     } = this.props
 
-    const query = Object.values(params)
+    let query = Object.values(params)
       .filter(s => s.length > 0)
       .join('/')
 
@@ -80,43 +94,64 @@ class LocalQuery extends Component {
     const from = (page - 1) * maxItemsPerPage
     const to = from + maxItemsPerPage - 1
 
+    query = query+`/de-${this.state.minPrice}-a-${this.state.maxPrice}`
+
+    let queryArray = query.split('/');
+
+    let mapArray = this.state.map.split(',');
+
+    mapArray.splice( queryArray.length-1, 0, 'priceFrom')
+
+
+
     
     return (
       <Query
         query={Queries.search}
         variables={{
           query,
-          map: this.state.map,
+          map: mapArray.join(','),
           rest: this.state.rest,
-          orderBy,
+          orderBy: this.state.orderByField,
           priceRange,
           from,
           to,
           withFacets: !!(map && map.length > 0 && query && query.length > 0),
         }}
-        notifyOnNetworkStatusChange
+        notifyOnNetworkStatusChange={true}
         partialRefetch
+        networkStatus
       >
         {searchQueryProps => {
-          const { data } = searchQueryProps
+          
+          const { data,error, loading } = searchQueryProps
           const { search } = data || {}
 
+          if(error){
+            console.error(error)
+          }
+          
           return this.props.render({
             ...this.props,
             searchQuery: {
               ...searchQueryProps,
               ...search,
             },
+            error: error,
+            loading: loading,
             searchContext: runtimePage,
             pagesPath: runtimePage,
             map,
             rest,
-            orderBy,
+            orderBy: this.state.orderByField,
             priceRange,
             page,
             from,
             to,
-            updateQuerySearch: this.updateQuerySearch
+            updateQuerySearch: this.updateQuerySearch,
+            updatePrice: this.updatePrice,
+            userInteractiveWithFilters: this.state.userInteractiveWithFilters,
+            updateOrderBy: this.updateOrderBy
           })
         }}
       </Query>

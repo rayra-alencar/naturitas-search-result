@@ -7,17 +7,20 @@
     "searchresult.tips3":"Esplora le nostre categorie",
     "searchresult.freeshipping":"",
     "searchresult.products":"",
+    "searchresult.noproducts": "Non ci sono prodotti che corrispondono alla selezione.",
     
     "toolbar.enviogratis":"Spedizione gratuita",
     "toolbar.products":"produrre",
 
-    "toolbar.filter.category":"Categorías",
-    "toolbar.filter.brands":"Marca",
+    "toolbar.filter.category":"Categoria",
+    "toolbar.filter.brands":"Marche",
     "toolbar.filter.flags":"Etichetta",
     "toolbar.filter.content_format": "Formato",
     "toolbar.filter.price": "Prezzo",
     "toolbar.filter.container":"Tipo di contenitore",
     "toolbar.filter.main_components":"Componente Principale",
+    "toolbar.filter.color":"Colore",
+    "toolbar.filter.size":"Taglia",
 
     "toolbar.showmore": "Vedi di più",
     "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}",
