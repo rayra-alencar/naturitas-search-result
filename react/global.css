@@ -276,6 +276,12 @@ width: 13px;
     margin-top: 15px;
 }
 
+#category-block ol.price-filter{
+    overflow: visible;
+}
+
+
+
 #category-block ol li, #category-block ul li{
     padding: 1.5px 0;
 }

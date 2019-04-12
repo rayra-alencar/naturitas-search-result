@@ -65,6 +65,18 @@ class FilterGroup extends Component {
             filterItems = filterGroup
             nbFilter = filterGroup.length;
             filterName = 'category'
+            
+            filterItems.map(item => {
+               let linksArrayAux = item.Link.split('/')
+               if (linksArrayAux[linksArrayAux.length-1].indexOf('de-') >=0 ){
+                linksArrayAux.pop();
+               }
+               linksArrayAux = linksArrayAux.join('/')
+               item.Link = linksArrayAux;
+               
+               return item;
+               
+            })
         }
         else {
             filterItems = filterGroup[0].facets;
@@ -72,6 +84,7 @@ class FilterGroup extends Component {
             filterName = filterGroup[0].name
         }
 
+        
 
         filterItems = filterItems.filter(item => (item.Name != "" && item.Name.indexOf('(') < 0 && item.Name.indexOf('Not or Bad Specified Brand')))
         filterItems = filterItems.sort((a, b) => {

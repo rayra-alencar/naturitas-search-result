@@ -9,6 +9,7 @@ import '../global.css'
 import FilterBlock from './FilterBlock';
 import ToolbarProducts from './ToolbarProducts';
 import ViewMore from './ViewMore';
+import { Spinner } from 'vtex.styleguide'   
 
 const WidthSwithMobileDesktop = 769;
 
@@ -137,13 +138,17 @@ class ResultContainer extends Component {
 
 
                                         {this.props.userInteractiveWithFilters && this.props.products.length<=0
-                                         ? <div className="note-msg"><FormattedMessage id="searchresult.noproducts" /></div>
+                                         ? <div className="note-msg">
+                                            <FormattedMessage id="searchresult.noproducts" />
+                                            </div>
                                          : 
-                                         <ExtensionPoint
+                                          (this.props.products.length==0 && this.props.loading) ? (<div className="d-flex mt-3">  <div className="text-primary mx-auto"> <Spinner color="currentColor"/></div></div>)
+                                          : (<ExtensionPoint
                                             id="productList"
                                             products={this.props.products}
                                             loading={this.props.loading}
-                                        />}
+                                          />)
+                                        }
                                         
 
                                         <ViewMore {...this.props} />
