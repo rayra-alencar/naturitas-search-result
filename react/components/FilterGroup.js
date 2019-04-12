@@ -65,6 +65,10 @@ class FilterGroup extends Component {
             filterItems = filterGroup
             nbFilter = filterGroup.length;
             filterName = 'category'
+
+            if(nbFilter==1){
+                filterItems = []
+            }
             
             filterItems.map(item => {
                let linksArrayAux = item.Link.split('/')

@@ -22,6 +22,9 @@
     "toolbar.filter.color":"Colore",
     "toolbar.filter.size":"Taglia",
 
+    "toolbar.filter.pricemax": "Massimo",
+    "toolbar.filter.pricemin": "Minimo",
+
     "toolbar.showmore": "Vedi di più",
     "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}",
 

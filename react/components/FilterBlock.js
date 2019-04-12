@@ -242,7 +242,7 @@ class FilterBlock extends Component {
                         <ol className="single-choice price-filter">
                             <li className={"d-flex"}>
                                 <div className="row-wrap">
-                                    <label>Mínimo</label>
+                                    <label><FormattedMessage id="toolbar.filter.pricemin" /></label>
                                     <Select
                                         value={minPrice}
                                         onChange={this.handleChangeMinPrice}
@@ -250,7 +250,7 @@ class FilterBlock extends Component {
                                     />
                                 </div>
                                 <div className="row-wrap">
-                                    <label>Máximo</label>
+                                    <label><FormattedMessage id="toolbar.filter.pricemax" /></label>
                                     <Select
                                         value={maxPrice}
                                         onChange={this.handleChangeMaxPrice}
