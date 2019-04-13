@@ -64,7 +64,7 @@ class FilterGroup extends Component {
         else if (type == 'category') {
             filterItems = filterGroup
             nbFilter = filterGroup.length;
-            filterName = 'category'
+            filterName = 'category' 
 
             if(nbFilter==1){
                 filterItems = []
@@ -75,8 +75,19 @@ class FilterGroup extends Component {
                if (linksArrayAux[linksArrayAux.length-1].indexOf('de-') >=0 ){
                 linksArrayAux.pop();
                }
+
+               if(linksArrayAux[linksArrayAux.length-1].toLowerCase() == this.props.params.department.toLowerCase()){
+                linksArrayAux.reverse();
+               }
+               
                linksArrayAux = linksArrayAux.join('/')
-               item.Link = linksArrayAux;
+               
+               
+               
+               item.Link = linksArrayAux.toLowerCase();
+            
+
+
                
                return item;
                
@@ -136,7 +147,7 @@ class FilterGroup extends Component {
 
                                             {type == 'category' &&
 
-                                                <Link to={item.Link.toLowerCase()}>
+                                                <Link to={"/"+item.Link.toLowerCase()}>
                                                     {item.Name} <span className="filterQuantity">({item.Quantity})</span>
                                                 </Link>
 
