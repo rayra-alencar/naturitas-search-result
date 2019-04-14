@@ -47,42 +47,58 @@ class ResultContainer extends Component {
     render() {
         const { searchQuery, notfoundimage, params, map } = this.props
         const { facets } = searchQuery
-
+        
 
         if (!this.props.userInteractiveWithFilters && (!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
+
             return (
+                <ReactResizeDetector handleWidth>
+                    {
+                        width => {
+                            const mobileMode = width < WidthSwithMobileDesktop || (global.__RUNTIME__.hints.mobile && (!width || width < WidthSwithMobileDesktop))
+                            return (
+                                <div id="page-notfound">
+                                    <div className="searchresult-block content container">
+                                        {notfoundimage && (<div className="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
+                                        <div className="searchresult-title-container">
+                                            <p className="title"><FormattedMessage id="searchresult.title" /></p>
+                                        </div>
 
-                <div id="page-notfound">
-                    <div className="searchresult-block content container">
-                        {notfoundimage && (<div className="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
-                        <div className="searchresult-title-container">
-                            <p className="title"><FormattedMessage id="searchresult.title" /></p>
-                        </div>
-                        <div className="searchresult-subtitle-container">
-                            <p><FormattedMessage id="searchresult.subtitle" /></p>
-                            <p><FormattedMessage id="searchresult.subtitle2" /></p>
-                        </div>
-                        <div className="searchresult-tips-container">
-                            <ul>
-                                <li><FormattedMessage id="searchresult.tips1" /></li>
-                                <li><FormattedMessage id="searchresult.tips2" /></li>
-                                <li><FormattedMessage id="searchresult.tips3" /></li>
-                            </ul>
-                        </div>
-                    </div>
+                                        {mobileMode && (
+                                            <Fragment>
+                                                <ExtensionPoint id="whatsapp"/>
+                                            </Fragment>
+                                        )}
 
-                    <div className="category-block">
-                        <ExtensionPoint style="pagenotfound" id="category-block" />
-                    </div>
+                                        <div className="searchresult-subtitle-container">
+                                            <p><FormattedMessage id="searchresult.subtitle" /></p>
+                                            <p><FormattedMessage id="searchresult.subtitle2" /></p>
+                                        </div>
+                                        <div className="searchresult-tips-container">
+                                            <ul>
+                                                <li><FormattedMessage id="searchresult.tips1" /></li>
+                                                <li><FormattedMessage id="searchresult.tips2" /></li>
+                                                <li><FormattedMessage id="searchresult.tips3" /></li>
+                                            </ul>
+                                        </div>
+                                    </div>
 
-                    <div className="category-block">
-                        <ExtensionPoint style="tags" id="tags-block" />
-                    </div>
-                    <div className="related-products">
-                        <ExtensionPoint id="related-products-block" />
-                    </div>
+                                    <div className="category-block">
+                                        <ExtensionPoint style="pagenotfound" id="category-block" />
+                                    </div>
 
-                </div>
+                                    <div className="category-block">
+                                        <ExtensionPoint style="tags" id="tags-block" />
+                                    </div>
+                                    <div className="related-products">
+                                        <ExtensionPoint id="related-products-block" />
+                                    </div>
+
+                                </div>
+                            )
+                        }
+                    }
+                </ReactResizeDetector>
             )
         }
         const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
