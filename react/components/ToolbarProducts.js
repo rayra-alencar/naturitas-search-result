@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import Select from 'react-select';
 
+const customStyles = {
+    option: (provided, state) => ({
+        ...provided,
+        backgroundColor: state.isSelected ? '#5cb8a3' : '',
+        '&:hover': {
+            backgroundColor: '#EEE'
+        }
+    }),
+}
+
 const orderOptions = [
     { value: 'OrderByTopSaleDESC', label: <FormattedMessage id="toolbar.OrderByTopSaleDESC" /> },
     { value: 'OrderByPriceASC', label: <FormattedMessage id="toolbar.OrderByPriceASC" /> },
@@ -21,15 +31,15 @@ class ToolbarProducts extends Component {
 
     handleEnvioGratis = () => {
         this.setState({ envioGratis: !this.state.envioGratis }, () => {
-            if(this.state.envioGratis){
+            if (this.state.envioGratis) {
                 this.props.updatePrice(59, 99999);
             }
-            else{
+            else {
                 this.props.updatePrice(0, 99999);
             }
         });
-       
-        
+
+
     }
 
     handleOrderBy = (selectedOption) => {
@@ -42,7 +52,7 @@ class ToolbarProducts extends Component {
         return (
             <div className="toolbar toolbar-ajax d-flex">
                 <div className="toolbar-filters-item  my-auto mr-auto px-3">
-                    <span className={"filterCheck "+ ((this.state.envioGratis) ? ' selected ' : '') } onClick={(e) => this.handleEnvioGratis(e)} >
+                    <span className={"filterCheck " + ((this.state.envioGratis) ? ' selected ' : '')} onClick={(e) => this.handleEnvioGratis(e)} >
                         <FormattedMessage id="toolbar.enviogratis" />
                         <span className="pl-2"><img src="https://cdn.naturitas.es/skin/frontend/rwd/naturitas/images/Shape.svg" alt="" /></span>
                     </span>
@@ -58,14 +68,15 @@ class ToolbarProducts extends Component {
 
                     <div className="sorter my-auto">
                         <div className="sort-by d-flex">
-                            <label className="my-auto mr-2"><FormattedMessage className="pl-3" id="toolbar.orderBy"/> </label>
+                            <label className="my-auto mr-2"><FormattedMessage className="pl-3" id="toolbar.orderBy" /> </label>
                             <Select
-                                    className="customSelect"     
-                                    value={orderBy}
-                                    onChange={this.handleOrderBy}
-                                    options={orderOptions}
-                                />
-                            
+                                styles={customStyles}
+                                className="customSelect"
+                                value={orderBy}
+                                onChange={this.handleOrderBy}
+                                options={orderOptions}
+                            />
+
                         </div>
                     </div>
                 </div>
