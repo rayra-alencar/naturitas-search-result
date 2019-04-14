@@ -165,7 +165,11 @@ class ResultContainer extends Component {
                                             loading={this.props.loading}
                                           />)
                                         }
-                                        
+                                        {mobileMode && (
+                                            <Fragment>
+                                                <ExtensionPoint id="whatsapp"/>
+                                            </Fragment>
+                                        )}
 
                                         <ViewMore {...this.props} />
                                     </div>
