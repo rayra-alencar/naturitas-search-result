@@ -8,14 +8,11 @@ import FilterGroup from './FilterGroup';
 const customStyles = {
     option: (provided, state) => ({
         ...provided,
+        backgroundColor: state.isSelected ? '#5cb8a3' : '',
         '&:hover': {
             backgroundColor: '#EEE'
-        },
-        '&:active': {
-            backgroundColor: state.isSelected ? '#5cb8a3' : '',
-        },
+        }
     }),
-
 }
 
 
