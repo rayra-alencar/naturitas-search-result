@@ -75,6 +75,7 @@ class SearchResultContainer extends Component {
             pagination,
           } = this.props
 
+          
         return (
                 <ResultContainer {...this.props} 
                 breadcrumbsProps={this.breadcrumbsProps}

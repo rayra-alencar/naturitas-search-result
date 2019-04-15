@@ -71,22 +71,40 @@ class FilterGroup extends Component {
             }
             
             filterItems.map(item => {
-               let linksArrayAux = item.Link.split('/')
+               let linksArrayAux = item.Link.replace(/^\/+|\/+$/g, '').split('/')
+               //Si tiene filtro de precio se lo quitamos
                if (linksArrayAux[linksArrayAux.length-1].indexOf('de-') >=0 ){
-                linksArrayAux.pop();
+                 linksArrayAux.pop();
                }
 
-               if(linksArrayAux[linksArrayAux.length-1].toLowerCase() == this.props.params.department.toLowerCase()){
-                linksArrayAux.reverse();
+               let map = ''
+               let indexOfMap = linksArrayAux[linksArrayAux.length-1].indexOf('?map=')
+               // WORKARROUND para la mierda de que la API de VTEX vengan los Links al revés
+               if(indexOfMap>=0){
+                map = linksArrayAux[linksArrayAux.length-1].substring(indexOfMap)
+                linksArrayAux[linksArrayAux.length-1] = linksArrayAux[linksArrayAux.length-1].substring(0,indexOfMap);
                }
+               
+               if(linksArrayAux[linksArrayAux.length-1] && this.props.params.department){
+                if(linksArrayAux[linksArrayAux.length-1].toLowerCase() == this.props.params.department.toLowerCase()){
+                    linksArrayAux.reverse();
+                   }
+               }
+
+               if(linksArrayAux[linksArrayAux.length-1] && this.props.params.brand){
+                 if(linksArrayAux[linksArrayAux.length-1].toLowerCase() == this.props.params.brand){
+                    linksArrayAux.pop();
+                    // OJO REVISAR CUANDO ESTO VA A VOLVER A FUNCIONAR QUITAR SIGUIENTE LINEA
+                    linksArrayAux.reverse();
+                 }
+               }
+
+               
+               
                
                linksArrayAux = linksArrayAux.join('/')
                
-               
-               
-               item.Link = linksArrayAux.toLowerCase();
-            
-
+               item.Link = "/"+(linksArrayAux.toLowerCase())
 
                
                return item;
@@ -147,7 +165,7 @@ class FilterGroup extends Component {
 
                                             {type == 'category' &&
 
-                                                <Link to={"/"+item.Link.toLowerCase()}>
+                                                <Link to={item.Link.toLowerCase()}>
                                                     {item.Name} <span className="filterQuantity">({item.Quantity})</span>
                                                 </Link>
 

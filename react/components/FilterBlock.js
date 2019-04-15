@@ -4,24 +4,19 @@ import Select from 'react-select';
 
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 import FilterGroup from './FilterGroup';
-const optionsMinPrice = [
-    { value: '0', label: '0€' },
-    { value: '5', label: '5€' },
-    { value: '10', label: '10€' },
-    { value: '20', label: '20€' },
-    { value: '30', label: '30€' },
-    { value: '40', label: '40€' },
-    { value: '50', label: '50€' }
-];
-const optionsMaxPrice = [
-    { value: '0', label: '0€' },
-    { value: '5', label: '5€' },
-    { value: '10', label: '10€' },
-    { value: '20', label: '20€' },
-    { value: '30', label: '30€' },
-    { value: '40', label: '40€' },
-    { value: '99999', label: '50€+' }
-];
+
+const customStyles = {
+    option: (provided, state) => ({
+        ...provided,
+        '&:hover': {
+            backgroundColor: '#EEE'
+        },
+        '&:active': {
+            backgroundColor: state.isSelected ? '#5cb8a3' : '',
+        },
+    }),
+
+}
 
 
 class FilterBlock extends Component {
@@ -32,8 +27,8 @@ class FilterBlock extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            minPrice: optionsMinPrice[0],
-            maxPrice: optionsMaxPrice[optionsMaxPrice.length - 1],
+            minPrice: props.optionsMinPrice[0],
+            maxPrice: props.optionsMaxPrice[props.optionsMaxPrice.length - 1],
             map: [],
             rest: [],
             selectedFilters: [],
@@ -48,7 +43,7 @@ class FilterBlock extends Component {
     }
     handleChangeMaxPrice = (selectedOption) => {
         this.setState({ maxPrice: selectedOption });
-        
+
         this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
     }
 
@@ -92,22 +87,22 @@ class FilterBlock extends Component {
             map.splice(indexOfRest, 1)
         }
 
-        
 
-        
+
+
         this.setState({ rest, map });
         this.props.updateQuerySearch([...(this.props.map).split(','), ...map].join(','), rest.join(','))
         this.handleExpandFiltersMobile()
     }
 
     handleExpandFiltersMobile = (checkIfIsActive) => {
-        if(this.props.mobileMode && (!checkIfIsActive || !this.state.mobileFiltersActive))
-            this.setState({mobileFiltersActive: !this.state.mobileFiltersActive})
+        if (this.props.mobileMode && (!checkIfIsActive || !this.state.mobileFiltersActive))
+            this.setState({ mobileFiltersActive: !this.state.mobileFiltersActive })
     }
 
     setDisplayGroup = (active) => {
-        if(this.props.mobileMode)
-            this.setState({mobileFilterGroupActive: active});
+        if (this.props.mobileMode)
+            this.setState({ mobileFilterGroupActive: active });
     }
 
     render() {
@@ -207,25 +202,25 @@ class FilterBlock extends Component {
         return (
             <div id="sideBar" className={this.state.mobileFiltersActive ? 'active' : ''}>
                 <div className="block-subtitle block-subtitle--filter d-flex d-md-none" onClick={(e) => this.handleExpandFiltersMobile(true)}>
-                    
+
                     <div className="back-icon toggleShow my-auto ml-3" onClick={e => this.setDisplayGroup(false)}>
-                        {this.state.mobileFiltersActive && mobileFilterGroupActive && 
+                        {this.state.mobileFiltersActive && mobileFilterGroupActive &&
                             <i className="icon-lateral_arrow"></i>
                         }
                     </div>
-                    
+
                     <div className="m-auto" onClick={(e) => this.handleExpandFiltersMobile()} >
                         <i className="icon-filter"></i>
-                            <FormattedMessage id="toolbar.filters" />                    
+                        <FormattedMessage id="toolbar.filters" />
                     </div>
 
                     <div className="my-auto mr-3" onClick={(e) => this.handleExpandFiltersMobile()}>
                         {this.state.mobileFiltersActive &&
-                            <i className="icon-close"></i>    
+                            <i className="icon-close"></i>
                         }
                     </div>
-                    
-                    
+
+
 
                 </div>
 
@@ -244,17 +239,20 @@ class FilterBlock extends Component {
                                 <div className="row-wrap">
                                     <label><FormattedMessage id="toolbar.filter.pricemin" /></label>
                                     <Select
+                                        styles={customStyles}
                                         value={minPrice}
                                         onChange={this.handleChangeMinPrice}
-                                        options={optionsMinPrice}
+                                        options={this.props.optionsMinPrice}
                                     />
                                 </div>
                                 <div className="row-wrap">
                                     <label><FormattedMessage id="toolbar.filter.pricemax" /></label>
                                     <Select
+
+                                        styles={customStyles}
                                         value={maxPrice}
                                         onChange={this.handleChangeMaxPrice}
-                                        options={optionsMaxPrice}
+                                        options={this.props.optionsMaxPrice}
                                     />
                                 </div>
 
