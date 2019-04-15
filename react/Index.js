@@ -5,7 +5,6 @@ import SearchResultContainer from './components/SearchResultContainer';
 
 class SearchResultQueryLoader extends Component {
     render() {
-        console.log(this.props)
         return <SearchResultContainer {...this.props} />
     }
 }
