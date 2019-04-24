@@ -257,6 +257,9 @@ class ResultContainer extends Component {
                                             id="productList"
                                             products={this.props.products}
                                             loading={this.props.loading}
+                                            params={this.props.params}
+                                            maxItemsPerPage={this.props.maxItemsPerPage}
+                                            variables={this.props.searchQuery.variables}
                                           />)
                                         }
                                         {mobileMode && (
