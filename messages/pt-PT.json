@@ -1,13 +1,13 @@
 {
-    "searchresult.title": "Ci dispiace, non abbiamo trovato il prodotto che stai cercando...",
-    "searchresult.subtitle":"Non ti preoccupare!",
-    "searchresult.subtitle2":"Di seguito alcuni consigli per aiutarti a trovare quello di cui hai bisogno:",
-    "searchresult.tips1":"Verifica la tua ortografia e cerca di nuovo",
-    "searchresult.tips2":"Prova con un altro termine di ricerca",
-    "searchresult.tips3":"Esplora le nostre categorie",
+    "searchresult.title": "Lamentamos, mas não conseguimos encontrar o produto de que está à procura...",
+    "searchresult.subtitle":"Não se preocupe!",
+    "searchresult.subtitle2":"Aqui tem alguns dicas para o ajudar a encontrar o que procura:",
+    "searchresult.tips1":"Verifique a ortografia e tente novamente",
+    "searchresult.tips2":"Experimente com outro termo de busca",
+    "searchresult.tips3":"Explore as nossas categorias",
     "searchresult.freeshipping":"",
     "searchresult.products":"",
-    "searchresult.noproducts": "Non ci sono prodotti che corrispondono alla selezione.",
+    "searchresult.noproducts": "",
     
     "toolbar.enviogratis":"Spedizione gratuita",
     "toolbar.products":"produrre",
@@ -37,5 +37,5 @@
     "toolbar.OrderByPriceDESC": "Prezzo: dal più alto al più basso",
     "toolbar.OrderByReleaseDateDESC": "Più nuovo",
 
-    "toolbar.filters":"Filtri"
+    "toolbar.filters":"Filtri" 
 }
