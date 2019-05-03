@@ -13,7 +13,7 @@ const customStyles = {
 }
 
 const orderOptions = [
-    { value: 'OrderByTopSaleDESC', label: <FormattedMessage id="toolbar.OrderByTopSaleDESC" /> },
+    { value: 'OrderByScoreDESC', label: <FormattedMessage id="toolbar.OrderByTopSaleDESC" /> },
     { value: 'OrderByPriceASC', label: <FormattedMessage id="toolbar.OrderByPriceASC" /> },
     { value: 'OrderByPriceDESC', label: <FormattedMessage id="toolbar.OrderByPriceDESC" /> },
     { value: 'OrderByReleaseDateDESC', label: <FormattedMessage id="toolbar.OrderByReleaseDateDESC" /> },

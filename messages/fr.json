@@ -1,0 +1,44 @@
+{
+    "searchresult.title": "Nous sommes désolés, nous n'avons pas trouvé le produit que vous cherchez...",
+    "searchresult.subtitle":"Ne vous inquiétez pas !",
+    "searchresult.subtitle2":"Voici quelques conseils pour vous aider à trouver ce que vous cherchez. ",
+    "searchresult.tips1":"Vérifiez l'orthographe et essayez à nouveau",
+    "searchresult.tips2":"Faites une autre recherche ",
+    "searchresult.tips3":"Découvrez les nouvelles catégories",
+    "searchresult.freeshipping":"",
+    "searchresult.products":"",
+    "searchresult.noproducts": "Il n'y a pas de produits qui correspondent à la séléction.",
+    
+    "toolbar.enviogratis":"Livraison gratuite",
+    "toolbar.products":"Produits",
+
+    "toolbar.filter.category":"Catégorie",
+    "toolbar.filter.brands":"Marque",
+    "toolbar.filter.flags":"Etiquette",
+    "toolbar.filter.content_format": "Format",
+    "toolbar.filter.price": "Prix",
+    "toolbar.filter.container":"Type de conteneur",
+    "toolbar.filter.main_components":"Componente Principale",
+    "toolbar.filter.color":"Colore",
+    "toolbar.filter.size":"Taglia",
+
+    "toolbar.filter.pricemax": "Massimo",
+    "toolbar.filter.pricemin": "Minimo",
+
+    "toolbar.showmore": "Tout voir",
+    "toolbar.showmore.text": "Vous avez vu {view} sur {total} produits",
+
+    "toolbar.filter.showmore": "+ Voir plus",
+    "toolbar.filter.showless": "+ Voir moins",
+    "toolbar.orderBy": "Trier par",
+
+    "toolbar.OrderByTopSaleDESC": "Popularité",
+    "toolbar.OrderByPriceASC": "Prix: du plus bas au plus élevé",
+    "toolbar.OrderByPriceDESC": "Prix: du plus haut au plus bas",
+    "toolbar.OrderByReleaseDateDESC": "Les plus récents",
+
+    "toolbar.filters":"Filtri"
+
+
+    
+}
