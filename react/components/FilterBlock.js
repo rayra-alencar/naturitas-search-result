@@ -35,11 +35,12 @@ class FilterBlock extends Component {
         }
     }
     handleChangeMinPrice = (selectedOption) => {
-        this.setState({ minPrice: selectedOption });
+        this.setState({ minPrice: selectedOption, mobileFiltersActive: false });
         this.props.updatePrice(selectedOption.value, this.state.maxPrice.value);
+        
     }
     handleChangeMaxPrice = (selectedOption) => {
-        this.setState({ maxPrice: selectedOption });
+        this.setState({ maxPrice: selectedOption, mobileFiltersActive: false });
 
         this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
     }
@@ -231,7 +232,7 @@ class FilterBlock extends Component {
                     <div className="filter_block mb-1">
                         <div className="title"> <FormattedMessage id="toolbar.filter.price" /> </div>
 
-                        <ol className="single-choice price-filter">
+                        <ol className="single-choice price-filter d-flex h-auto">
                             <li className={"d-flex"}>
                                 <div className="row-wrap">
                                     <label><FormattedMessage id="toolbar.filter.pricemin" /></label>

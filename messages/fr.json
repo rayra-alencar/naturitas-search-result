@@ -25,7 +25,7 @@
     "toolbar.filter.pricemax": "Maximum",
     "toolbar.filter.pricemin": "Minimum",
 
-    "toolbar.showmore": "Tout voir",
+    "toolbar.showmore": "Voir plus de produits",
     "toolbar.showmore.text": "Vous avez vu {view} sur {total} produits",
 
     "toolbar.filter.showmore": "+ Voir plus",
