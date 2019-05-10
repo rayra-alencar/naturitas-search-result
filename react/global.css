@@ -464,5 +464,8 @@ cursor: pointer;
         max-width: none;
         margin: auto;
     }
+}
 
+#page-notfound #categoryBlockLinks .categoryBlockLink .overlay a:hover {
+    text-decoration: none;
 }
