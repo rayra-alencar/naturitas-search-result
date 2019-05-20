@@ -110,7 +110,7 @@ class ResultContainer extends Component {
 
 
     render() {
-        const { searchQuery, notfoundimage, brandcorners, params, map } = this.props
+        const { searchQuery, notfoundimage, brandcornersbackground ,brandcorner, params, map } = this.props
         const { facets } = searchQuery
         
 
@@ -177,11 +177,22 @@ class ResultContainer extends Component {
                         return (
                             <div id="category-block" className={mobileMode ? 'mobileMode' : ''}>
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
-                                {brandcorners && (
-                                    <div className="searchresult-image-container container">
+                                {brandcornersbackground && brandcorner && (
+                                    <div className="searchresult-image-container container-fluid">
                                         <div class="row">
                                             <div class="col-12">
-                                                <img src={brandcorners} />
+                                                <img src={brandcornersbackground} />
+                                                <div class="bradcorners-content container">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img src={brandcorner} />
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <h2 class="bradcorners-title">Title Brand</h2>
+                                                            <p class="brand-description">Lorem ipsum dolor sit amet consectetur adipiscing, elit platea egestas quam nisi suspendisse, integer ullamcorper phasellus purus rhoncus. Auctor ligula maecenas nostra integer odio habitant tempus penatibus, facilisis fusce pulvinar eu semper litora cum dictumst, porta interdum cubilia morbi porttitor imperdiet placerat. Torquent pellentesque sollicitudin fames posuere massa leo nisl quam erat, primis malesuada netus lobortis maecenas laoreet pulvinar in, arcu euismod litora non porttitor cursus venenatis tortor.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>)}

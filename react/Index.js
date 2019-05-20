@@ -15,22 +15,29 @@ SearchResultQueryLoader.getSchema = (props) => {
       description: 'Search Results',
       type: 'object',
       properties: {
-          description: {
-              title: 'Category Description',
-              type: 'string'
-          },
-          notfoundimage: {
-            title: 'Not found image',
-            type: 'string',
-            widget: {
-                'ui:widget': 'image-uploader',
-            }
-          },
-          brandcorners: {
-            title: 'Brand Corner',
-            type: 'string',
-            widget: {
-                'ui:widget': 'image-uploader',
+            description: {
+                title: 'Category Description',
+                type: 'string'
+            },
+            notfoundimage: {
+                title: 'Not found image',
+                type: 'string',
+                widget: {
+                    'ui:widget': 'image-uploader',
+                }
+            },
+            brandcornersbackground: {
+                title: 'Brand Corner Background',
+                type: 'string',
+                widget: {
+                    'ui:widget': 'image-uploader',
+                },
+            brandcorner: {
+                title: 'Brand Corners',
+                type: 'string',
+                widget: {
+                    'ui:widget': 'image-uploader',
+                }
             }
         }
       },
