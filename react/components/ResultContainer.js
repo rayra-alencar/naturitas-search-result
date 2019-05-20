@@ -110,7 +110,7 @@ class ResultContainer extends Component {
 
 
     render() {
-        const { searchQuery, notfoundimage, params, map } = this.props
+        const { searchQuery, notfoundimage, brandcorners, params, map } = this.props
         const { facets } = searchQuery
         
 
@@ -177,6 +177,14 @@ class ResultContainer extends Component {
                         return (
                             <div id="category-block" className={mobileMode ? 'mobileMode' : ''}>
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
+                                {brandcorners && (
+                                    <div className="searchresult-image-container container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img src={brandcorners} />
+                                            </div>
+                                        </div>
+                                    </div>)}
                                 <div className="container">
                                     <h1>{this.state.titleTag    }</h1>
 
@@ -245,17 +253,11 @@ class ResultContainer extends Component {
 
 
                             </div >
-
-
-
                         )
                     }
-
                 }
             </ReactResizeDetector>
         )
-
-
     }
 }
 
