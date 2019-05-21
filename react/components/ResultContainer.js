@@ -177,7 +177,7 @@ class ResultContainer extends Component {
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
                                 { brandcornersbackground && (
                                     <div className="brandcorners-background-content">
-                                        {mobileMode ? <img src={brandcornersbackground} /> : <img src={brandcornersbackground} />}
+                                        <img src={brandcornersbackground} />
                                     </div> )}
                                 { brandcorner && (
                                     <div className="searchresult-image-container container-fluid">
