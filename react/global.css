@@ -422,3 +422,13 @@
 #page-notfound #categoryBlockLinks .categoryBlockLink .overlay a:hover {
   text-decoration: none;
 }
+
+.render-container.render-route-store-brand .bradcorners-background-content img {
+  width: 100%;
+}
+.render-container.render-route-store-brand .searchresult-image-container .bradcorners-content {
+  margin-top: -142px;
+}
+.render-container.render-route-store-brand .searchresult-image-container .bradcorners-content div > div {
+  background-color: #FFFFFF;
+}

@@ -31,17 +31,17 @@ SearchResultQueryLoader.getSchema = (props) => {
                 type: 'string',
                 widget: {
                     'ui:widget': 'image-uploader',
-                },
+                }
+            },
             brandcorner: {
-                title: 'Brand Corners',
+                title: 'Brand Corner',
                 type: 'string',
                 widget: {
                     'ui:widget': 'image-uploader',
                 }
             }
         }
-      },
-  }
+    }
 } 
 
 
