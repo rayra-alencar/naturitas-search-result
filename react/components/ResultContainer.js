@@ -107,8 +107,6 @@ class ResultContainer extends Component {
         this.setState({map,rest, userInteractiveWithFilters:true})
       }
 
-
-
     render() {
         const { searchQuery, notfoundimage, brandcornersbackground ,brandcorner, params, map } = this.props
         const { facets } = searchQuery
@@ -177,20 +175,21 @@ class ResultContainer extends Component {
                         return (
                             <div id="category-block" className={mobileMode ? 'mobileMode' : ''}>
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
-                                {brandcornersbackground && brandcorner && (
+                                { brandcornersbackground && (
+                                    <div className="brandcorners-background-content">
+                                        {mobileMode ? <img src={brandcornersbackground} /> : <img src={brandcornersbackground} />}
+                                    </div> )}
+                                { brandcorner && (
                                     <div className="searchresult-image-container container-fluid">
                                         <div className="row">
                                             <div class="col-12">
-                                                <div className="bradcorners-background-content">
-                                                    <img src={brandcornersbackground} />
-                                                </div>
-                                                <div className="bradcorners-content container p-3">
+                                                <div className="brandcorners-content container">
                                                     <div className="row">
-                                                        <div className="col-3">
+                                                        <div className="col-12 col-md-3">
                                                             <img src={brandcorner} />
                                                         </div>
-                                                        <div class="col-9">
-                                                            <h2 className="bradcorners-title">Title Brand</h2>
+                                                        <div class="col-12 col-md-9">
+                                                            <h2 className="brandcorners-title my-3">Title Brand</h2>
                                                             <p className="brand-description">Lorem ipsum dolor sit amet consectetur adipiscing, elit platea egestas quam nisi suspendisse, integer ullamcorper phasellus purus rhoncus. Auctor ligula maecenas nostra integer odio habitant tempus penatibus, facilisis fusce pulvinar eu semper litora cum dictumst, porta interdum cubilia morbi porttitor imperdiet placerat. Torquent pellentesque sollicitudin fames posuere massa leo nisl quam erat, primis malesuada netus lobortis maecenas laoreet pulvinar in, arcu euismod litora non porttitor cursus venenatis tortor.</p>
                                                         </div>
                                                     </div>
@@ -261,10 +260,7 @@ class ResultContainer extends Component {
 
                                         <ViewMore {...this.props} />
                                     </div>
-
                                 </div>
-
-
                             </div >
                         )
                     }
