@@ -1,5 +1,5 @@
 import React, { Component, PureComponent, Fragment } from 'react';
-import {  FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl'
 
 import { ExtensionPoint, Link } from 'render'
 import ReactResizeDetector from 'react-resize-detector'
@@ -108,7 +108,7 @@ class ResultContainer extends Component {
       }
 
     render() {
-        const { searchQuery, notfoundimage, brandcornersbackground ,brandcorner, params, map } = this.props
+        const { searchQuery, notfoundimage, params, map } = this.props
         const { facets } = searchQuery
         
 
@@ -163,8 +163,8 @@ class ResultContainer extends Component {
                 </ReactResizeDetector>
             )
         }
-        const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
 
+        const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
 
         return (
             <ReactResizeDetector handleWidth>
@@ -175,38 +175,8 @@ class ResultContainer extends Component {
                         return (
                             <div id="category-block" className={mobileMode ? 'mobileMode' : ''}>
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
-                                { brandcornersbackground && (
-                                    <div className="brandcorners-background-content">
-                                        <img src={brandcornersbackground} />
-                                    </div> )}
-                                { brandcorner && (
-                                    <div className="searchresult-image-container container-fluid">
-                                        <div className="row">
-                                            <div class="col-12">
-                                                <div className="brandcorners-content container">
-                                                    <div className="row">
-                                                        <div className="col-12 col-md-3">
-                                                            <img src={brandcorner} />
-                                                        </div>
-                                                        <div class="col-12 col-md-9">
-                                                            <h2 className="brandcorners-title my-3">Title Brand</h2>
-                                                            <p className="brand-description">Lorem ipsum dolor sit amet consectetur adipiscing, elit platea egestas quam nisi suspendisse, integer ullamcorper phasellus purus rhoncus. Auctor ligula maecenas nostra integer odio habitant tempus penatibus, facilisis fusce pulvinar eu semper litora cum dictumst, porta interdum cubilia morbi porttitor imperdiet placerat. Torquent pellentesque sollicitudin fames posuere massa leo nisl quam erat, primis malesuada netus lobortis maecenas laoreet pulvinar in, arcu euismod litora non porttitor cursus venenatis tortor.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>)}
-                                <div className="container">
-                                    <h1>{this.state.titleTag    }</h1>
 
-                                    <p className="cat-desc">
-                                        <Truncate lines={this.state.linesDescription} ellipsis={ellipsis}>
-                                            {this.props.description}
-                                        </Truncate>
-                                    </p>
-
-                                </div>
+                                <ExtensionPoint id="topbrand" titleTag={this.state.titleTag} descriptionTag={this.props.description} />
 
                                 <ExtensionPoint id="banners" />
 

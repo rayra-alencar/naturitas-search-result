@@ -26,20 +26,6 @@ SearchResultQueryLoader.getSchema = (props) => {
                     'ui:widget': 'image-uploader',
                 }
             },
-            brandcornersbackground: {
-                title: 'Brand Corner Background',
-                type: 'string',
-                widget: {
-                    'ui:widget': 'image-uploader',
-                }
-            },
-            brandcorner: {
-                title: 'Brand Corner',
-                type: 'string',
-                widget: {
-                    'ui:widget': 'image-uploader',
-                }
-            }
         }
     }
 } 

@@ -422,31 +422,3 @@
 #page-notfound #categoryBlockLinks .categoryBlockLink .overlay a:hover {
   text-decoration: none;
 }
-
-.render-container.render-route-store-brand .brandcorners-background-content {
-  max-width: 1400px;
-    margin: 0 auto;
-}
-.render-container.render-route-store-brand .brandcorners-background-content img {
-  width: 100%;
-}
-.render-container.render-route-store-brand .searchresult-image-container .brandcorners-content {
-  background-color: #FFFFFF;
-  margin-top: -50px;
-  border-radius: 4px;
-}
-.render-container.render-route-store-brand .searchresult-image-container .brandcorners-content img {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  margin-top: -50px;
-  padding: 15px;
-  background-color: #FFFFFF;
-  border: 1px solid #E8E8E8;
-  border-radius: 4px;
-}
-@media (min-width: 768px) {
-  .render-container.render-route-store-brand .searchresult-image-container .brandcorners-content img {
-    margin-top: inherit;
-  }
-}
