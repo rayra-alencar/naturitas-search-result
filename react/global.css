@@ -465,6 +465,11 @@ cursor: pointer;
         margin: auto;
     }
 }
+@media(max-width:768px){
+    #category-block .block-subtitle{
+        display: block !important;
+    }
+}
 
 #page-notfound #categoryBlockLinks .categoryBlockLink .overlay a:hover {
     text-decoration: none;
