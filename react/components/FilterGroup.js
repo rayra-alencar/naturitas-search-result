@@ -39,6 +39,14 @@ class FilterGroup extends Component {
         }
     }
 
+    isSelect = (filterName) =>{
+        let aux=this.props.parentActive.includes(filterName);
+        if(aux){
+            return true    
+        }else{
+            return false
+        }
+    }
 
     render() {
         let { filterGroup, itemsNotExpanded, mobileMode, type } = this.props
@@ -100,8 +108,6 @@ class FilterGroup extends Component {
                }
 
                
-               
-               
                linksArrayAux = linksArrayAux.join('/')
                
                item.Link = "/"+(linksArrayAux.toLowerCase())
@@ -145,7 +151,7 @@ class FilterGroup extends Component {
                 <div className={"filter_block " + ((type == 'category') ? 'mb-md-3 ' : ' mb-md-1 ') + ((this.state.activeMobile) ? 'active ' : '')}>
 
                     {!this.state.activeMobile &&
-                        <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' ) } onClick={(e) => this.handleChangeDisplayGroup()}>
+                        <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' ) +(this.isSelect(filterName) ? ' isSelect' :' notIsSelect')} onClick={(e) => this.handleChangeDisplayGroup()}>
                             <FormattedMessage id={"toolbar.filter." + filterName} />
                             <i className="icon-angle-down"></i>
                         </div>
@@ -158,7 +164,7 @@ class FilterGroup extends Component {
                                     (
                                         <li key={key}>
                                             {(type == 'spec' || type == 'brand') &&
-                                                <span className={"filterCheck " + (this.props.rest.some((rest) => { return (rest == encodeURIComponent(item.Name)) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item, this.props.type)}>
+                                                <span className={"filterCheck " + (this.props.rest.some((rest) => { return (rest == encodeURIComponent(item.Name)) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item, this.props.type,filterName)}>
                                                     {item.Name.charAt(0).toUpperCase() + item.Name.slice(1)} <span className="filterQuantity">({item.Quantity})</span>
                                                 </span>
                                             }

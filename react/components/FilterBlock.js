@@ -31,7 +31,9 @@ class FilterBlock extends Component {
             selectedFilters: [],
             expanded: false,
             mobileFiltersActive: false,
-            mobileFilterGroupActive: false
+            mobileFilterGroupActive: false,
+            activeMobilePrice: false, 
+            parentActive: []
         }
     }
     handleChangeMinPrice = (selectedOption) => {
@@ -56,7 +58,7 @@ class FilterBlock extends Component {
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
-    handleChangeFilter = (selectedOption, type) => {
+    handleChangeFilter = (selectedOption, type,parentFilterName) => {
         let mapClicked = ''
         let rest = [...this.state.rest]
         let map = [...this.state.map]
@@ -71,22 +73,18 @@ class FilterBlock extends Component {
             mapClicked = queryMap.split(',').pop();
         }
 
-
         let indexOfRest = rest.indexOf(encodeURIComponent(selectedOption.Name))
-
 
         if (indexOfRest == -1) {
             rest.push(encodeURIComponent(selectedOption.Name))
             map.push(mapClicked)
-
+            this.state.parentActive.push(parentFilterName)
         }
         else {
             rest.splice(indexOfRest, 1)
             map.splice(indexOfRest, 1)
+            this.state.parentActive.splice(indexOfRest,1)
         }
-
-
-
 
         this.setState({ rest, map });
         this.props.updateQuerySearch([...(this.props.map).split(','), ...map].join(','), rest.join(','))
@@ -94,13 +92,47 @@ class FilterBlock extends Component {
     }
 
     handleExpandFiltersMobile = (checkIfIsActive) => {
-        if (this.props.mobileMode && (!checkIfIsActive || !this.state.mobileFiltersActive))
-            this.setState({ mobileFiltersActive: !this.state.mobileFiltersActive })
+        if (this.props.mobileMode && (!checkIfIsActive || !this.state.mobileFiltersActive)){
+            this.setState({ mobileFiltersActive: !this.state.mobileFiltersActive }, () => {
+               
+                if(this.state.mobileFiltersActive){
+                    
+                    document.getElementsByTagName("html")[0].style.overflow="hidden"; 
+                }else{
+                    
+                    document.getElementsByTagName("html")[0].style.overflow="initial";
+                }
+            })
+        }
+        
+        if(this.state.mobileFiltersActive){
+                    
+            document.getElementsByTagName("html")[0].style.overflow="hidden"; 
+        }else{
+            
+            document.getElementsByTagName("html")[0].style.overflow="initial";
+        }
     }
 
     setDisplayGroup = (active) => {
-        if (this.props.mobileMode)
+        if (this.props.mobileMode){
             this.setState({ mobileFilterGroupActive: active });
+        }
+        if(this.state.mobileFiltersActive){
+                    
+            document.getElementsByTagName("html")[0].style.overflow="hidden"; 
+        }else{
+            
+            document.getElementsByTagName("html")[0].style.overflow="initial";
+        }
+    }
+
+    handleChangeDisplayGroup = () => {
+
+        if (this.props.mobileMode) {
+            this.setState({ activeMobilePrice: !this.state.activeMobilePrice })
+        }
+       
     }
 
     render() {
@@ -224,15 +256,17 @@ class FilterBlock extends Component {
 
                 <div id="filter-container" className={mobileFilterGroupActive ? 'active' : ''}>
 
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
 
 
                     <div className="filter_block mb-1">
-                        <div className="title"> <FormattedMessage id="toolbar.filter.price" /> </div>
-
-                        <ol className="single-choice price-filter d-flex h-auto">
+                        <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' ) } onClick={(e) => this.handleChangeDisplayGroup()}> 
+                            <FormattedMessage id="toolbar.filter.price" /> {mobileMode && <i className="icon-angle-down"></i>}
+                        </div>
+                              
+                        <ul className={"single-choice price-filter d-flex h-auto "+(mobileMode ? (this.state.activeMobilePrice ? '':'price-hidden '):'')}>
                             <li className={"d-flex"}>
                                 <div className="row-wrap">
                                     <label><FormattedMessage id="toolbar.filter.pricemin" /></label>
@@ -258,16 +292,17 @@ class FilterBlock extends Component {
 
 
 
-                        </ol>
+                        </ul>
+                      
                     </div>
 
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     {/*<FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={main_components} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />*/}
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flavours} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flavours} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
 
 
                 </div>
