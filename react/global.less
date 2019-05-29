@@ -18,7 +18,7 @@
 
 #category-block .cat-desc:before{
     width: 5px;	border-radius: 3px;	background-color: #E9E1DA; content: '';
-    height: calc(100% - 8px);
+    height: ~"calc(100% - 8px)";
     margin: 4px 0;
     position: absolute;
     left: -13px;
@@ -104,7 +104,7 @@
     height: 48px;
 }
 #category-block.mobileMode .filter_block ul, #category-block.mobileMode .filter_block ol{
-    height: calc(100vh - 74px);
+    height: ~"calc(100vh - 74px)";
 }
 
 #category-block:not(.mobileMode) .filter_block ul, #category-block:not(.mobileMode) .filter_block ol{
@@ -468,4 +468,15 @@ cursor: pointer;
 
 #page-notfound #categoryBlockLinks .categoryBlockLink .overlay a:hover {
     text-decoration: none;
+}
+
+#category-block .toolbar .sort-by .css-bg1rzq-control{
+    border: none;
+    background: transparent;
+}
+#category-block .toolbar .sort-by .css-bg1rzq-control .css-dvua67-singleValue{
+    color: #a2a2a2;
+}
+#category-block .toolbar .sort-by .css-bgvzuu-indicatorSeparator{
+    display:none;
 }
