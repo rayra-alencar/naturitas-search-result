@@ -89,6 +89,7 @@ class FilterBlock extends Component {
         this.setState({ rest, map });
         this.props.updateQuerySearch([...(this.props.map).split(','), ...map].join(','), rest.join(','))
         this.handleExpandFiltersMobile()
+        this.setDisplayGroup(false)
     }
 
     handleExpandFiltersMobile = (checkIfIsActive) => {
