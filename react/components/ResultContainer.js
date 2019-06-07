@@ -225,8 +225,8 @@ class ResultContainer extends Component {
                 </ReactResizeDetector>
             )
         }
-        const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
 
+        const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
 
         return (
             <ReactResizeDetector handleWidth>
@@ -237,16 +237,8 @@ class ResultContainer extends Component {
                         return (
                             <div id="category-block" className={mobileMode ? 'mobileMode' : ''}>
                                 <ExtensionPoint id="breadcrump" params={this.props.params} />
-                                <div className="container">
-                                    <h1>{this.state.titleTag    }</h1>
 
-                                    <p className="cat-desc">
-                                        <Truncate lines={this.state.linesDescription} ellipsis={ellipsis}>
-                                            {this.props.description}
-                                        </Truncate>
-                                    </p>
-
-                                </div>
+                                <ExtensionPoint id="topbrand" titleTag={this.state.titleTag} descriptionTag={this.props.description} />
 
                                 <ExtensionPoint id="banners" />
 
@@ -300,22 +292,13 @@ class ResultContainer extends Component {
 
                                         <ViewMore {...this.props} />
                                     </div>
-
                                 </div>
-
-
                             </div >
-
-
-
                         )
                     }
-
                 }
             </ReactResizeDetector>
         )
-
-
     }
 }
 

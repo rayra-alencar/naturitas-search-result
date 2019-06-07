@@ -23,7 +23,12 @@ class SearchResultContainer extends Component {
     
         this._fetchMoreLocked = true
     
-        const { maxItemsPerPage, searchQuery: { products } } = this.props
+        const {
+          maxItemsPerPage,
+          searchQuery: {
+            products
+          }
+        } = this.props
     
         const to = maxItemsPerPage + products.length - 1
     
@@ -108,7 +113,7 @@ SearchResultContainer.getSchema = (props) => {
           notfoundimage: {
               title: 'Not found image',
               type: 'string'
-          }
+          },
       },
   }
 } 
