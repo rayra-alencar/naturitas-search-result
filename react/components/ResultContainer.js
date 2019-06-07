@@ -1,5 +1,9 @@
 import React, { Component, PureComponent, Fragment } from 'react';
-import { FormattedMessage } from 'react-intl'
+import {  FormattedMessage } from 'react-intl'
+import { graphql } from 'react-apollo'
+
+import categoryNameQuery from '../queries/categoryNameQuery.gql'
+import brandsQuery from '../queries/getBrands.gql'
 
 import { ExtensionPoint, Link } from 'render'
 import ReactResizeDetector from 'react-resize-detector'
@@ -37,12 +41,11 @@ class ResultContainer extends Component {
         super(props)
 
         let titleTag = ''
-        if(props.params.subcategory) titleTag = props.params.subcategory
-        else if(props.params.category) titleTag = props.params.category
-        else if(props.params.department) titleTag = props.params.department
-        else if(props.params.brand) titleTag = props.params.brand
+        if(props.params.subcategory) titleTag = this.titleTagWithAccent(props.params.subcategory,'subcategory',props.params.department,props.params.category)
+        else if(props.params.category) titleTag = this.titleTagWithAccent(props.params.category,'category',props.params.department,null)
+        else if(props.params.department) titleTag = this.titleTagWithAccent(props.params.department,'department',null,null)
+        else if(props.params.brand) titleTag = this.titleTagWithAccent(props.params.brand,'brands',null,null)
 
-        titleTag = titleTag.replace(/-/g, ' ')
         titleTag = titleTag.charAt(0).toUpperCase() + titleTag.slice(1)
 
         this.state = {
@@ -80,12 +83,12 @@ class ResultContainer extends Component {
         return true;
     }
 
-      updateOrderBy = (orderByField) => {
+    updateOrderBy = (orderByField) => {
         this.props.searchQuery.refetch({orderBy: orderByField})
         this.setState({orderByField})   
       }
     
-      updatePrice = (minPrice, maxPrice) => {
+    updatePrice = (minPrice, maxPrice) => {
         let query = this.state.query;
         let map = this.state.map;
 
@@ -102,10 +105,69 @@ class ResultContainer extends Component {
         this.setState({minPrice,maxPrice, userInteractiveWithFilters:true})
       }
     
-      updateQuerySearch = (map, rest) => {
+    updateQuerySearch = (map, rest) => {
         this.props.searchQuery.refetch({map,rest})
         this.setState({map,rest, userInteractiveWithFilters:true})
       }
+
+    titleTagWithAccent = (title,type,department,category) =>{
+        let result='';
+        let auxDepartment='';
+        let auxCategory='';
+        let auxBrand='';
+
+        if(title){
+            title=title.replace(/%20/g, '-')
+            title=title.replace(/ /g, '-')
+        } 
+
+        if(department){
+            department=department.replace(/%20/g, '-')
+            department=department.replace(/ /g, '-')
+        } 
+
+        if(category){
+            category=category.replace(/%20/g, '-')
+            category=category.replace(/ /g, '-')
+
+        } 
+     
+        let categories=this.props.data.categories;
+      
+
+        if(typeof categories != 'undefined'){
+            if (type == 'department'){
+                result=categories.filter(item =>item.slug == title)
+            }else if (type == 'category'){
+                auxDepartment=categories.filter(item =>item.slug == department)
+                if(auxDepartment.length){
+                    if(auxDepartment[0].children.length) result=auxDepartment[0].children.filter(item =>item.slug == title)
+                }
+            }else if (type == 'subcategory'){
+                
+                auxDepartment=categories.filter(item =>item.slug == department)
+                if(auxDepartment.length){
+                    if(auxDepartment[0].children.length){ 
+                        auxCategory=auxDepartment[0].children.filter(item =>item.slug == category)
+                        if(auxCategory.length){
+                            result=auxCategory[0].children.filter(item =>item.slug == title)
+                        }
+                    }
+                }
+            }else if(type == 'brands'){
+               
+               auxBrand = title.replace(/-/g, ' ')
+               return decodeURI(auxBrand)
+            }
+        }
+        
+       if(result.length){
+        return result[0].name;
+       }else{
+        return '';
+       }
+       
+    }  
 
     render() {
         const { searchQuery, notfoundimage, params, map } = this.props
@@ -263,4 +325,4 @@ ResultContainer.getSchema = (props) => {
 }
 
 
-export default ResultContainer
+export default graphql(categoryNameQuery)(ResultContainer)

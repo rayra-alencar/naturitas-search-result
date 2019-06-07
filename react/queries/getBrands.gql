@@ -1,0 +1,8 @@
+query{
+  brands {
+    id
+    name
+    slug,
+    active
+  }
+}

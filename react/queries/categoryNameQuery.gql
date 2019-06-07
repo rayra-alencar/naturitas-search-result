@@ -1,0 +1,33 @@
+query{
+  categories {
+    id
+    name
+    slug,
+    children {
+      id,
+      slug,
+      name,
+      children {
+        id,
+        slug,
+        name,
+        children {
+          id,
+          slug,
+          name,
+          children {
+            id,
+            slug,
+            name
+          }
+      	}
+      }
+    }
+  },
+  brands {
+    id
+    name
+    slug,
+    active
+  }
+}
