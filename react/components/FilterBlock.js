@@ -136,6 +136,15 @@ class FilterBlock extends Component {
        
     }
 
+    areParentActive = ()=>{
+        if(this.state.parentActive.length){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
     render() {
         const { facets, params, categoriesNotExpanded, mobileMode } = this.props
 
@@ -243,6 +252,9 @@ class FilterBlock extends Component {
                     <div className="m-auto" onClick={(e) => this.handleExpandFiltersMobile()} >
                         <i className="icon-filter"></i>
                         <FormattedMessage id="toolbar.filters" />
+                        {(this.areParentActive() ?
+                            <span className='areFilters'></span> : ""
+                        )}
                     </div>
 
                     <div className="my-auto mr-3" onClick={(e) => this.handleExpandFiltersMobile()}>
