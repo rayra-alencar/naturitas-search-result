@@ -429,18 +429,54 @@ ul.single-choice.price-filter.d-flex.h-auto.price-hidden {
     background-position: bottom;
     margin-left: 10px;
 }
-
+#category-block .block-subtitle span.areFilters {
+  background-image: url(./img/checked.svg);
+  padding-left: 10px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: bottom;
+}
 #category-block .toolbar .sort-by .css-bg1rzq-control{
     border: none;
     background: transparent;
 }
-#category-block .toolbar .sort-by .css-bg1rzq-control .css-dvua67-singleValue{
-    color: #a2a2a2;
-}
+
 #category-block .toolbar .sort-by .css-bgvzuu-indicatorSeparator{
     display:none;
 }
 
 .cont-showmore {
     margin-top: 0px!important;
+}
+#category-block .block-subtitle  span {
+  font-size: 16px;
+  font-weight: 500;
+}
+#category-block .toolbar .sort-by .css-bg1rzq-control .css-dvua67-singleValue {
+  color: #a2a2a2;
+}
+@media(max-width: 769px){
+  #category-block .customSelect {
+    width: 150px;
+  }
+  #category-block .toolbar .sort-by .css-bg1rzq-control .css-16pqwjk-indicatorContainer,
+  #category-block .toolbar .sort-by .css-1thkkgx-indicatorContainer 
+  {
+    position: absolute;
+    color: #4a4a4a;
+  }
+  .customSelect .css-1szy77t-control, .customSelect .css-1szy77t-control:hover{
+    border-color: transparent;
+    box-shadow:none;
+  }
+  #category-block .toolbar {
+    border-radius: 0px;
+  }
+  #category-block .toolbar .sort-by .css-bg1rzq-control .css-dvua67-singleValue {
+    color: #4a4a4a;
+    font-size: 16px;
+  }
 }
