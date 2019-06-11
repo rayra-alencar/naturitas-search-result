@@ -26,6 +26,10 @@ SearchResultQueryLoader.getSchema = (props) => {
                     'ui:widget': 'image-uploader',
                 }
             },
+            retailMarkup: {
+                title: 'Retail Markup',
+                type: 'string'
+            }
         }
     }
 } 

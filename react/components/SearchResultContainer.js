@@ -113,7 +113,7 @@ SearchResultContainer.getSchema = (props) => {
           notfoundimage: {
               title: 'Not found image',
               type: 'string'
-          },
+          }
       },
   }
 } 

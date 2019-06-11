@@ -170,7 +170,7 @@ class ResultContainer extends Component {
     }
 
     render() {
-        const { searchQuery, notfoundimage, params, map } = this.props
+        const { searchQuery, notfoundimage, params, map, retailMarkup} = this.props
         const { facets } = searchQuery
 
         let categoryPath = ''
@@ -220,6 +220,10 @@ class ResultContainer extends Component {
                                             </ul>
                                         </div>
                                     </div>
+
+                                    {retailMarkup &&
+                                     <div data-retailrocket-markup-block={retailMarkup} data-search-phrase={this.props.params.term}></div>
+                                    }
 
                                     <div className="category-block">
                                         <ExtensionPoint style="pagenotfound" id="category-block" />
