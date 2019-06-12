@@ -75,6 +75,7 @@ class ToolbarProducts extends Component {
                                 value={orderBy}
                                 onChange={this.handleOrderBy}
                                 options={orderOptions}
+                                isSearchable={false}
                             />
 
                         </div>
