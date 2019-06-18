@@ -288,6 +288,7 @@ class FilterBlock extends Component {
                                         value={minPrice}
                                         onChange={this.handleChangeMinPrice}
                                         options={this.props.optionsMinPrice}
+                                        isSearchable={false}
                                     />
                                 </div>
                                 <div className="row-wrap">
@@ -298,6 +299,7 @@ class FilterBlock extends Component {
                                         value={maxPrice}
                                         onChange={this.handleChangeMaxPrice}
                                         options={this.props.optionsMaxPrice}
+                                        isSearchable={false}
                                     />
                                 </div>
 
