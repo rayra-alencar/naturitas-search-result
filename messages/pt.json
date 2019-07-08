@@ -37,7 +37,9 @@
     "toolbar.OrderByPriceDESC": "Preço: do mais caro para o mais barato ",
     "toolbar.OrderByReleaseDateDESC": "Mais recente",
 
-    "toolbar.filters":"Filtros"
+    "toolbar.filters":"Filtros",
+
+    "retail.categorymarkup": ""
 
 
     

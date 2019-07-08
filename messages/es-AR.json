@@ -20,7 +20,9 @@
     "toolbar.showmore.text": "Has visto {view} productos de {total}",
 
     "toolbar.filter.showmore": "+ Ver más",
-    "toolbar.filter.showless": "+ Ver menos"
+    "toolbar.filter.showless": "+ Ver menos",
+
+    "retail.categorymarkup": ""
 
     
 

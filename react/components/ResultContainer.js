@@ -13,6 +13,7 @@ import FilterBlock from './FilterBlock';
 import ToolbarProducts from './ToolbarProducts';
 import ViewMore from './ViewMore';
 import { Spinner } from 'vtex.styleguide'
+import CatRetailRocket from './CatRetailRocket';
 
 const WidthSwithMobileDesktop = 769;
 
@@ -170,20 +171,20 @@ class ResultContainer extends Component {
     }
 
     render() {
-        const { searchQuery, notfoundimage, params, map, retailMarkup} = this.props
+        const { searchQuery, notfoundimage, params, map, retailMarkup } = this.props
         const { facets } = searchQuery
 
         let categoryPath = ''
 
-        if(this.props.products && this.props.products[0]){
+        if (this.props.products && this.props.products[0]) {
             if (this.props.params.subcategory) {
-                categoryPath = this.props.products[0].categories[0]
+                categoryPath = this.props.products[0].categories[2]
             }
             else if (this.props.params.category) {
                 categoryPath = this.props.products[0].categories[1]
             }
             else if (this.props.params.department) {
-                categoryPath = this.props.products[0].categories[2]
+                categoryPath = this.props.products[0].categories[0]
             }
         }
 
@@ -222,7 +223,7 @@ class ResultContainer extends Component {
                                     </div>
 
                                     {retailMarkup &&
-                                     <div data-retailrocket-markup-block={retailMarkup} data-search-phrase={this.props.params.term}></div>
+                                        <div data-retailrocket-markup-block={retailMarkup} data-search-phrase={this.props.params.term}></div>
                                     }
 
                                     <div className="category-block">
@@ -295,10 +296,6 @@ class ResultContainer extends Component {
                                             (this.props.products.length == 0 && this.props.loading) ? (<div className="d-flex mt-3">  <div className="text-primary mx-auto"> <Spinner color="currentColor" /></div></div>)
                                                 : (
                                                     <Fragment>
-                                                        {categoryPath &&
-                                                            <div data-retailrocket-markup-block="5ceeb37497a52509cc2e1b30" data-
-                                                                category-path={categoryPath}></div>
-                                                        }
 
                                                         <ExtensionPoint
                                                             id="productList"
@@ -318,8 +315,14 @@ class ResultContainer extends Component {
                                         )}
 
                                         <ViewMore {...this.props} />
+
+
                                     </div>
                                 </div>
+
+                                {categoryPath &&
+                                    <CatRetailRocket categoryPath={categoryPath}/>
+                                }
                             </div >
                         )
                     }
