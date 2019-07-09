@@ -188,8 +188,6 @@ class ResultContainer extends Component {
             }
         }
 
-        console.log(categoryPath)
-
 
         if (!this.state.userInteractiveWithFilters && (!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
             return (
