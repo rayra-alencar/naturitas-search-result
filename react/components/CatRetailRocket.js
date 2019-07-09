@@ -4,7 +4,7 @@ import { injectIntl } from 'react-intl'
 class CatRetailRocket extends Component {
     render() {
         const {categoryPath, intl} = this.props
-        console.log(intl.formatMessage({ id: 'retail.categorymarkup' }))
+        
         return (
             
             <div className="bg-light">

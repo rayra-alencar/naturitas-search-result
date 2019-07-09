@@ -1,5 +1,5 @@
 import React, { Component, PureComponent, Fragment } from 'react';
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage , injectIntl} from 'react-intl'
 import { graphql } from 'react-apollo'
 
 import categoryNameQuery from '../queries/categoryNameQuery.gql'
@@ -171,22 +171,24 @@ class ResultContainer extends Component {
     }
 
     render() {
-        const { searchQuery, notfoundimage, params, map, retailMarkup } = this.props
+        const { searchQuery, notfoundimage, params, map, intl } = this.props
         const { facets } = searchQuery
 
         let categoryPath = ''
 
         if (this.props.products && this.props.products[0]) {
             if (this.props.params.subcategory) {
-                categoryPath = this.props.products[0].categories[2]
+                categoryPath = this.props.products[0].categories[0]
             }
             else if (this.props.params.category) {
                 categoryPath = this.props.products[0].categories[1]
             }
             else if (this.props.params.department) {
-                categoryPath = this.props.products[0].categories[0]
+                categoryPath = this.props.products[0].categories[2]
             }
         }
+
+        console.log(categoryPath)
 
 
         if (!this.state.userInteractiveWithFilters && (!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
@@ -222,9 +224,9 @@ class ResultContainer extends Component {
                                         </div>
                                     </div>
 
-                                    {retailMarkup &&
-                                        <div data-retailrocket-markup-block={retailMarkup} data-search-phrase={this.props.params.term}></div>
-                                    }
+                                    
+                                    <div data-retailrocket-markup-block={intl.formatMessage({ id: 'retail.notfoundmarkup' })} data-search-phrase={this.props.params.term}></div>
+                                    
 
                                     <div className="category-block">
                                         <ExtensionPoint style="pagenotfound" id="category-block" />
@@ -355,4 +357,4 @@ ResultContainer.getSchema = (props) => {
 }
 
 
-export default graphql(categoryNameQuery)(ResultContainer)
+export default injectIntl(graphql(categoryNameQuery)(ResultContainer))
