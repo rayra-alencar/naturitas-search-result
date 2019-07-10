@@ -111,64 +111,76 @@ class ResultContainer extends Component {
         this.setState({ map, rest, userInteractiveWithFilters: true })
     }
 
-    titleTagWithAccent = (title, type, department, category) => {
-        let result = '';
-        let auxDepartment = '';
-        let auxCategory = '';
-        let auxBrand = '';
+    titleTagWithAccent = (title,type,department,category) =>{
+        let result='';
+        let auxDepartment='';
+        let auxCategory='';
+        let auxBrand='';
+        
+        if(title){
+            title=title.replace(/%20/g, '-')
+            title=title.replace(/ /g, '-')
+        } 
 
-        if (title) {
-            title = title.replace(/%20/g, '-')
-            title = title.replace(/ /g, '-')
-        }
+        if(department){
+            department=department.replace(/%20/g, '-')
+            department=department.replace(/ /g, '-')
+        } 
 
-        if (department) {
-            department = department.replace(/%20/g, '-')
-            department = department.replace(/ /g, '-')
-        }
-
-        if (category) {
-            category = category.replace(/%20/g, '-')
-            category = category.replace(/ /g, '-')
-
-        }
-
-        let categories = this.props.data.categories;
-
-
-        if (typeof categories != 'undefined') {
-            if (type == 'department') {
-                result = categories.filter(item => item.slug == title)
-            } else if (type == 'category') {
-                auxDepartment = categories.filter(item => item.slug == department)
-                if (auxDepartment.length) {
-                    if (auxDepartment[0].children.length) result = auxDepartment[0].children.filter(item => item.slug == title)
+        if(category){
+            category=category.replace(/%20/g, '-')
+            category=category.replace(/ /g, '-')
+        } 
+     
+        let categories=this.props.data.categories;
+       
+        if(typeof categories != 'undefined'){
+            if (type == 'department'){
+                result=categories.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(title))
+            }else if (type == 'category'){
+                auxDepartment=categories.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(department))
+                if(auxDepartment.length){
+                    if(auxDepartment[0].children.length) result=auxDepartment[0].children.filter(item =>item.slug == this.customformatedSlug(title))
                 }
-            } else if (type == 'subcategory') {
+            }else if (type == 'subcategory'){
+                
+                auxDepartment=categories.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(department))
 
-                auxDepartment = categories.filter(item => item.slug == department)
-                if (auxDepartment.length) {
-                    if (auxDepartment[0].children.length) {
-                        auxCategory = auxDepartment[0].children.filter(item => item.slug == category)
-                        if (auxCategory.length) {
-                            result = auxCategory[0].children.filter(item => item.slug == title)
+                if(auxDepartment.length){
+                    
+                    if(auxDepartment[0].children.length){ 
+                        
+                        auxCategory=auxDepartment[0].children.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(category))
+                        
+                        if(auxCategory.length){
+                            result=auxCategory[0].children.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(title) )
                         }
                     }
                 }
-            } else if (type == 'brands') {
-
-                auxBrand = title.replace(/-/g, ' ')
-                return decodeURI(auxBrand)
+            }else if(type == 'brands'){
+               
+               auxBrand = title.replace(/-/g, ' ')
+               return decodeURI(auxBrand)
             }
         }
 
-        if (result.length) {
-            return result[0].name;
-        } else {
-            return '';
-        }
+       
+        
+       if(result.length){
+        return result[0].name;
+       }else{
+        return '';
+       }
+       
+    }  
 
+
+    customformatedSlug = (slug) => {
+        slug = slug.replace('--', '-');
+        return ((slug).substr(-1,1) == '-') ? (slug).substr(0,slug.length -1) : slug
     }
+
+
 
     render() {
         const { searchQuery, notfoundimage, params, map, intl } = this.props
