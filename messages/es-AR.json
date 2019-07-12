@@ -5,6 +5,7 @@
     "searchresult.tips1":"Verifica tu ortografía y busca de nuevo",
     "searchresult.tips2":"Prueba otro término de búsqueda",
     "searchresult.tips3":"Explora nuestras categorías",
+    "searchresult.freeshipping":"",
     "searchresult.noproducts": "Non ci sono prodotti che corrispondono alla selezione.",
 
     "toolbar.enviogratis":"Envío Gratis",
@@ -15,17 +16,27 @@
     "toolbar.filter.flags":"Sellos",
     "toolbar.filter.content_format": "Formato",
     "toolbar.filter.price": "Precio",
+    "toolbar.filter.container":"toolbar.filter.container",
+    "toolbar.filter.main_components":"toolbar.filter.main_components",
+    "toolbar.filter.color":"toolbar.filter.color",
+    "toolbar.filter.size":"toolbar.filter.size",
 
     "toolbar.showmore": "Cargar más",
     "toolbar.showmore.text": "Has visto {view} productos de {total}",
 
     "toolbar.filter.showmore": "+ Ver más",
     "toolbar.filter.showless": "+ Ver menos",
+    "toolbar.orderBy": "toolbar.orderBy",
+
+    
+    "toolbar.OrderByTopSaleDESC": "toolbar.OrderByTopSaleDESC",
+    "toolbar.OrderByPriceASC": "toolbar.OrderByPriceASC",
+    "toolbar.OrderByPriceDESC": "toolbar.OrderByPriceDESC",
+    "toolbar.OrderByReleaseDateDESC": "toolbar.OrderByReleaseDateDESC",
 
     "retail.categorymarkup": "",
-    "retail.notfoundmarkup": ""
+    "retail.notfoundmarkup": "",
 
-    
+    "toolbar.filters":"toolbar.filters"
 
-    
 }

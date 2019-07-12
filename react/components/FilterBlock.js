@@ -138,7 +138,8 @@ class FilterBlock extends Component {
 
     areParentActive = ()=>{
         if(this.state.parentActive.length){
-            return true;
+            
+            return this.state.parentActive.length;
         }else{
             return false;
         }
@@ -249,11 +250,11 @@ class FilterBlock extends Component {
                         }
                     </div>
 
-                    <div className="m-auto" onClick={(e) => this.handleExpandFiltersMobile()} >
+                    <div className="m-auto title-filter-center" onClick={(e) => this.handleExpandFiltersMobile()} >
                         <i className="icon-filter"></i>
                         <FormattedMessage id="toolbar.filters" />
-                        {(this.areParentActive() ?
-                            <span className='areFilters'></span> : ""
+                        {(this.areParentActive() > 0 ?
+                            <span className='areFilters'>{this.areParentActive()}</span> : ""
                         )}
                     </div>
 

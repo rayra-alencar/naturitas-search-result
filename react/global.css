@@ -437,14 +437,25 @@ ul.single-choice.price-filter.d-flex.h-auto.price-hidden {
   margin-left: 10px;
 }
 #category-block .block-subtitle span.areFilters {
-  background-image: url(img/checked.svg);
+  /*background-image: url(img/checked.svg);
   padding-left: 10px;
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
   display: inline-block;
-  background-position: bottom;
+  background-position: bottom;*/
+  margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-color: #5cb8a3;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+    font-size: 14px;
 }
+
 #category-block .toolbar .sort-by .css-bg1rzq-control {
   border: none;
   background: transparent;
@@ -463,6 +474,27 @@ ul.single-choice.price-filter.d-flex.h-auto.price-hidden {
   color: #a2a2a2;
 }
 @media (max-width: 769px) {
+  #sideBar.active .back-icon.toggleShow.my-auto.ml-3 {
+    display: inline-block;
+    float: left;
+  }
+  #sideBar.active .m-auto.title-filter-center {
+    display: inline-block;
+    margin-right: 60px !important;
+  }
+  #category-block .block-subtitle i.icon-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+   /*NAT-293 Ampliar campo precios
+  #category-block.mobileMode .filter_block ul.single-choice.price-filter.d-flex.h-auto {
+    height: 370px !important;
+  }*/
+  #category-block #sideBar.active .block-subtitle span.areFilters {
+    display: none;
+  }
   #category-block .customSelect {
     width: 150px;
   }
