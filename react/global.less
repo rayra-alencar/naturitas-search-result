@@ -204,6 +204,37 @@
     text-transform: none;
     content: "\e90f";
   }
+
+  #category-block .filterCheck .filter-attr-item-extra{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 13px;
+    width: 70px;
+    background-image: url(./star_empty.svg);
+    background-repeat: repeat-x;
+    background-size: contain;
+    display: inline-block;
+  }
+
+  #category-block .filterCheck .filter-attr-item-extra::after{
+    content: ' ';
+    background-image: url(./star_filled.svg);
+    background-repeat: repeat-x;
+    background-size: contain;
+    height: 100%;
+    display: block;
+  }
+
+  #category-block .filterCheck.reviewsCheck .filterQuantity{
+    margin-left: 75px;
+  }
+
+  #category-block .filterCheck[data-text*='4'] .filter-attr-item-extra::after{ width: 80%;}
+  #category-block .filterCheck[data-text*='3'] .filter-attr-item-extra::after{ width: 60%;}
+  #category-block .filterCheck[data-text*='2'] .filter-attr-item-extra::after{ width: 40%;}
+  #category-block .filterCheck[data-text*='1'] .filter-attr-item-extra::after{ width: 20%;}
+   
   #category-block .filter_block ul li a .filterQuantity,
   #category-block .filter_block ul li span .filterQuantity {
     color: #C0C0C0;

@@ -161,6 +161,7 @@ class FilterBlock extends Component {
         let color = []
         let essences = []
         let flavours = []
+        let reviews_score = []
 
 
         if (facets && facets.CategoriesTrees[0]) {
@@ -224,6 +225,10 @@ class FilterBlock extends Component {
                 return item.name == 'main_components'
             })
 
+            reviews_score = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'reviews_score'
+            })
+
 
 
             brands = facets.Brands
@@ -271,6 +276,7 @@ class FilterBlock extends Component {
 
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={reviews_score} type="review" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
 
 

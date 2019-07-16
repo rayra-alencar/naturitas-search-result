@@ -21,6 +21,7 @@
     "toolbar.filter.main_components":"Componente Principale",
     "toolbar.filter.color":"Colore",
     "toolbar.filter.size":"Taglia",
+    "toolbar.filter.reviews_score": "Voto medio",
 
     "toolbar.filter.pricemax": "Massimo",
     "toolbar.filter.pricemin": "Minimo",
