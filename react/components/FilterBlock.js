@@ -66,6 +66,9 @@ class FilterBlock extends Component {
         if (type == "brand") {
             mapClicked = 'b'
         }
+        else if(type =="review"){
+            
+        }
         else {
             let queryMap = this.getParameterByName('map', selectedOption.Link)
 

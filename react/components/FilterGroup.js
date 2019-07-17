@@ -3,6 +3,8 @@ import { ExtensionPoint, Link } from 'render'
 import Select from 'react-select';
 
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
+import { fillStars, fillQuantityStars, orderStars } from '../utils/filterUtils';
+import FilterGroupReview from './FilterGroupReview';
 
 class FilterGroup extends Component {
     static defaultProps = {
@@ -118,9 +120,20 @@ class FilterGroup extends Component {
             })
         }
         else if (type == 'review') {
-            filterItems = filterGroup[0].facets;
-            nbFilter = filterGroup[0].facets.length;
-            filterName = filterGroup[0].name
+            filterItems = fillStars(filterGroup[0].facets)
+            filterItems = orderStars(filterItems);
+            filterItems = fillQuantityStars(filterItems);
+
+            console.log(filterItems,'filter');
+
+            /*nbFilter = filterGroup[0].facets.length;
+            filterName = filterGroup[0].name*/
+
+
+
+            /*console.log(filterItems, "FILTERITEMS");
+            console.log(nbFilter, "NB PRODUCTS")
+            console.log(filterName, "FILTER NAME ")*/
         }
         else {
             filterItems = filterGroup[0].facets;
@@ -186,15 +199,7 @@ class FilterGroup extends Component {
                                             }
 
                                             {type == 'review' &&
-                                                <Fragment>
-                                                    
-                                                    <span data-text={item.Name} className={"reviewsCheck filterCheck " + (this.props.rest.some((rest) => { return (rest == encodeURIComponent(item.Name)) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item, this.props.type, filterName)}>
-                                                        <span class="filter-attr-item-extra">
-                                                            
-                                                        </span>
-                                                         <span className="filterQuantity">({item.Quantity})</span>
-                                                    </span>
-                                                </Fragment>
+                                                <FilterGroupReview item={item} rest={this.props.rest} handleChangeFilter={this.props.handleChangeFilter} type={this.props.type} filterName={filterName} filterItemsLength={filterItems.length}/>
                                             }
 
                                             {type == 'category' &&

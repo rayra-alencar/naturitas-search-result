@@ -38,8 +38,7 @@
     "toolbar.OrderByPriceDESC": "Preço: do mais caro para o mais barato ",
     "toolbar.OrderByReleaseDateDESC": "Mais recente",
 
+    "toolbar.filter.ormore" : "o más",
+
     "toolbar.filters":"Filtros"
-
-
-    
 }
