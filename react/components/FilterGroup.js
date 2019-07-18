@@ -125,12 +125,8 @@ class FilterGroup extends Component {
             filterItems = orderStars(filterItems);
             filterItems = fillQuantityStars(filterItems);
 
-            /*nbFilter = filterGroup[0].facets.length;
-            filterName = filterGroup[0].name*/
-
-            /*console.log(filterItems, "FILTERITEMS");
-            console.log(nbFilter, "NB PRODUCTS")
-            console.log(filterName, "FILTER NAME ")*/
+            filterName = 'reviews_score'
+            nbFilter = filterItems.length;
         }
         else {
             filterItems = filterGroup[0].facets;
@@ -196,7 +192,7 @@ class FilterGroup extends Component {
                                             }
 
                                             {type == 'review' &&
-                                                <FilterGroupReview item={item} rest={this.props.rest} handleChangeFilter={this.props.handleChangeFilter} type={this.props.type} filterName={filterName} filterItemsLength={filterItems.length}/>
+                                                <FilterGroupReview item={item} index={key} rest={this.props.rest} handleChangeFilter={this.props.handleChangeFilter} type={this.props.type} filterName={filterName} filterItemsLength={filterItems.length}/>
                                             }
 
                                             {type == 'category' &&

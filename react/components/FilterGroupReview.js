@@ -3,7 +3,7 @@ import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
 
 class FilterGroupReview extends Component {
     render() {
-        const {item, rest, type, filterName, filterItemsLength} = this.props;
+        const {item, index, rest, type, filterName, filterItemsLength} = this.props;
 
         let nbStars = parseInt(item.Name)
         let restName = item.Name
@@ -18,7 +18,7 @@ class FilterGroupReview extends Component {
                 <span class="filter-attr-item-extra">
                 </span>
                 <div className="filterQuantityContainer">
-                    {parseInt(item.Name) != filterItemsLength && (
+                    {parseInt(index+1) != filterItemsLength && (
                         <FormattedMessage id={"toolbar.filter.ormore"} />
                     )}
                     <span className="filterQuantity">({item.Quantity})</span>

@@ -22,6 +22,8 @@
     "toolbar.filter.color":"Colore",
     "toolbar.filter.size":"Taglia",
     "toolbar.filter.reviews_score": "Avaliação Média",
+    "toolbar.filter.essences": "Aromas",
+    "toolbar.filter.flavours": "Sabores",
 
     "toolbar.filter.pricemax": "Máximo",
     "toolbar.filter.pricemin": "Mínimo",
@@ -38,7 +40,7 @@
     "toolbar.OrderByPriceDESC": "Preço: do mais caro para o mais barato ",
     "toolbar.OrderByReleaseDateDESC": "Mais recente",
 
-    "toolbar.filter.ormore" : "o más",
+    "toolbar.filter.ormore" : "ou mais",
 
     "toolbar.filters":"Filtros"
 }
