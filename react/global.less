@@ -226,9 +226,30 @@
     display: block;
   }
 
-  #category-block .filter_block li:last-child .filterCheck.reviewsCheck .filterQuantity {
+  #category-block .filter_block li .filterCheck.reviewsCheck .filterQuantityContainer {
     margin-left: 75px;
   }
+  @media (min-width: 769px) {
+    #category-block .filterCheck .filter-attr-item-extra {
+      top: 15%;
+    }
+    #category-block .filter_block li .filterCheck.reviewsCheck .filterQuantityContainer {
+      margin-left: 0px;
+      padding-top: 20px;
+    }
+  }
+  @media (min-width: 1100px) {
+    #category-block .filterCheck .filter-attr-item-extra {
+      top: 50%;
+    }
+    #category-block .filter_block li .filterCheck.reviewsCheck .filterQuantityContainer {
+      margin-left: 75px;
+      padding-top: 0px;
+    }
+  }
+  /*#category-block .filter_block li:last-child .filterCheck.reviewsCheck .filterQuantity {
+    margin-left: 75px;
+  }*/
 
   #category-block .filterCheck[data-text*='4'] .filter-attr-item-extra::after{ width: 80%;}
   #category-block .filterCheck[data-text*='3'] .filter-attr-item-extra::after{ width: 60%;}

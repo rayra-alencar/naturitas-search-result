@@ -19,15 +19,24 @@ export function orderStars(reviews){
 }
 
 export function fillQuantityStars(reviews) {
-    let totalValue = 0;
+    let auxObj = [];
+
+    for(let i in reviews){
+        let auxReview = {...reviews[i]}
+        auxReview.Quantity = reviews.slice(i).reduce((acc, review) => acc + review.Quantity, 0)
+        auxObj.push(auxReview);
+      }
+    return auxObj;
+   
+    /*let totalValue = 0;
     let cascadeFilter = 0;
     let auxObj = [];
 
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < reviews.length; i++) {
         totalValue += reviews[i].Quantity;
     }
 
-    for(let i = 0; i < 5; i++) {
+    for(let i = 0; i < reviews.length; i++) {
         let auxReview = {...reviews[i]};
         cascadeFilter = totalValue;
         for(let j = 0; j < i; j++) {
@@ -39,5 +48,5 @@ export function fillQuantityStars(reviews) {
 
     reviews = auxObj;
 
-    return reviews
+    return reviews*/
 }

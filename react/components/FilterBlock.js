@@ -60,26 +60,34 @@ class FilterBlock extends Component {
 
     handleChangeFilter = (selectedOption, type,parentFilterName) => {
         let mapClicked = ''
+        let restClicked = selectedOption.Name
         let rest = [...this.state.rest]
         let map = [...this.state.map]
 
         if (type == "brand") {
             mapClicked = 'b'
         }
-        else if(type =="review"){
-            
-        }
         else {
             let queryMap = this.getParameterByName('map', selectedOption.Link)
-
-            map = [...this.state.map]
             mapClicked = queryMap.split(',').pop();
+            if(type == "review"){
+
+                const auxMapClicked = mapClicked
+                let nbStarsSelected = parseInt(restClicked)
+                while(nbStarsSelected < 5){
+                    mapClicked+=`,${auxMapClicked}`
+                    nbStarsSelected++
+
+                    restClicked+=`-.!sTarS${nbStarsSelected.toString()}`
+                }
+                
+            }
         }
 
-        let indexOfRest = rest.indexOf(encodeURIComponent(selectedOption.Name))
+        let indexOfRest = rest.indexOf(encodeURIComponent(restClicked).replace(/-.!sTarS/g,','))
 
         if (indexOfRest == -1) {
-            rest.push(encodeURIComponent(selectedOption.Name))
+            rest.push(encodeURIComponent(restClicked).replace(/-.!sTarS/g,','))
             map.push(mapClicked)
             this.state.parentActive.push(parentFilterName)
         }
@@ -88,6 +96,7 @@ class FilterBlock extends Component {
             map.splice(indexOfRest, 1)
             this.state.parentActive.splice(indexOfRest,1)
         }
+
 
         this.setState({ rest, map });
         this.props.updateQuerySearch([...(this.props.map).split(','), ...map].join(','), rest.join(','))

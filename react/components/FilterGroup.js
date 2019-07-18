@@ -120,16 +120,13 @@ class FilterGroup extends Component {
             })
         }
         else if (type == 'review') {
-            filterItems = fillStars(filterGroup[0].facets)
+            filterItems = filterGroup[0].facets
+            filterItems = fillStars(filterItems)
             filterItems = orderStars(filterItems);
             filterItems = fillQuantityStars(filterItems);
 
-            console.log(filterItems,'filter');
-
             /*nbFilter = filterGroup[0].facets.length;
             filterName = filterGroup[0].name*/
-
-
 
             /*console.log(filterItems, "FILTERITEMS");
             console.log(nbFilter, "NB PRODUCTS")
