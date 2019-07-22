@@ -60,6 +60,7 @@ class FilterBlock extends Component {
 
     handleChangeFilter = (selectedOption, type,parentFilterName) => {
         let mapClicked = ''
+        let restClicked = selectedOption.Name
         let rest = [...this.state.rest]
         let map = [...this.state.map]
 
@@ -68,15 +69,25 @@ class FilterBlock extends Component {
         }
         else {
             let queryMap = this.getParameterByName('map', selectedOption.Link)
-
-            map = [...this.state.map]
             mapClicked = queryMap.split(',').pop();
+            if(type == "review"){
+
+                const auxMapClicked = mapClicked
+                let nbStarsSelected = parseInt(restClicked)
+                while(nbStarsSelected < 5){
+                    mapClicked+=`,${auxMapClicked}`
+                    nbStarsSelected++
+
+                    restClicked+=`-.!sTarS${nbStarsSelected.toString()}`
+                }
+                
+            }
         }
 
-        let indexOfRest = rest.indexOf(encodeURIComponent(selectedOption.Name))
+        let indexOfRest = rest.indexOf(encodeURIComponent(restClicked).replace(/-.!sTarS/g,','))
 
         if (indexOfRest == -1) {
-            rest.push(encodeURIComponent(selectedOption.Name))
+            rest.push(encodeURIComponent(restClicked).replace(/-.!sTarS/g,','))
             map.push(mapClicked)
             this.state.parentActive.push(parentFilterName)
         }
@@ -85,6 +96,7 @@ class FilterBlock extends Component {
             map.splice(indexOfRest, 1)
             this.state.parentActive.splice(indexOfRest,1)
         }
+
 
         this.setState({ rest, map });
         this.props.updateQuerySearch([...(this.props.map).split(','), ...map].join(','), rest.join(','))
@@ -162,6 +174,7 @@ class FilterBlock extends Component {
         let color = []
         let essences = []
         let flavours = []
+        let reviews_score = []
 
 
         if (facets && facets.CategoriesTrees[0]) {
@@ -225,6 +238,10 @@ class FilterBlock extends Component {
                 return item.name == 'main_components'
             })
 
+            reviews_score = facets.SpecificationFilters.filter((item) => {
+                return item.name == 'reviews_score'
+            })
+
 
 
             brands = facets.Brands
@@ -272,6 +289,7 @@ class FilterBlock extends Component {
 
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={reviews_score} type="review" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
 
 

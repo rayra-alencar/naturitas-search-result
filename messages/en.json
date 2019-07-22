@@ -40,7 +40,9 @@
     "toolbar.filters":"Filtri",
 
     "retail.categorymarkup": "",
-    "retail.notfoundmarkup": ""
+    "retail.notfoundmarkup": "",
+
+    "toolbar.filter.ormore" : "or more"
 
 
     

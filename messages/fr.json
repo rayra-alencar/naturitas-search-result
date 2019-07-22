@@ -21,6 +21,9 @@
     "toolbar.filter.main_components":"Componente Principale",
     "toolbar.filter.color":"Colore",
     "toolbar.filter.size":"Taglia",
+    "toolbar.filter.reviews_score": "Evaluation Moyenne",
+    "toolbar.filter.essences": "Arômes",
+    "toolbar.filter.flavours": "Saveur",
 
     "toolbar.filter.pricemax": "Maximum",
     "toolbar.filter.pricemin": "Minimum",
@@ -40,7 +43,8 @@
     "toolbar.filters":"Filtres",
 
     "retail.categorymarkup": "5d23309d97a5251590a7ad1c",
-    "retail.notfoundmarkup": "5d23308097a5251590a7ad1b"
+    "retail.notfoundmarkup": "5d23308097a5251590a7ad1b",
+    "toolbar.filter.ormore" : "ou plus"
 
 
     

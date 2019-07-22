@@ -21,6 +21,9 @@
     "toolbar.filter.main_components":"Componente Principale",
     "toolbar.filter.color":"Colore",
     "toolbar.filter.size":"Taglia",
+    "toolbar.filter.reviews_score": "Voto medio",
+    "toolbar.filter.essences": "Essenza",
+    "toolbar.filter.flavours": "Sapore",
 
     "toolbar.filter.pricemax": "Massimo",
     "toolbar.filter.pricemin": "Minimo",
@@ -40,5 +43,6 @@
     "toolbar.filters":"Filtri",
 
     "retail.categorymarkup": "5ceeb37497a52509cc2e1b30",
-    "retail.notfoundmarkup": "5ceeb2db97a52509cc2e1b2e"
+    "retail.notfoundmarkup": "5ceeb2db97a52509cc2e1b2e",
+    "toolbar.filter.ormore" : "o más"
 }

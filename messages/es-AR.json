@@ -37,6 +37,8 @@
     "retail.categorymarkup": "",
     "retail.notfoundmarkup": "",
 
-    "toolbar.filters":"toolbar.filters"
+    "toolbar.filters":"toolbar.filters",
+
+    "toolbar.filter.ormore" : "o más"
 
 }
