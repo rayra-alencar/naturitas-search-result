@@ -121,7 +121,7 @@ class FilterGroup extends Component {
         }
         else if (type == 'review') {
             filterItems = filterGroup[0].facets
-            filterItems = fillStars(filterItems)
+            //filterItems = fillStars(filterItems)
             filterItems = orderStars(filterItems);
             filterItems = fillQuantityStars(filterItems);
 
