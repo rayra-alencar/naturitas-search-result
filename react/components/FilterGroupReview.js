@@ -15,7 +15,7 @@ class FilterGroupReview extends Component {
 
         return (
             <span data-text={item.Name} className={"reviewsCheck filterCheck " + (rest.some((rest) => { return (rest == restName) }) ? 'selected' : '')} onClick={(e) => this.props.handleChangeFilter(item, type, filterName)}>
-                <span class="filter-attr-item-extra">
+                <span className="filter-attr-item-extra">
                 </span>
                 <div className="filterQuantityContainer">
                     {parseInt(index+1) != filterItemsLength && (

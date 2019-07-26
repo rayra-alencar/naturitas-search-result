@@ -37,11 +37,13 @@ class FilterBlock extends Component {
         }
     }
     handleChangeMinPrice = (selectedOption) => {
+
         this.setState({ minPrice: selectedOption, mobileFiltersActive: false });
         this.props.updatePrice(selectedOption.value, this.state.maxPrice.value);
         
     }
     handleChangeMaxPrice = (selectedOption) => {
+   
         this.setState({ maxPrice: selectedOption, mobileFiltersActive: false });
 
         this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
@@ -125,6 +127,10 @@ class FilterBlock extends Component {
             
             document.getElementsByTagName("html")[0].style.overflow="initial";
         }
+
+        if(this.state.activeMobilePrice){
+            this.setState({ activeMobilePrice: false, mobileFiltersActive:true })
+        }
     }
 
     setDisplayGroup = (active) => {
@@ -138,9 +144,12 @@ class FilterBlock extends Component {
             
             document.getElementsByTagName("html")[0].style.overflow="initial";
         }
+        if(active && this.state.activeMobilePrice){
+            this.setState({ activeMobilePrice: false })
+        }
     }
 
-    handleChangeDisplayGroup = () => {
+    handleChangeDisplayGroup = (e) => {
 
         if (this.props.mobileMode) {
             this.setState({ activeMobilePrice: !this.state.activeMobilePrice })
@@ -265,6 +274,7 @@ class FilterBlock extends Component {
                         {this.state.mobileFiltersActive && mobileFilterGroupActive &&
                             <i className="icon-lateral_arrow"></i>
                         }
+                        {this.state.activeMobilePrice  && this.state.mobileFiltersActive ? (<i className="icon-lateral_arrow"></i>) :""}
                     </div>
 
                     <div className="m-auto title-filter-center" onClick={(e) => this.handleExpandFiltersMobile()} >
@@ -285,7 +295,7 @@ class FilterBlock extends Component {
 
                 </div>
 
-                <div id="filter-container" className={mobileFilterGroupActive ? 'active' : ''}>
+                <div id="filter-container" className={mobileFilterGroupActive || this.state.activeMobilePrice ? 'active' : ''}>
 
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
@@ -293,8 +303,8 @@ class FilterBlock extends Component {
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
 
 
-                    <div className="filter_block mb-1">
-                        <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' ) } onClick={(e) => this.handleChangeDisplayGroup()}> 
+                    <div className={'filter_block mb-1 ' +(this.state.activeMobilePrice ? ' active ' : '')}>
+                        <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' )  +(this.state.activeMobilePrice ? ' d-none ' : '')} onClick={(e) => this.handleChangeDisplayGroup(e)}> 
                             <FormattedMessage id="toolbar.filter.price" /> {mobileMode && <i className="icon-angle-down"></i>}
                         </div>
                               

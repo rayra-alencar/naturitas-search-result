@@ -30,7 +30,7 @@ class FilterGroup extends Component {
         }
     }
 
-    handleChangeDisplayGroup = () => {
+    handleChangeDisplayGroup = (e) => {
 
         if (this.props.mobileMode) {
             this.setState({ activeMobile: !this.state.activeMobile })
@@ -173,7 +173,7 @@ class FilterGroup extends Component {
                 <div className={"filter_block " + ((type == 'category') ? 'mb-md-3 ' : ' mb-md-1 ') + ((this.state.activeMobile) ? 'active ' : '')}>
 
                     {!this.state.activeMobile &&
-                        <div className={"title" + ((this.state.activeDesktop) ? ' activeDesktop ' : '') + (this.isSelect(filterName) ? ' isSelect' : ' notIsSelect')} onClick={(e) => this.handleChangeDisplayGroup()}>
+                        <div className={"title" + ((this.state.activeDesktop) ? ' activeDesktop ' : '') + (this.isSelect(filterName) ? ' isSelect' : ' notIsSelect')} onClick={(e) => this.handleChangeDisplayGroup(e)}>
                             <FormattedMessage id={"toolbar.filter." + filterName} />
                             <i className="icon-angle-down"></i>
                         </div>
