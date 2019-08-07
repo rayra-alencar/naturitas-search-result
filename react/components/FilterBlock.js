@@ -40,13 +40,30 @@ class FilterBlock extends Component {
 
         this.setState({ minPrice: selectedOption, mobileFiltersActive: false });
         this.props.updatePrice(selectedOption.value, this.state.maxPrice.value);
+
+        console.log(this.state.maxPrice.value)
+
+        if(this.state.rest.indexOf("minPrice") == -1 && this.state.rest.indexOf("maxPrice") == -1) {
+            let restP = [...this.state.rest]
+            restP.push("minPrice")
+            this.setState({rest:restP});
+            this.state.parentActive.push("minPrice")
+        }
         
     }
     handleChangeMaxPrice = (selectedOption) => {
    
         this.setState({ maxPrice: selectedOption, mobileFiltersActive: false });
-
         this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
+
+        console.log(this.state.minPrice.value)
+
+        if(this.state.rest.indexOf("minPrice") == -1 && this.state.rest.indexOf("maxPrice") == -1){
+            let restP = [...this.state.rest]
+            restP.push("maxPrice")
+            this.setState({rest:restP});
+            this.state.parentActive.push("maxPrice")
+        }
     }
 
     getParameterByName(name, url) {
@@ -165,6 +182,23 @@ class FilterBlock extends Component {
             return false;
         }
 
+    }
+
+    isPriceSelect = () => {
+        var min="minPrice";
+        var max="maxPrice";
+        console.log(this.state.rest)
+        let aux = this.state.rest.includes(min);
+        let aux2 =this.state.rest.includes(max);
+        console.log(aux)
+        console.log(aux2)
+        console.log("dddd")
+        console.log(aux || aux2)
+        if (aux || aux2) {
+            return true
+        } else {
+            return false
+        }
     }
 
     render() {
@@ -303,7 +337,7 @@ class FilterBlock extends Component {
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
 
 
-                    <div className={'filter_block mb-1 ' +(this.state.activeMobilePrice ? ' active ' : '')}>
+                    <div className={'filter_block mb-1 ' +(this.state.activeMobilePrice ? ' active ' : '')+ (this.isPriceSelect() ? ' isSelect' : ' notIsSelect')}>
                         <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' )  +(this.state.activeMobilePrice ? ' d-none ' : '')} onClick={(e) => this.handleChangeDisplayGroup(e)}> 
                             <FormattedMessage id="toolbar.filter.price" /> {mobileMode && <i className="icon-angle-down"></i>}
                         </div>
