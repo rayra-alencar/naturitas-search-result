@@ -41,7 +41,6 @@ class FilterBlock extends Component {
         this.setState({ minPrice: selectedOption, mobileFiltersActive: false });
         this.props.updatePrice(selectedOption.value, this.state.maxPrice.value);
 
-        console.log(this.state.maxPrice.value)
 
         if(this.state.rest.indexOf("minPrice") == -1 && this.state.rest.indexOf("maxPrice") == -1) {
             let restP = [...this.state.rest]
@@ -56,7 +55,7 @@ class FilterBlock extends Component {
         this.setState({ maxPrice: selectedOption, mobileFiltersActive: false });
         this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
 
-        console.log(this.state.minPrice.value)
+        
 
         if(this.state.rest.indexOf("minPrice") == -1 && this.state.rest.indexOf("maxPrice") == -1){
             let restP = [...this.state.rest]
@@ -187,13 +186,10 @@ class FilterBlock extends Component {
     isPriceSelect = () => {
         var min="minPrice";
         var max="maxPrice";
-        console.log(this.state.rest)
+        
         let aux = this.state.rest.includes(min);
         let aux2 =this.state.rest.includes(max);
-        console.log(aux)
-        console.log(aux2)
-        console.log("dddd")
-        console.log(aux || aux2)
+       
         if (aux || aux2) {
             return true
         } else {

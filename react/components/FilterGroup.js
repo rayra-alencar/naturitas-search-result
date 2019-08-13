@@ -83,7 +83,7 @@ class FilterGroup extends Component {
             filterItems.map(item => {
                 let linksArrayAux = item.Link.replace(/^\/+|\/+$/g, '').split('/')
                 //Si tiene filtro de precio se lo quitamos
-                if (linksArrayAux[linksArrayAux.length - 1].indexOf('de-') >= 0) {
+                if (linksArrayAux[linksArrayAux.length - 1].indexOf('de-') >= 0 && linksArrayAux[linksArrayAux.length - 1].indexOf('-a-') >= 0) {
                     linksArrayAux.pop();
                 }
 
@@ -109,7 +109,7 @@ class FilterGroup extends Component {
                     }
                 }
 
-
+                linksArrayAux = linksArrayAux.splice(0,3)
                 linksArrayAux = linksArrayAux.join('/')
 
                 item.Link = "/" + (linksArrayAux.toLowerCase())
