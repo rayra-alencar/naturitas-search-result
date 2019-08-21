@@ -1,0 +1,42 @@
+{
+    "store/searchresult.title": "Lo sentimos, no se ha encontrado lo que buscabas…",
+    "store/searchresult.subtitle":"¡No te preocupes!",
+    "store/searchresult.subtitle2":"Aquí tienes algunos consejos para ayudarte a encontrar lo que estás buscando:",
+    "store/searchresult.tips1":"Verifica tu ortografía y busca de nuevo",
+    "store/searchresult.tips2":"Prueba otro término de búsqueda",
+    "store/searchresult.tips3":"Explora nuestras categorías",
+    "store/searchresult.freeshipping":"",
+    "store/searchresult.noproducts": "Non ci sono prodotti che corrispondono alla selezione.",
+
+    "store/toolbar.enviogratis":"Envío Gratis",
+    "store/toolbar.products":"productos",
+
+    "store/toolbar.filter.category":"Categorías",
+    "store/toolbar.filter.brands":"Marcas",
+    "store/toolbar.filter.flags":"Sellos",
+    "store/toolbar.filter.content_format": "Formato",
+    "store/toolbar.filter.price": "Precio",
+    "store/toolbar.filter.container":"store/toolbar.filter.container",
+    "store/toolbar.filter.main_components":"store/toolbar.filter.main_components",
+    "store/toolbar.filter.color":"store/toolbar.filter.color",
+    "store/toolbar.filter.size":"store/toolbar.filter.size",
+
+    "store/toolbar.showmore": "Cargar más",
+    "store/toolbar.showmore.text": "Has visto {view} productos de {total}",
+
+    "store/toolbar.filter.showmore": "+ Ver más",
+    "store/toolbar.filter.showless": "+ Ver menos",
+    "store/toolbar.orderBy": "store/toolbar.orderBy",
+
+    
+    "store/toolbar.OrderByTopSaleDESC": "store/toolbar.OrderByTopSaleDESC",
+    "store/toolbar.OrderByPriceASC": "store/toolbar.OrderByPriceASC",
+    "store/toolbar.OrderByPriceDESC": "store/toolbar.OrderByPriceDESC",
+    "store/toolbar.OrderByReleaseDateDESC": "store/toolbar.OrderByReleaseDateDESC",
+
+    "store/retail.categorymarkup": "",
+    "store/retail.notfoundmarkup": "",
+
+    "store/toolbar.filters":"store/toolbar.filters"
+
+}

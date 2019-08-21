@@ -47,13 +47,26 @@ class SearchResultContainer extends Component {
             }, () => {
               this._fetchMoreLocked = false
             })
-    
+
+
+            if (prevResult.search) {
+              return {
+                search: {
+                  ...prevResult.search,
+                  products: [
+                    ...prevResult.search.products,
+                    ...fetchMoreResult.search.products,
+                  ],
+                },
+              }
+            }
+
             return {
               search: {
-                ...prevResult.search,
+                ...prevResult.productSearch,
                 products: [
-                  ...prevResult.search.products,
-                  ...fetchMoreResult.search.products,
+                  ...prevResult.productSearch.products,
+                  ...fetchMoreResult.productSearch.products,
                 ],
               },
             }

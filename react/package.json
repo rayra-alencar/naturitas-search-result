@@ -4,8 +4,7 @@
   "author": "webimpacto",
   "license": "MIT",
   "dependencies": {
-    "react": "^16.3.2",
-    "react-apollo": "^2.3.2",
+    "react": "^16.8.6",
     "apollo-client": "^2.3.2",
     "apollo-client-preset": "^1.0.8",
     "query-string": "5",
@@ -17,7 +16,7 @@
     "react-select": "^2.4.2"
   },
   "devDependencies": {
-    "@types/react": "^16.3.14",
+    "@types/react": "^16.8.23",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0"
   }

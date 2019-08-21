@@ -12,11 +12,11 @@ class ViewMore extends Component {
                             <div className="tool-wrap">
                                 <div className="tool-line" style={{ width: this.props.products.length / this.props.recordsFiltered * 100 + "%" }}></div>
                             </div>
-                            <p className="amount amount--has-pages" data-qty="18647" data-last-page="777"><FormattedMessage id="toolbar.showmore.text" values={{ view: this.props.products.length, total: this.props.recordsFiltered }} /> </p>
+                            <p className="amount amount--has-pages" data-qty="18647" data-last-page="777"><FormattedMessage id="store/toolbar.showmore.text" values={{ view: this.props.products.length, total: this.props.recordsFiltered }} /> </p>
                         </div>
                         <div className="pages">
                             {!this.props.loading ?
-                                (<div className="next i-next" onClick={(e) => this.props.onFetchMore()} ><FormattedMessage id="toolbar.showmore" /> </div>)
+                                (<div className="next i-next" onClick={(e) => this.props.onFetchMore()} ><FormattedMessage id="store/toolbar.showmore" /> </div>)
                             : (<div className="next i-next text-primary " > <Spinner color="currentColor"/> </div>)
                             }
                         </div>

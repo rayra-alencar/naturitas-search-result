@@ -1,0 +1,17 @@
+{
+"search-result.naturitas": {
+    "allowed": [
+      "productlist",
+      "not-found",
+      "breadcrumb",
+      "filter-navigator",
+      "total-products",
+      "order-by",
+      "search-title"
+    ],
+    "required": [
+      "gallery.naturitas"
+    ],
+    "component": "Index"
+  }
+}

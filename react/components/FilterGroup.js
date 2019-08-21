@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ExtensionPoint, Link } from 'render'
+import { ExtensionPoint, Link } from 'vtex.render-runtime'
 import Select from 'react-select';
 
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
@@ -152,7 +152,7 @@ class FilterGroup extends Component {
 
                     {!this.state.activeMobile &&
                         <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' ) +(this.isSelect(filterName) ? ' isSelect' :' notIsSelect')} onClick={(e) => this.handleChangeDisplayGroup()}>
-                            <FormattedMessage id={"toolbar.filter." + filterName} />
+                            <FormattedMessage id={"store/toolbar.filter." + filterName} />
                             <i className="icon-angle-down"></i>
                         </div>
                     }
@@ -188,8 +188,8 @@ class FilterGroup extends Component {
                                     <li className="amshopby-clearer">
                                         <a id="amshopby-category-more" className="amshopby-more" href="#" onClick={(e) => { e.preventDefault(); this.setState({ expanded: !this.state.expanded }) }} >
                                             {(!this.state.expanded)
-                                                ? <FormattedMessage id={"toolbar.filter.showmore"} />
-                                                : <FormattedMessage id={"toolbar.filter.showless"} />
+                                                ? <FormattedMessage id={"store/toolbar.filter.showmore"} />
+                                                : <FormattedMessage id={"store/toolbar.filter.showless"} />
                                             }
 
                                         </a>

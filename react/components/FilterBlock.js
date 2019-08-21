@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { ExtensionPoint, Link } from 'render'
+import { ExtensionPoint, Link } from 'vtex.render-runtime'
 import Select from 'react-select';
 
 import { injectIntl, intlShape, FormattedMessage } from 'react-intl'
@@ -252,7 +252,7 @@ class FilterBlock extends Component {
 
                     <div className="m-auto title-filter-center" onClick={(e) => this.handleExpandFiltersMobile()} >
                         <i className="icon-filter"></i>
-                        <FormattedMessage id="toolbar.filters" />
+                        <FormattedMessage id="store/toolbar.filters" />
                         {(this.areParentActive() > 0 ?
                             <span className='areFilters'>{this.areParentActive()}</span> : ""
                         )}
@@ -277,13 +277,13 @@ class FilterBlock extends Component {
 
                     <div className="filter_block mb-1">
                         <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' ) } onClick={(e) => this.handleChangeDisplayGroup()}> 
-                            <FormattedMessage id="toolbar.filter.price" /> {mobileMode && <i className="icon-angle-down"></i>}
+                            <FormattedMessage id="store/toolbar.filter.price" /> {mobileMode && <i className="icon-angle-down"></i>}
                         </div>
                               
                         <ul className={"single-choice price-filter d-flex h-auto "+(mobileMode ? (this.state.activeMobilePrice ? '':'price-hidden '):'')}>
                             <li className={"d-flex"}>
                                 <div className="row-wrap">
-                                    <label><FormattedMessage id="toolbar.filter.pricemin" /></label>
+                                    <label><FormattedMessage id="store/toolbar.filter.pricemin" /></label>
                                     <Select
                                         styles={customStyles}
                                         value={minPrice}
@@ -293,7 +293,7 @@ class FilterBlock extends Component {
                                     />
                                 </div>
                                 <div className="row-wrap">
-                                    <label><FormattedMessage id="toolbar.filter.pricemax" /></label>
+                                    <label><FormattedMessage id="store/toolbar.filter.pricemax" /></label>
                                     <Select
 
                                         styles={customStyles}

@@ -9,7 +9,7 @@ class CatRetailRocket extends Component {
             
             <div className="bg-light">
                 <div className="container">
-                    <div data-retailrocket-markup-block={intl.formatMessage({ id: 'retail.categorymarkup' })} data-
+                    <div data-retailrocket-markup-block={intl.formatMessage({ id: 'store/retail.categorymarkup' })} data-
                         category-path={categoryPath}></div>
                 </div>
             </div>

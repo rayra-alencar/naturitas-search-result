@@ -13,10 +13,10 @@ const customStyles = {
 }
 
 const orderOptions = [
-    { value: 'OrderByScoreDESC', label: <FormattedMessage id="toolbar.OrderByTopSaleDESC" /> },
-    { value: 'OrderByPriceASC', label: <FormattedMessage id="toolbar.OrderByPriceASC" /> },
-    { value: 'OrderByPriceDESC', label: <FormattedMessage id="toolbar.OrderByPriceDESC" /> },
-    { value: 'OrderByReleaseDateDESC', label: <FormattedMessage id="toolbar.OrderByReleaseDateDESC" /> },
+    { value: 'OrderByScoreDESC', label: <FormattedMessage id="store/toolbar.OrderByTopSaleDESC" /> },
+    { value: 'OrderByPriceASC', label: <FormattedMessage id="store/toolbar.OrderByPriceASC" /> },
+    { value: 'OrderByPriceDESC', label: <FormattedMessage id="store/toolbar.OrderByPriceDESC" /> },
+    { value: 'OrderByReleaseDateDESC', label: <FormattedMessage id="store/toolbar.OrderByReleaseDateDESC" /> },
 ];
 
 class ToolbarProducts extends Component {
@@ -53,7 +53,7 @@ class ToolbarProducts extends Component {
             <div className="toolbar toolbar-ajax d-flex">
                 <div className="toolbar-filters-item  my-auto mr-auto px-3">
                     <span className={"filterCheck " + ((this.state.envioGratis) ? ' selected ' : '')} onClick={(e) => this.handleEnvioGratis(e)} >
-                        <FormattedMessage id="toolbar.enviogratis" />
+                        <FormattedMessage id="store/toolbar.enviogratis" />
                         <span className="pl-2"><img src="https://cdn.naturitas.es/skin/frontend/rwd/naturitas/images/Shape.svg" alt="" /></span>
                     </span>
 
@@ -62,13 +62,13 @@ class ToolbarProducts extends Component {
                 <div className="aside-filter d-flex my-auto">
                     <div className="pager my-auto mr-3">
                         <div className="count-container">
-                            {this.props.recordsFiltered} <FormattedMessage id="toolbar.products" />
+                            {this.props.recordsFiltered} <FormattedMessage id="store/toolbar.products" />
                         </div>
                     </div>
 
                     <div className="sorter my-auto">
                         <div className="sort-by d-flex">
-                            <label className="my-auto mr-2"><FormattedMessage className="pl-3" id="toolbar.orderBy" /> </label>
+                            <label className="my-auto mr-2"><FormattedMessage className="pl-3" id="store/toolbar.orderBy" /> </label>
                             <Select
                                 styles={customStyles}
                                 className="customSelect"

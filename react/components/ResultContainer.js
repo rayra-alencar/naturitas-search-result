@@ -5,7 +5,7 @@ import { graphql } from 'react-apollo'
 import categoryNameQuery from '../queries/categoryNameQuery.gql'
 import brandsQuery from '../queries/getBrands.gql'
 
-import { ExtensionPoint, Link } from 'render'
+import { ExtensionPoint, Link } from 'vtex.render-runtime'
 import ReactResizeDetector from 'react-resize-detector'
 import Truncate from 'react-truncate';
 import '../global.css'
@@ -212,7 +212,7 @@ class ResultContainer extends Component {
                                     <div className="searchresult-block content container">
                                         {notfoundimage && (<div className="searchresult-image-container"> <img src={notfoundimage} /> </div>)}
                                         <div className="searchresult-title-container">
-                                            <p className="title"><FormattedMessage id="searchresult.title" /></p>
+                                            <p className="title"><FormattedMessage id="store/searchresult.title" /></p>
                                         </div>
 
                                         {mobileMode && (
@@ -222,20 +222,20 @@ class ResultContainer extends Component {
                                         )}
 
                                         <div className="searchresult-subtitle-container">
-                                            <p><FormattedMessage id="searchresult.subtitle" /></p>
-                                            <p><FormattedMessage id="searchresult.subtitle2" /></p>
+                                            <p><FormattedMessage id="store/searchresult.subtitle" /></p>
+                                            <p><FormattedMessage id="store/searchresult.subtitle2" /></p>
                                         </div>
                                         <div className="searchresult-tips-container">
                                             <ul>
-                                                <li><FormattedMessage id="searchresult.tips1" /></li>
-                                                <li><FormattedMessage id="searchresult.tips2" /></li>
-                                                <li><FormattedMessage id="searchresult.tips3" /></li>
+                                                <li><FormattedMessage id="store/searchresult.tips1" /></li>
+                                                <li><FormattedMessage id="store/searchresult.tips2" /></li>
+                                                <li><FormattedMessage id="store/searchresult.tips3" /></li>
                                             </ul>
                                         </div>
                                     </div>
 
                                     
-                                    <div data-retailrocket-markup-block={intl.formatMessage({ id: 'retail.notfoundmarkup' })} data-search-phrase={this.props.params.term}></div>
+                                    <div data-retailrocket-markup-block={intl.formatMessage({ id: 'store/retail.notfoundmarkup' })} data-search-phrase={this.props.params.term}></div>
                                     
 
                                     <div className="category-block">
@@ -302,15 +302,15 @@ class ResultContainer extends Component {
 
                                         {this.state.userInteractiveWithFilters && this.props.products.length <= 0
                                             ? <div className="note-msg">
-                                                <FormattedMessage id="searchresult.noproducts" />
+                                                <FormattedMessage id="store/searchresult.noproducts" />
                                             </div>
                                             :
                                             (this.props.products.length == 0 && this.props.loading) ? (<div className="d-flex mt-3">  <div className="text-primary mx-auto"> <Spinner color="currentColor" /></div></div>)
                                                 : (
                                                     <Fragment>
-
+                                                            
                                                         <ExtensionPoint
-                                                            id="productList"
+                                                            id="productlist"
                                                             products={this.props.products}
                                                             loading={this.props.loading}
                                                             params={this.props.params}
