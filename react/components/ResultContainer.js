@@ -187,19 +187,20 @@ class ResultContainer extends Component {
         const { facets } = searchQuery
 
         let categoryPath = ''
+        let categories = this.props.products[0].categories;
 
         if (this.props.products && this.props.products[0]) {
             if (this.props.params.subcategory) {
-                categoryPath = this.props.products[0].categories[0]
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 3)
             }
             else if (this.props.params.category) {
-                categoryPath = this.props.products[0].categories[1]
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 2)
             }
             else if (this.props.params.department) {
-                categoryPath = this.props.products[0].categories[2]
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 1)
             }
         }
-
+        console.log(categoryPath);
 
         if (!this.state.userInteractiveWithFilters && (!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
             return (
