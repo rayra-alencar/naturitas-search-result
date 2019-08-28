@@ -187,9 +187,9 @@ class ResultContainer extends Component {
         const { facets } = searchQuery
 
         let categoryPath = ''
-        let categories = this.props.products[0].categories;
-
+        
         if (this.props.products && this.props.products[0]) {
+            let categories = this.props.products[0].categories;
             if (this.props.params.subcategory) {
                 categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 3)
             }
