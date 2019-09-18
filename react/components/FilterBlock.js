@@ -37,14 +37,32 @@ class FilterBlock extends Component {
         }
     }
     handleChangeMinPrice = (selectedOption) => {
+
         this.setState({ minPrice: selectedOption, mobileFiltersActive: false });
         this.props.updatePrice(selectedOption.value, this.state.maxPrice.value);
+
+
+        if(this.state.rest.indexOf("minPrice") == -1 && this.state.rest.indexOf("maxPrice") == -1) {
+            let restP = [...this.state.rest]
+            restP.push("minPrice")
+            this.setState({rest:restP});
+            this.state.parentActive.push("minPrice")
+        }
         
     }
     handleChangeMaxPrice = (selectedOption) => {
+   
         this.setState({ maxPrice: selectedOption, mobileFiltersActive: false });
-
         this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
+
+        
+
+        if(this.state.rest.indexOf("minPrice") == -1 && this.state.rest.indexOf("maxPrice") == -1){
+            let restP = [...this.state.rest]
+            restP.push("maxPrice")
+            this.setState({rest:restP});
+            this.state.parentActive.push("maxPrice")
+        }
     }
 
     getParameterByName(name, url) {
@@ -60,6 +78,7 @@ class FilterBlock extends Component {
 
     handleChangeFilter = (selectedOption, type,parentFilterName) => {
         let mapClicked = ''
+        let restClicked = selectedOption.name
         let rest = [...this.state.rest]
         let map = [...this.state.map]
 
@@ -67,16 +86,26 @@ class FilterBlock extends Component {
             mapClicked = 'b'
         }
         else {
-            let queryMap = this.getParameterByName('map', selectedOption.Link)
-
-            map = [...this.state.map]
+            let queryMap = this.getParameterByName('map', selectedOption.link)
             mapClicked = queryMap.split(',').pop();
+            if(type == "review"){
+
+                const auxMapClicked = mapClicked
+                let nbStarsSelected = parseInt(restClicked)
+                while(nbStarsSelected < 5){
+                    mapClicked+=`,${auxMapClicked}`
+                    nbStarsSelected++
+
+                    restClicked+=`-.!sTarS${nbStarsSelected.toString()}`
+                }
+                
+            }
         }
 
-        let indexOfRest = rest.indexOf(encodeURIComponent(selectedOption.Name))
+        let indexOfRest = rest.indexOf(encodeURIComponent(restClicked).replace(/-.!sTarS/g,','))
 
         if (indexOfRest == -1) {
-            rest.push(encodeURIComponent(selectedOption.Name))
+            rest.push(encodeURIComponent(restClicked).replace(/-.!sTarS/g,','))
             map.push(mapClicked)
             this.state.parentActive.push(parentFilterName)
         }
@@ -85,6 +114,7 @@ class FilterBlock extends Component {
             map.splice(indexOfRest, 1)
             this.state.parentActive.splice(indexOfRest,1)
         }
+
 
         this.setState({ rest, map });
         this.props.updateQuerySearch([...(this.props.map).split(','), ...map].join(','), rest.join(','))
@@ -113,6 +143,10 @@ class FilterBlock extends Component {
             
             document.getElementsByTagName("html")[0].style.overflow="initial";
         }
+
+        if(this.state.activeMobilePrice){
+            this.setState({ activeMobilePrice: false, mobileFiltersActive:true })
+        }
     }
 
     setDisplayGroup = (active) => {
@@ -126,9 +160,12 @@ class FilterBlock extends Component {
             
             document.getElementsByTagName("html")[0].style.overflow="initial";
         }
+        if(active && this.state.activeMobilePrice){
+            this.setState({ activeMobilePrice: false })
+        }
     }
 
-    handleChangeDisplayGroup = () => {
+    handleChangeDisplayGroup = (e) => {
 
         if (this.props.mobileMode) {
             this.setState({ activeMobilePrice: !this.state.activeMobilePrice })
@@ -144,6 +181,20 @@ class FilterBlock extends Component {
             return false;
         }
 
+    }
+
+    isPriceSelect = () => {
+        var min="minPrice";
+        var max="maxPrice";
+        
+        let aux = this.state.rest.includes(min);
+        let aux2 =this.state.rest.includes(max);
+       
+        if (aux || aux2) {
+            return true
+        } else {
+            return false
+        }
     }
 
     render() {
@@ -162,18 +213,19 @@ class FilterBlock extends Component {
         let color = []
         let essences = []
         let flavours = []
+        let reviews_score = []
 
 
-        if (facets && facets.CategoriesTrees[0]) {
-            let categoryTree = facets.CategoriesTrees.filter(item => item.Id != 1)
+        if (facets && facets.categoriesTrees[0]) {
+            let categoryTree = facets.categoriesTrees.filter(item => item.Id != 1)
             if (params.subcategory) {
-                catChildren = categoryTree[0].Children[0].Children
+                catChildren = categoryTree[0].children[0].children
             }
             else if (params.category) {
-                catChildren = categoryTree[0].Children[0].Children
+                catChildren = categoryTree[0].children[0].children
             }
             else {
-                catChildren = categoryTree[0].Children
+                catChildren = categoryTree[0].children
             }
 
             /*
@@ -189,45 +241,49 @@ class FilterBlock extends Component {
                 rich_structured_content[main_components]
             */
 
-            flags = facets.SpecificationFilters.filter((item) => {
+            flags = facets.specificationFilters.filter((item) => {
                 return item.name == 'flags'
             })
 
-            format = facets.SpecificationFilters.filter((item) => {
+            format = facets.specificationFilters.filter((item) => {
                 return item.name == 'content_format'
             })
 
-            flavours = facets.SpecificationFilters.filter((item) => {
+            flavours = facets.specificationFilters.filter((item) => {
                 return item.name == 'flavours'
             })
 
-            essences = facets.SpecificationFilters.filter((item) => {
+            essences = facets.specificationFilters.filter((item) => {
                 return item.name == 'essences'
             })
 
-            color = facets.SpecificationFilters.filter((item) => {
+            color = facets.specificationFilters.filter((item) => {
                 return item.name == 'color'
             })
 
-            size = facets.SpecificationFilters.filter((item) => {
+            size = facets.specificationFilters.filter((item) => {
                 return item.name == 'size'
             })
 
-            container = facets.SpecificationFilters.filter((item) => {
+            container = facets.specificationFilters.filter((item) => {
                 return item.name == 'container'
             })
 
-            content_format = facets.SpecificationFilters.filter((item) => {
+            content_format = facets.specificationFilters.filter((item) => {
                 return item.name == 'content_format'
             })
 
-            main_components = facets.SpecificationFilters.filter((item) => {
+            main_components = facets.specificationFilters.filter((item) => {
                 return item.name == 'main_components'
+            })
+
+            reviews_score = facets.specificationFilters.filter((item) => {
+                return item.name == 'reviews_score'
             })
 
 
 
-            brands = facets.Brands
+            brands = facets.brands
         }
 
         const { minPrice, maxPrice, mobileFilterGroupActive } = this.state;
@@ -248,6 +304,7 @@ class FilterBlock extends Component {
                         {this.state.mobileFiltersActive && mobileFilterGroupActive &&
                             <i className="icon-lateral_arrow"></i>
                         }
+                        {this.state.activeMobilePrice  && this.state.mobileFiltersActive ? (<i className="icon-lateral_arrow"></i>) :""}
                     </div>
 
                     <div className="m-auto title-filter-center" onClick={(e) => this.handleExpandFiltersMobile()} >
@@ -268,15 +325,16 @@ class FilterBlock extends Component {
 
                 </div>
 
-                <div id="filter-container" className={mobileFilterGroupActive ? 'active' : ''}>
+                <div id="filter-container" className={mobileFilterGroupActive || this.state.activeMobilePrice ? 'active' : ''}>
 
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={reviews_score} type="review" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
                     <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
 
 
-                    <div className="filter_block mb-1">
-                        <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' ) } onClick={(e) => this.handleChangeDisplayGroup()}> 
+                    <div className={'filter_block mb-1 ' +(this.state.activeMobilePrice ? ' active ' : '')+ (this.isPriceSelect() ? ' isSelect' : ' notIsSelect')}>
+                        <div className={"title"+((this.state.activeDesktop) ? ' activeDesktop ' : '' )  +(this.state.activeMobilePrice ? ' d-none ' : '')} onClick={(e) => this.handleChangeDisplayGroup(e)}> 
                             <FormattedMessage id="store/toolbar.filter.price" /> {mobileMode && <i className="icon-angle-down"></i>}
                         </div>
                               

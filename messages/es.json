@@ -20,6 +20,7 @@
     "store/toolbar.filter.main_components":"store/toolbar.filter.main_components",
     "store/toolbar.filter.color":"store/toolbar.filter.color",
     "store/toolbar.filter.size":"store/toolbar.filter.size",
+    "store/toolbar.filter.reviews_score": "Evaluation Moyenne",
 
     "store/toolbar.showmore": "Cargar más",
     "store/toolbar.showmore.text": "Has visto {view} productos de {total}",

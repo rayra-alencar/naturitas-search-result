@@ -77,7 +77,7 @@ class ResultContainer extends Component {
             return true;
         }
         /* TODO -> OPTIMIZAR CONDICION, NO VALE SI EL NUMERO DE PRODUCTOS ES IGUAL
-             if(nextProps.products.length == this.props.products.length){
+             if(nextProps.products.length == products.length){
              return false;
          }*/
 
@@ -102,12 +102,14 @@ class ResultContainer extends Component {
             map = mapArray.join(',')
         }
 
-        this.props.searchQuery.refetch({ query, map })
+        this.props.searchQuery.refetch({ query, map, facetQuery:query, facetMap: map })
         this.setState({ minPrice, maxPrice, userInteractiveWithFilters: true })
     }
 
     updateQuerySearch = (map, rest) => {
-        this.props.searchQuery.refetch({ map, rest })
+        let query = this.state.query+'/'+rest.replace(/,/g,'/')
+
+        this.props.searchQuery.refetch({ map, query, facetQuery:query, facetMap: map })
         this.setState({ map, rest, userInteractiveWithFilters: true })
     }
 
@@ -184,24 +186,26 @@ class ResultContainer extends Component {
 
     render() {
         const { searchQuery, notfoundimage, params, map, intl } = this.props
-        const { facets } = searchQuery
+        const { products, facets } = searchQuery.data
+
 
         let categoryPath = ''
-
-        if (this.props.products && this.props.products[0]) {
+        
+        if (products && products[0]) {
+            let categories = products[0].categories;
             if (this.props.params.subcategory) {
-                categoryPath = this.props.products[0].categories[0]
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 3)
             }
             else if (this.props.params.category) {
-                categoryPath = this.props.products[0].categories[1]
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 2)
             }
             else if (this.props.params.department) {
-                categoryPath = this.props.products[0].categories[2]
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 1)
             }
         }
+        
 
-
-        if (!this.state.userInteractiveWithFilters && (!facets || !facets.CategoriesTrees[0]) && !searchQuery.loading) {
+        if (!this.state.userInteractiveWithFilters && (!facets || !facets.categoriesTrees || !facets.categoriesTrees[0]) && !searchQuery.loading) {
             return (
                 <ReactResizeDetector handleWidth>
                     {
@@ -258,6 +262,7 @@ class ResultContainer extends Component {
         }
 
         const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
+        
 
         return (
             <ReactResizeDetector handleWidth>
@@ -300,19 +305,19 @@ class ResultContainer extends Component {
                                         }
 
 
-                                        {this.state.userInteractiveWithFilters && this.props.products.length <= 0
+                                        {this.state.userInteractiveWithFilters && products.length <= 0
                                             ? <div className="note-msg">
                                                 <FormattedMessage id="store/searchresult.noproducts" />
                                             </div>
                                             :
-                                            (this.props.products.length == 0 && this.props.loading) ? (<div className="d-flex mt-3">  <div className="text-primary mx-auto"> <Spinner color="currentColor" /></div></div>)
+                                            ((!products || products.length == 0) && this.props.loading) ? (<div className="d-flex mt-3">  <div className="text-primary mx-auto"> <Spinner color="currentColor" /></div></div>)
                                                 : (
                                                     <Fragment>
                                                             
                                                         <ExtensionPoint
                                                             id="productlist"
-                                                            products={this.props.products}
-                                                            loading={this.props.loading}
+                                                            products={products}
+                                                            loading={this.props.searchQuery.loading}
                                                             params={this.props.params}
                                                             maxItemsPerPage={this.props.maxItemsPerPage}
                                                             variables={this.props.searchQuery.variables}

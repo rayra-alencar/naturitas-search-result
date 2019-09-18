@@ -21,6 +21,9 @@
     "store/toolbar.filter.main_components":"Componente Principale",
     "store/toolbar.filter.color":"Colore",
     "store/toolbar.filter.size":"Taglia",
+    "store/toolbar.filter.reviews_score": "Avaliação Média",
+    "store/toolbar.filter.essences": "Aromas",
+    "store/toolbar.filter.flavours": "Sabores",
 
     "store/toolbar.filter.pricemax": "Máximo",
     "store/toolbar.filter.pricemin": "Mínimo",
@@ -40,7 +43,8 @@
     "store/toolbar.filters":"Filtros",
 
     "store/retail.categorymarkup": "",
-    "store/retail.notfoundmarkup": ""
+    "store/retail.notfoundmarkup": "",
+    "store/toolbar.filter.ormore" : "ou mais"
 
 
     

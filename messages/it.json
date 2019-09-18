@@ -21,6 +21,9 @@
     "store/toolbar.filter.main_components":"Componente Principale",
     "store/toolbar.filter.color":"Colore",
     "store/toolbar.filter.size":"Taglia",
+    "store/toolbar.filter.reviews_score": "Voto medio",
+    "store/toolbar.filter.essences": "Essenza",
+    "store/toolbar.filter.flavours": "Sapore",
 
     "store/toolbar.filter.pricemax": "Massimo",
     "store/toolbar.filter.pricemin": "Minimo",
@@ -40,5 +43,6 @@
     "store/toolbar.filters":"Filtri",
 
     "store/retail.categorymarkup": "5ceeb37497a52509cc2e1b30",
-    "store/retail.notfoundmarkup": "5ceeb2db97a52509cc2e1b2e"
+    "store/retail.notfoundmarkup": "5ceeb2db97a52509cc2e1b2e",
+    "store/toolbar.filter.ormore" : "o más"
 }
