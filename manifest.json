@@ -1,7 +1,7 @@
 {
   "name": "naturitas-search-result",
   "vendor": "webimpacto",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "Naturitas Search Result",
   "description": "",
   "mustUpdateAt": "2019-11-22",
@@ -19,10 +19,13 @@
   "dependencies": {
 
     "vtex.search-result": "3.x",
-    "webimpacto.naturitas-product-list": "1.x-beta.1",
+    "webimpacto.naturitas-product-list": "1.x",
     "vtex.breadcrumb": "1.x",
     "vtex.store-graphql": "2.x",
     "vtex.store-components": "3.x",
+    "webimpacto.naturitas-subcategories": "1.x",
+    "webimpacto.naturitas-breadcrump": "1.x",
+    "webimpacto.naturitas-topbrand": "1.x",
     "vtex.styleguide": "9.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

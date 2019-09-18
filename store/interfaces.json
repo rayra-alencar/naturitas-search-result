@@ -3,7 +3,9 @@
     "allowed": [
       "productlist",
       "not-found",
-      "breadcrumb",
+      "breadcrump",
+      "topbrand",
+      "subcategories",
       "filter-navigator",
       "total-products",
       "order-by",
