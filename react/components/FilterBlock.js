@@ -217,7 +217,7 @@ class FilterBlock extends Component {
 
 
         if (facets && facets.categoriesTrees[0]) {
-            let categoryTree = facets.categoriesTrees.filter(item => item.Id != 1)
+            let categoryTree = facets.categoriesTrees.filter(item => item.id != 1)
             if (params.subcategory) {
                 catChildren = categoryTree[0].children[0].children
             }
