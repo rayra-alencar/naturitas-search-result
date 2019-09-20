@@ -1,5 +1,5 @@
 import React, { Component, PureComponent, Fragment } from 'react';
-import { FormattedMessage , injectIntl} from 'react-intl'
+import { FormattedMessage, injectIntl } from 'react-intl'
 import { graphql } from 'react-apollo'
 
 import categoryNameQuery from '../queries/categoryNameQuery.gql'
@@ -102,108 +102,108 @@ class ResultContainer extends Component {
             map = mapArray.join(',')
         }
 
-        this.props.searchQuery.refetch({ query, map, facetQuery:query, facetMap: map })
+        this.props.searchQuery.refetch({ query, map, facetQuery: query, facetMap: map })
         this.setState({ minPrice, maxPrice, userInteractiveWithFilters: true })
     }
 
     updateQuerySearch = (map, rest) => {
-        let query = this.state.query+'/'+rest.replace(/,/g,'/')
+        let query = this.state.query + '/' + rest.replace(/,/g, '/')
 
-        this.props.searchQuery.refetch({ map, query, facetQuery:query, facetMap: map })
+        this.props.searchQuery.refetch({ map, query, facetQuery: query, facetMap: map })
         this.setState({ map, rest, userInteractiveWithFilters: true })
     }
 
-    titleTagWithAccent = (title,type,department,category) =>{
-        let result='';
-        let auxDepartment='';
-        let auxCategory='';
-        let auxBrand='';
-        
-        if(title){
-            title=title.replace(/%20/g, '-')
-            title=title.replace(/ /g, '-')
-        } 
+    titleTagWithAccent = (title, type, department, category) => {
+        let result = '';
+        let auxDepartment = '';
+        let auxCategory = '';
+        let auxBrand = '';
 
-        if(department){
-            department=department.replace(/%20/g, '-')
-            department=department.replace(/ /g, '-')
-        } 
+        if (title) {
+            title = title.replace(/%20/g, '-')
+            title = title.replace(/ /g, '-')
+        }
 
-        if(category){
-            category=category.replace(/%20/g, '-')
-            category=category.replace(/ /g, '-')
-        } 
-     
-        let categories=this.props.data.categories;
-       
-        if(typeof categories != 'undefined'){
-            if (type == 'department'){
-                result=categories.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(title))
-            }else if (type == 'category'){
-                auxDepartment=categories.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(department))
-                if(auxDepartment.length){
-                    if(auxDepartment[0].children.length) result=auxDepartment[0].children.filter(item =>item.slug == this.customformatedSlug(title))
+        if (department) {
+            department = department.replace(/%20/g, '-')
+            department = department.replace(/ /g, '-')
+        }
+
+        if (category) {
+            category = category.replace(/%20/g, '-')
+            category = category.replace(/ /g, '-')
+        }
+
+        let categories = this.props.data.categories;
+
+        if (typeof categories != 'undefined') {
+            if (type == 'department') {
+                result = categories.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(title))
+            } else if (type == 'category') {
+                auxDepartment = categories.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(department))
+                if (auxDepartment.length) {
+                    if (auxDepartment[0].children.length) result = auxDepartment[0].children.filter(item => item.slug == this.customformatedSlug(title))
                 }
-            }else if (type == 'subcategory'){
-                
-                auxDepartment=categories.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(department))
+            } else if (type == 'subcategory') {
 
-                if(auxDepartment.length){
-                    
-                    if(auxDepartment[0].children.length){ 
-                        
-                        auxCategory=auxDepartment[0].children.filter(item =>this.customformatedSlug(item.slug) == this.customformatedSlug(category))
-                        
-                        if(auxCategory.length){
-                            result=auxCategory[0].children.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(title) )
+                auxDepartment = categories.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(department))
+
+                if (auxDepartment.length) {
+
+                    if (auxDepartment[0].children.length) {
+
+                        auxCategory = auxDepartment[0].children.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(category))
+
+                        if (auxCategory.length) {
+                            result = auxCategory[0].children.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(title))
                         }
                     }
                 }
-            }else if(type == 'brands'){
-               
-               auxBrand = title.replace(/-/g, ' ')
-               return decodeURI(auxBrand)
+            } else if (type == 'brands') {
+
+                auxBrand = title.replace(/-/g, ' ')
+                return decodeURI(auxBrand)
             }
         }
 
-       
-        
-       if(result.length){
-        return result[0].name;
-       }else{
-        return '';
-       }
-       
-    }  
+
+
+        if (result.length) {
+            return result[0].name;
+        } else {
+            return '';
+        }
+
+    }
 
 
     customformatedSlug = (slug) => {
         slug = slug.replace('--', '-');
-        return ((slug).substr(-1,1) == '-') ? (slug).substr(0,slug.length -1) : slug
+        return ((slug).substr(-1, 1) == '-') ? (slug).substr(0, slug.length - 1) : slug
     }
 
 
 
     render() {
         const { searchQuery, notfoundimage, params, map, intl } = this.props
-        const { products, facets } = searchQuery.data
+        const { products, facets, productSearch } = searchQuery.data
 
 
         let categoryPath = ''
-        
+
         if (products && products[0]) {
             let categories = products[0].categories;
             if (this.props.params.subcategory) {
-                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 3)
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g, '').split('/').length == 3)
             }
             else if (this.props.params.category) {
-                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 2)
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g, '').split('/').length == 2)
             }
             else if (this.props.params.department) {
-                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g,'').split('/').length == 1)
+                categoryPath = categories.find(item => item.replace(/^\/+|\/+$/g, '').split('/').length == 1)
             }
         }
-        
+
 
         if (!this.state.userInteractiveWithFilters && (!facets || !facets.categoriesTrees || !facets.categoriesTrees[0]) && !searchQuery.loading) {
             return (
@@ -238,9 +238,9 @@ class ResultContainer extends Component {
                                         </div>
                                     </div>
 
-                                    
+
                                     <div data-retailrocket-markup-block={intl.formatMessage({ id: 'store/retail.notfoundmarkup' })} data-search-phrase={this.props.params.term}></div>
-                                    
+
 
                                     <div className="category-block">
                                         <ExtensionPoint style="pagenotfound" id="category-block" />
@@ -262,7 +262,7 @@ class ResultContainer extends Component {
         }
 
         const ellipsis = (<Fragment>... <span id="seeMoreDesc" onClick={(e) => this.setState({ linesDescription: 1000 })}>ver mas</span></Fragment>)
-        
+
 
         return (
             <ReactResizeDetector handleWidth>
@@ -272,7 +272,9 @@ class ResultContainer extends Component {
 
                         return (
                             <div id="category-block" className={mobileMode ? 'mobileMode' : ''}>
-                                <ExtensionPoint id="breadcrump" params={this.props.params} />
+                                {productSearch &&
+                                    <ExtensionPoint id="breadcrump" breadcrumb={productSearch.breadcrumb} params={this.props.params} />
+                                }
 
                                 <ExtensionPoint id="topbrand" titleTag={this.state.titleTag} descriptionTag={this.props.description} />
 
@@ -313,7 +315,7 @@ class ResultContainer extends Component {
                                             ((!products || products.length == 0) && this.props.loading) ? (<div className="d-flex mt-3">  <div className="text-primary mx-auto"> <Spinner color="currentColor" /></div></div>)
                                                 : (
                                                     <Fragment>
-                                                            
+
                                                         <ExtensionPoint
                                                             id="productlist"
                                                             products={products}
@@ -338,7 +340,7 @@ class ResultContainer extends Component {
                                 </div>
 
                                 {categoryPath &&
-                                    <CatRetailRocket categoryPath={categoryPath}/>
+                                    <CatRetailRocket categoryPath={categoryPath} />
                                 }
                             </div >
                         )
