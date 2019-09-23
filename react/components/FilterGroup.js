@@ -105,7 +105,7 @@ class FilterGroup extends Component {
                     if (linksArrayAux[linksArrayAux.length - 1].toLowerCase() == this.props.params.brand) {
                         linksArrayAux.pop();
                         // OJO REVISAR CUANDO ESTO VA A VOLVER A FUNCIONAR QUITAR SIGUIENTE LINEA
-                        linksArrayAux.reverse();
+                        //linksArrayAux.reverse();
                     }
                 }
 
