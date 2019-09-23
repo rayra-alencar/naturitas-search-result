@@ -33,12 +33,13 @@ class FilterBlock extends Component {
             mobileFiltersActive: false,
             mobileFilterGroupActive: false,
             activeMobilePrice: false, 
-            parentActive: []
+            parentActive: [],
+            menuPriceShow: false
         }
     }
     handleChangeMinPrice = (selectedOption) => {
 
-        this.setState({ minPrice: selectedOption, mobileFiltersActive: false });
+        this.setState({ minPrice: selectedOption, mobileFiltersActive: false , menuPriceShow: false});
         this.props.updatePrice(selectedOption.value, this.state.maxPrice.value);
 
 
@@ -52,7 +53,7 @@ class FilterBlock extends Component {
     }
     handleChangeMaxPrice = (selectedOption) => {
    
-        this.setState({ maxPrice: selectedOption, mobileFiltersActive: false });
+        this.setState({ maxPrice: selectedOption, mobileFiltersActive: false, menuPriceShow: false});
         this.props.updatePrice(this.state.minPrice.value, selectedOption.value);
 
         
@@ -64,6 +65,8 @@ class FilterBlock extends Component {
             this.state.parentActive.push("maxPrice")
         }
     }
+
+
 
     getParameterByName(name, url) {
         if (!url) url = window.location.href;
@@ -197,6 +200,12 @@ class FilterBlock extends Component {
         }
     }
 
+    changeOpen = ()=>{
+        console.log("change open")
+        this.setState({  menuPriceShow: true});
+
+    }
+
     render() {
         const { facets, params, categoriesNotExpanded, mobileMode } = this.props
 
@@ -286,7 +295,7 @@ class FilterBlock extends Component {
             brands = facets.brands
         }
 
-        const { minPrice, maxPrice, mobileFilterGroupActive } = this.state;
+        const { minPrice, maxPrice, mobileFilterGroupActive, menuPriceShow} = this.state;
 
         let categoryItems = catChildren;
         if (!this.state.expanded) {
@@ -338,7 +347,10 @@ class FilterBlock extends Component {
                             <FormattedMessage id="store/toolbar.filter.price" /> {mobileMode && <i className="icon-angle-down"></i>}
                         </div>
                               
-                        <ul className={"single-choice price-filter d-flex h-auto "+(mobileMode ? (this.state.activeMobilePrice ? '':'price-hidden '):'')}>
+                        <ul className={"single-choice price-filter d-flex h-auto "
+                                   +(mobileMode ? (this.state.activeMobilePrice ? '':'price-hidden '):'')
+                                   +(menuPriceShow ? " active-ul-price":'')
+                                   }>
                             <li className={"d-flex"}>
                                 <div className="row-wrap">
                                     <label><FormattedMessage id="store/toolbar.filter.pricemin" /></label>
@@ -348,6 +360,8 @@ class FilterBlock extends Component {
                                         onChange={this.handleChangeMinPrice}
                                         options={this.props.optionsMinPrice}
                                         isSearchable={false}
+                                        onFocus={this.changeOpen}
+                                       
                                     />
                                 </div>
                                 <div className="row-wrap">
@@ -359,6 +373,7 @@ class FilterBlock extends Component {
                                         onChange={this.handleChangeMaxPrice}
                                         options={this.props.optionsMaxPrice}
                                         isSearchable={false}
+                                        onFocus={this.changeOpen}
                                     />
                                 </div>
 

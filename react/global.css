@@ -594,3 +594,7 @@ ul.single-choice.price-filter.d-flex.h-auto.price-hidden {
     height: calc(100vh - 89px);
   }
 }
+
+ul.single-choice.price-filter.d-flex.h-auto.active-ul-price {
+  min-height: 375px;
+}
