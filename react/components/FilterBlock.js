@@ -350,7 +350,8 @@ class FilterBlock extends Component {
                         <ul className={"single-choice price-filter d-flex h-auto "
                                    +(mobileMode ? (this.state.activeMobilePrice ? '':'price-hidden '):'')
                                    +(menuPriceShow ? " active-ul-price":'')
-                                   }>
+                                   }
+                                   onClick={this.changeOpen}>
                             <li className={"d-flex"}>
                                 <div className="row-wrap">
                                     <label><FormattedMessage id="toolbar.filter.pricemin" /></label>
@@ -374,6 +375,7 @@ class FilterBlock extends Component {
                                         options={this.props.optionsMaxPrice}
                                         isSearchable={false}
                                         onFocus={this.changeOpen}
+                                       
                                     />
                                 </div>
 
