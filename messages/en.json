@@ -28,8 +28,8 @@
     "toolbar.showmore": "Vedi di più",
     "toolbar.showmore.text": "Hai visto {view} prodotti di  {total}",
 
-    "toolbar.filter.showmore": "+ Vedere di più",
-    "toolbar.filter.showless": "+ Vedere di meno",
+    "toolbar.filter.showmore": "+ Vedi di più",
+    "toolbar.filter.showless": "+ Vedi di meno",
     "toolbar.orderBy": "Ordina per",
 
     "toolbar.OrderByTopSaleDESC": "Più rilevanti",
