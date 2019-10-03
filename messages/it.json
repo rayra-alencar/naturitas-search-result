@@ -28,11 +28,11 @@
     "store/toolbar.filter.pricemax": "Massimo",
     "store/toolbar.filter.pricemin": "Minimo",
 
-    "store/toolbar.showmore": "Vedere più prodotti",
+    "store/toolbar.showmore": "Vedi di più",
     "store/toolbar.showmore.text": "Hai visto {view} prodotti di  {total}",
 
-    "store/toolbar.filter.showmore": "+ Vedere di più",
-    "store/toolbar.filter.showless": "+ Vedere di meno",
+    "store/toolbar.filter.showmore": "+ Vedi di più",
+    "store/toolbar.filter.showless": "+ Vedi di meno",
     "store/toolbar.orderBy": "Ordina per",
 
     "store/toolbar.OrderByTopSaleDESC": "Più rilevanti",
