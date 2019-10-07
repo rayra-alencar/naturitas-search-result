@@ -3,7 +3,6 @@ import ResultContainer from './ResultContainer';
 
 const WidthSwithMobileDesktop = 769;
 
-
 class SearchResultContainer extends Component {
   static defaultProps = {
     showMore: false,
@@ -91,7 +90,12 @@ class SearchResultContainer extends Component {
       },
       pagination,
     } = this.props
-
+    
+    if(typeof dataLayer != 'undefined'){
+      dataLayer.push({'event': 'categoryView'});  
+    }else{
+      console.log('var dataLayer is not defined');
+    }
 
     return (
       <ResultContainer {...this.props}
