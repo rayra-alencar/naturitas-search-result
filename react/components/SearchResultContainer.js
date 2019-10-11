@@ -2,7 +2,11 @@ import React, { Component, Fragment } from 'react';
 import ResultContainer from './ResultContainer';
 
 const WidthSwithMobileDesktop = 769;
-
+/*NAT-405 enviar evento de categoryView para RetailRocket en v2*/ 
+let flagEventDataLayer = false;
+let initialCatDep = '';
+let catDepActual = ''; 
+/*FIN NAT-405 enviar evento de categoryView para RetailRocket en v2*/ 
 class SearchResultContainer extends Component {
   static defaultProps = {
     showMore: false,
@@ -90,13 +94,23 @@ class SearchResultContainer extends Component {
       },
       pagination,
     } = this.props
-    
-    if(typeof dataLayer != 'undefined'){
-      dataLayer.push({'event': 'categoryView'});  
+    /*NAT-405 enviar evento de categoryView para RetailRocket en v2*/ 
+    if(this.props.params.category){
+      initialCatDep = this.props.params.category;      
+    }else if(this.props.params.department) {
+      initialCatDep = this.props.params.department;
+    }   
+    if(initialCatDep != catDepActual){
+      flagEventDataLayer = false;
+      catDepActual = initialCatDep;
     }else{
-      console.log('var dataLayer is not defined');
+      flagEventDataLayer = true;
+    }    
+    if(typeof dataLayer != 'undefined' && !flagEventDataLayer){
+      dataLayer.push({'event': 'categoryView'});  
+      flagEventDataLayer = true;
     }
-
+    /*FIN NAT-405 enviar evento de categoryView para RetailRocket en v2*/ 
     return (
       <ResultContainer {...this.props}
         breadcrumbsProps={this.breadcrumbsProps}
