@@ -107,7 +107,8 @@ class SearchResultContainer extends Component {
       flagEventDataLayer = true;
     }    
     if(typeof dataLayer != 'undefined' && !flagEventDataLayer){
-      dataLayer.push({'event': 'categoryView'});  
+      dataLayer.push({'event': 'categoryView',
+                      'categoryRetail': catDepActual});  
       flagEventDataLayer = true;
     }
     /*FIN NAT-405 enviar evento de categoryView para RetailRocket en v2*/ 
