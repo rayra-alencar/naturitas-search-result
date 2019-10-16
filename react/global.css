@@ -420,8 +420,6 @@
 }
 #page-notfound .searchresult-title-container .title {
   text-align: center;
-}
-#page-notfound .searchresult-title-container .title span {
   color: #4A4A4A;
   font-family: Quicksand;
   font-size: 22px;
@@ -429,6 +427,7 @@
   line-height: 28px;
   text-align: center;
 }
+
 #page-notfound .searchresult-image-container {
   margin: auto;
   text-align: center;
