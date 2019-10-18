@@ -135,7 +135,7 @@ class ResultContainer extends Component {
         }
 
         let categories = this.props.data.categories;
-        
+
         if (typeof categories != 'undefined') {
             if (type == 'department') {
                 result = categories.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(title))

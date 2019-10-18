@@ -226,7 +226,14 @@ class FilterBlock extends Component {
 
 
         if (facets && facets.categoriesTrees[0]) {
-            let categoryTree = facets.categoriesTrees.filter(item => item.id != 1)
+            let categoryTree = [];
+            /*NAT-419 para que salgan todas las categorías en caso de no ser una busqueda de departamento|categoria|subcategoria*/
+            if(searchContext.indexOf('department') > -1 || searchContext.indexOf('category') > -1 || searchContext.indexOf('subcategory') > -1){
+                categoryTree = facets.categoriesTrees.filter(item => item.id != 1)
+            }else{
+                categoryTree = facets.categoriesTrees;
+            }
+            
             if (params.subcategory) {
                 catChildren = categoryTree[0].children[0].children
             }
