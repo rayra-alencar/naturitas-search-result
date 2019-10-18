@@ -207,7 +207,7 @@ class FilterBlock extends Component {
     }
 
     render() {
-        const { facets, params, categoriesNotExpanded, mobileMode } = this.props
+        const { facets, params, categoriesNotExpanded, mobileMode, searchContext } = this.props
 
 
 
@@ -336,10 +336,10 @@ class FilterBlock extends Component {
 
                 <div id="filter-container" className={mobileFilterGroupActive || this.state.activeMobilePrice ? 'active' : ''}>
 
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={reviews_score} type="review" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={catChildren} type="category" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={brands} type="brand" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={reviews_score} type="review" rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} activeDesktop={true} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flags} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
 
 
                     <div className={'filter_block mb-1 ' +(this.state.activeMobilePrice ? ' active ' : '')+ (this.isPriceSelect() ? ' isSelect' : ' notIsSelect')}>
@@ -385,13 +385,13 @@ class FilterBlock extends Component {
                       
                     </div>
 
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={content_format} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={container} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
                     {/*<FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={main_components} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} />*/}
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
-                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flavours} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive}/>
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={color} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={size} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={essences} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
+                    <FilterGroup mobileMode={mobileMode} params={this.props.params} mobileFilterGroupActive={mobileFilterGroupActive} setDisplayGroup={this.setDisplayGroup} filterGroup={flavours} rest={this.state.rest} handleChangeFilter={this.handleChangeFilter} parentActive={this.state.parentActive} searchContext={searchContext} />
 
 
                 </div>
