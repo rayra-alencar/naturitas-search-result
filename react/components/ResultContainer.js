@@ -74,14 +74,17 @@ class ResultContainer extends Component {
         else if (this.props.params.brand) titleTag2 = this.titleTagWithAccent(this.props.params.brand, 'brands', null, null)
 
         titleTag2 = titleTag2.charAt(0).toUpperCase() + titleTag2.slice(1)
+        
         this.setState({titleTag : titleTag2})
-       
+      
         return titleTag2;
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
 
+
         if (nextProps.searchQuery.titleTag && nextProps.searchQuery.titleTag !== prevState.titleTag) {
+      
             return { titleTag: nextProps.searchQuery.titleTag };
         }
 
@@ -181,11 +184,12 @@ class ResultContainer extends Component {
                 auxBrand = title.replace(/-/g, ' ')
                 return decodeURI(auxBrand)
             }
+           
         }else{
+           
             setTimeout(() => {
-                if(this.state.titleTag == ""){
-                    this.getTitleTag();
-                }
+                
+                this.getTitleTag();
            
             }, 3000);
         }
