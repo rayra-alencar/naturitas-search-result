@@ -51,7 +51,7 @@ class FilterGroup extends Component {
     }
 
     render() {
-        let { filterGroup, itemsNotExpanded, mobileMode, type } = this.props
+        let { filterGroup, itemsNotExpanded, mobileMode, type, searchContext } = this.props
 
         if (filterGroup.length <= 0) return '';
 
@@ -59,8 +59,8 @@ class FilterGroup extends Component {
         if (filterGroup[0].name == "color") {
             filterGroup = filterGroup.filter(item => (item.name != ""))
         }
-
-
+   
+        
 
         let filterItems = []
         let filterName = ''
@@ -75,9 +75,11 @@ class FilterGroup extends Component {
             filterItems = filterGroup
             nbFilter = filterGroup.length;
             filterName = 'category'
-
-            if (nbFilter == 1) {
-                filterItems = []
+            /*NAT-419 este if es para saber si nos encontramos en un departamento/categoria/subcategoria y si no mostrar filtros de categoria*/
+            if(searchContext && (searchContext.indexOf('department') > -1 || searchContext.indexOf('category') > -1 || searchContext.indexOf('subcategory') > -1)){
+                if (nbFilter == 1) {
+                    filterItems = []
+                }
             }
 
             filterItems.map(item => {

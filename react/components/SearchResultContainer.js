@@ -111,7 +111,13 @@ class SearchResultContainer extends Component {
                       'categoryRetail': catDepActual});  
       flagEventDataLayer = true;
     }
-    /*FIN NAT-405 enviar evento de categoryView para RetailRocket en v2*/ 
+    /*FIN NAT-405 enviar evento de categoryView para RetailRocket en v2*/
+    /*NAT-419 se arrastra el searchcontext para saber en que tipo de búsqueda nos encontramos para mostrar mas filtros de categorías cuando se trata de una coleccion*/  
+    let searchContext = false;
+    if(typeof this.props.searchContext !== 'undefined'){
+      searchContext= this.props.searchContext;
+    };
+    /*FIN NAT-419*/
     return (
       <ResultContainer {...this.props}
         breadcrumbsProps={this.breadcrumbsProps}
@@ -125,7 +131,8 @@ class SearchResultContainer extends Component {
         brands={Brands}
         specificationFilters={SpecificationFilters}
         priceRanges={PriceRanges}
-        tree={CategoriesTrees} />
+        tree={CategoriesTrees} 
+        searchContext={searchContext}/>
     )
 
   }

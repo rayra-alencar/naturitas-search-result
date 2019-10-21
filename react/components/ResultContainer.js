@@ -209,7 +209,7 @@ class ResultContainer extends Component {
 
 
     render() {
-        const { searchQuery, notfoundimage, params, map, intl } = this.props
+        const { searchQuery, notfoundimage, params, map, intl, searchContext } = this.props
         const { products, facets, productSearch } = searchQuery.data
 
 
@@ -312,14 +312,14 @@ class ResultContainer extends Component {
 
                                 {mobileMode &&
                                     <div className="d-flex">
-                                        <FilterBlock mobileMode={mobileMode} updatePrice={this.updatePrice} updateQuerySearch={this.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} optionsMinPrice={optionsMinPrice} optionsMaxPrice={optionsMaxPrice} />
+                                        <FilterBlock mobileMode={mobileMode} updatePrice={this.updatePrice} updateQuerySearch={this.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} optionsMinPrice={optionsMinPrice} optionsMaxPrice={optionsMaxPrice} searchContext={searchContext} />
                                         <ToolbarProducts updateOrderBy={this.updateOrderBy} updatePrice={this.updatePrice} recordsFiltered={searchQuery.recordsFiltered} />
                                     </div>
                                 }
 
                                 <div id="category-main-container" className="container mt-md-3 d-flex flex-wrap">
                                     {!mobileMode &&
-                                        <FilterBlock mobileMode={mobileMode} updatePrice={this.updatePrice} updateQuerySearch={this.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} optionsMinPrice={optionsMinPrice} optionsMaxPrice={optionsMaxPrice} />
+                                        <FilterBlock mobileMode={mobileMode} updatePrice={this.updatePrice} updateQuerySearch={this.updateQuerySearch} map={map} searchQuery={searchQuery} facets={facets} params={params} optionsMinPrice={optionsMinPrice} optionsMaxPrice={optionsMaxPrice} searchContext={searchContext} />
                                     }
 
                                     <div id="products-block">
