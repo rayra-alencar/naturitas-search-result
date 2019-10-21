@@ -42,12 +42,14 @@ class ResultContainer extends Component {
         super(props)
 
         let titleTag = ''
-        if (props.params.subcategory) titleTag = this.titleTagWithAccent(props.params.subcategory, 'subcategory', props.params.department, props.params.category)
-        else if (props.params.category) titleTag = this.titleTagWithAccent(props.params.category, 'category', props.params.department, null)
-        else if (props.params.department) titleTag = this.titleTagWithAccent(props.params.department, 'department', null, null)
-        else if (props.params.brand) titleTag = this.titleTagWithAccent(props.params.brand, 'brands', null, null)
-
-        titleTag = titleTag.charAt(0).toUpperCase() + titleTag.slice(1)
+       
+            if (props.params.subcategory) titleTag = this.titleTagWithAccent(props.params.subcategory, 'subcategory', props.params.department, props.params.category)
+            else if (props.params.category) titleTag = this.titleTagWithAccent(props.params.category, 'category', props.params.department, null)
+            else if (props.params.department) titleTag = this.titleTagWithAccent(props.params.department, 'department', null, null)
+            else if (props.params.brand) titleTag = this.titleTagWithAccent(props.params.brand, 'brands', null, null)
+    
+            titleTag = titleTag.charAt(0).toUpperCase() + titleTag.slice(1)
+      
 
         this.state = {
             linesDescription: 2,
@@ -61,6 +63,20 @@ class ResultContainer extends Component {
             loading: props.loading,
 
         }
+    }
+
+
+    getTitleTag = () =>{
+        let titleTag2= '';
+        if (this.props.params.subcategory) titleTag2 = this.titleTagWithAccent(this.props.params.subcategory, 'subcategory', this.props.params.department, this.props.params.category)
+        else if (this.props.params.category) titleTag2 = this.titleTagWithAccent(this.props.params.category, 'category', this.props.params.department, null)
+        else if (this.props.params.department) titleTag2 = this.titleTagWithAccent(this.props.params.department, 'department', null, null)
+        else if (this.props.params.brand) titleTag2 = this.titleTagWithAccent(this.props.params.brand, 'brands', null, null)
+
+        titleTag2 = titleTag2.charAt(0).toUpperCase() + titleTag2.slice(1)
+        this.setState({titleTag : titleTag2})
+       
+        return titleTag2;
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -141,6 +157,7 @@ class ResultContainer extends Component {
                 result = categories.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(title))
             } else if (type == 'category') {
                 auxDepartment = categories.filter(item => this.customformatedSlug(item.slug) == this.customformatedSlug(department))
+              
                 if (auxDepartment.length) {
                     if (auxDepartment[0].children.length) result = auxDepartment[0].children.filter(item => item.slug == this.customformatedSlug(title))
                 }
@@ -164,6 +181,13 @@ class ResultContainer extends Component {
                 auxBrand = title.replace(/-/g, ' ')
                 return decodeURI(auxBrand)
             }
+        }else{
+            setTimeout(() => {
+                if(this.state.titleTag == ""){
+                    this.getTitleTag();
+                }
+           
+            }, 3000);
         }
 
 
