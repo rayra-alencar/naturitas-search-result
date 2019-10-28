@@ -6,6 +6,7 @@
     "store/searchresult.tips2":"Prueba otro término de búsqueda",
     "store/searchresult.tips3":"Explora nuestras categorías",
     "store/searchresult.freeshipping":"",
+    "store/searchresult.products": "",
     "store/searchresult.noproducts": "Non ci sono prodotti che corrispondono alla selezione.",
 
     "store/toolbar.enviogratis":"Envío Gratis",
@@ -16,28 +17,33 @@
     "store/toolbar.filter.flags":"Sellos",
     "store/toolbar.filter.content_format": "Formato",
     "store/toolbar.filter.price": "Precio",
-    "store/toolbar.filter.container":"store/toolbar.filter.container",
-    "store/toolbar.filter.main_components":"store/toolbar.filter.main_components",
-    "store/toolbar.filter.color":"store/toolbar.filter.color",
-    "store/toolbar.filter.size":"store/toolbar.filter.size",
-    "store/toolbar.filter.reviews_score": "Evaluation Moyenne",
+    "store/toolbar.filter.container":"Tipo de contenedor",
+    "store/toolbar.filter.main_components":"Componentes princiaples",
+    "store/toolbar.filter.color":"Color",
+    "store/toolbar.filter.size":"Talla",
+    "store/toolbar.filter.reviews_score": "Valoracion media",
+    "store/toolbar.filter.essences": "Aromas",
+    "store/toolbar.filter.flavours": "Sabores",
+
+    "store/toolbar.filter.pricemax": "Máximo",
+    "store/toolbar.filter.pricemin": "Mínimo",
 
     "store/toolbar.showmore": "Cargar más",
     "store/toolbar.showmore.text": "Has visto {view} productos de {total}",
 
     "store/toolbar.filter.showmore": "+ Ver más",
     "store/toolbar.filter.showless": "+ Ver menos",
-    "store/toolbar.orderBy": "store/toolbar.orderBy",
+    "store/toolbar.orderBy": "Ordenar por: ",
 
     
-    "store/toolbar.OrderByTopSaleDESC": "store/toolbar.OrderByTopSaleDESC",
-    "store/toolbar.OrderByPriceASC": "store/toolbar.OrderByPriceASC",
-    "store/toolbar.OrderByPriceDESC": "store/toolbar.OrderByPriceDESC",
-    "store/toolbar.OrderByReleaseDateDESC": "store/toolbar.OrderByReleaseDateDESC",
+    "store/toolbar.OrderByTopSaleDESC": "Popularidad",
+    "store/toolbar.OrderByPriceASC": "Precio: de menor a mayor",
+    "store/toolbar.OrderByPriceDESC": "Precio: de mayor a menor",
+    "store/toolbar.OrderByReleaseDateDESC": "Más nuevos",
 
     "store/retail.categorymarkup": "",
     "store/retail.notfoundmarkup": "",
 
-    "store/toolbar.filters":"store/toolbar.filters"
+    "store/toolbar.filters":"Filtros"
 
 }
