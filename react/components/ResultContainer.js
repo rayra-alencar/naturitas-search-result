@@ -43,13 +43,12 @@ class ResultContainer extends Component {
 
         let titleTag = ''
        
-            if (props.params.subcategory) titleTag = this.titleTagWithAccent(props.params.subcategory, 'subcategory', props.params.department, props.params.category)
+            if (props.params.subcategory) titleTag = this.titleTagWithAccent(props.params.subcategory, 'subcategory', props.params.department, props.params.category) 
             else if (props.params.category) titleTag = this.titleTagWithAccent(props.params.category, 'category', props.params.department, null)
             else if (props.params.department) titleTag = this.titleTagWithAccent(props.params.department, 'department', null, null)
             else if (props.params.brand) titleTag = this.titleTagWithAccent(props.params.brand, 'brands', null, null)
     
             titleTag = titleTag.charAt(0).toUpperCase() + titleTag.slice(1)
-      
 
         this.state = {
             linesDescription: 2,
@@ -76,8 +75,10 @@ class ResultContainer extends Component {
         titleTag2 = titleTag2.charAt(0).toUpperCase() + titleTag2.slice(1)
         
         this.setState({titleTag : titleTag2})
-      
-        return titleTag2;
+
+        return this.state.titleTag;
+
+
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -137,7 +138,6 @@ class ResultContainer extends Component {
         let auxDepartment = '';
         let auxCategory = '';
         let auxBrand = '';
-
         if (title) {
             title = title.replace(/%20/g, '-')
             title = title.replace(/ /g, '-')
@@ -186,12 +186,11 @@ class ResultContainer extends Component {
             }
            
         }else{
-           
             setTimeout(() => {
                 
                 this.getTitleTag();
            
-            }, 3000);
+            }, 6000);
         }
 
 
@@ -304,7 +303,7 @@ class ResultContainer extends Component {
                                     <ExtensionPoint id="breadcrump" breadcrumb={productSearch.breadcrumb} params={this.props.params} />
                                 }
 
-                                <ExtensionPoint id="topbrand" titleTag={this.state.titleTag} descriptionTag={this.props.description} />
+                                <ExtensionPoint id="topbrand" titleTag={this.props.params.subcategory} descriptionTag={this.props.description} />
 
                                 <ExtensionPoint id="banners" />
 
