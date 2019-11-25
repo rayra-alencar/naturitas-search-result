@@ -106,9 +106,10 @@ class SearchResultContainer extends Component {
     }else{
       flagEventDataLayer = true;
     }    
+   //NAT-451, debe recibir la misma path que los productos, la ruta completa de las categorias, no solo categoria final
     if(typeof dataLayer != 'undefined' && !flagEventDataLayer){
       dataLayer.push({'event': 'categoryView',
-                      'categoryRetail': catDepActual});  
+                      'categoryRetail': "/"+query});  
       flagEventDataLayer = true;
     }
     /*FIN NAT-405 enviar evento de categoryView para RetailRocket en v2*/
