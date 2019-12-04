@@ -210,6 +210,7 @@ class ResultContainer extends Component {
     }
 
 
+   
 
     render() {
         const { searchQuery, notfoundimage, params, map, intl, searchContext } = this.props

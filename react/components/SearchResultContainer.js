@@ -19,6 +19,8 @@ class SearchResultContainer extends Component {
 
   _fetchMoreLocked = false
 
+
+
   handleFetchMore = () => {
     if (this._fetchMoreLocked) {
       return
