@@ -14,6 +14,7 @@ class SearchResultContainer extends Component {
 
   state = {
     fetchMoreLoading: false,
+    catRetailRocket: ''
   }
 
   _fetchMoreLocked = false
@@ -95,7 +96,7 @@ class SearchResultContainer extends Component {
       pagination,
     } = this.props
     /*NAT-405 enviar evento de categoryView para RetailRocket en v2*/ 
-    if(this.props.params.category){
+   /* if(this.props.params.category){
       initialCatDep = this.props.params.category;      
     }else if(this.props.params.department) {
       initialCatDep = this.props.params.department;
@@ -105,13 +106,26 @@ class SearchResultContainer extends Component {
       catDepActual = initialCatDep;
     }else{
       flagEventDataLayer = true;
-    }    
-   //NAT-451, debe recibir la misma path que los productos, la ruta completa de las categorias, no solo categoria final
-    if(typeof dataLayer != 'undefined' && !flagEventDataLayer){
-      dataLayer.push({'event': 'categoryView',
-                      'categoryRetail': "/"+query});  
-      flagEventDataLayer = true;
+    }    */
+       //NAT-451, debe recibir la misma path que los productos, la ruta completa de las categorias, no solo categoria final
+
+    if (typeof products != "undefined"){
+      if (typeof products[0] != "undefined"){
+        if (typeof products[0].categories != "undefined"){
+          this.state.catRetailRocket=products[0].categories[0];
+          if(typeof dataLayer != 'undefined' && !flagEventDataLayer){
+            dataLayer.push({'event': 'categoryView',
+                            'categoryRetail': this.state.catRetailRocket});  
+            flagEventDataLayer = true;
+          }
+        }
+      }
     }
+    /*if(typeof dataLayer != 'undefined' && !flagEventDataLayer){
+      dataLayer.push({'event': 'categoryView',
+                      'categoryRetail': "/"+catDepActual});  
+      flagEventDataLayer = true;
+    }*/
     /*FIN NAT-405 enviar evento de categoryView para RetailRocket en v2*/
     /*NAT-419 se arrastra el searchcontext para saber en que tipo de búsqueda nos encontramos para mostrar mas filtros de categorías cuando se trata de una coleccion*/  
     let searchContext = false;
