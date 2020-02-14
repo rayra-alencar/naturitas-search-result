@@ -16,7 +16,6 @@
     "messages": "1.x"
   },
   "dependencies": {
-
     "vtex.search-result": "3.x",
     "webimpacto.naturitas-product-list": "1.x",
     "vtex.breadcrumb": "1.x",
