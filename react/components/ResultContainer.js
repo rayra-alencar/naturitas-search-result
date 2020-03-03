@@ -303,7 +303,7 @@ class ResultContainer extends Component {
                                     <ExtensionPoint id="breadcrump" breadcrumb={productSearch.breadcrumb} params={this.props.params} />
                                 }
 
-                                <ExtensionPoint id="topbrand" titleTag={this.props.params.subcategory} descriptionTag={this.props.description} breadcrumbParams={productSearch.breadcrumb} />
+                                <ExtensionPoint id="topbrand" titleTag={this.props.params.subcategory} descriptionTag={this.props.description} breadcrumbParams={(productSearch && productSearch.breadcrumb  ? productSearch.breadcrumb : [])} />
 
                                 <ExtensionPoint id="banners" />
 
